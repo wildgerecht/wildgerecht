@@ -7,6 +7,21 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: `wildgerecht`,
+    description: `wildgerecht Jagdmarketing`,
+    author: `wildgerecht`,
+    siteUrl: `https://wildgerecht.de/`,
+    social: {
+      twitter: "",
+    },
+    siteVerification: {
+      google: ``,
+      bing: ``,
+    },
+    image: ``,
+  },
+
   /**
    * Adding plugins to this array adds them to your Gatsby site.
    *
@@ -14,6 +29,7 @@ module.exports = {
    * If you need any more you can search here: https://www.gatsbyjs.com/plugins/
    */
   plugins: [
+    // { resolve: `gatsby-plugin-image` },
     {
       /**
        * First up is the WordPress source plugin that connects Gatsby
@@ -26,9 +42,7 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         // the only required plugin option for WordPress is the GraphQL url.
-        url:
-          process.env.WPGRAPHQL_URL ||
-          `https://wpgatsbydemo.wpengine.com/graphql`,
+        url: process.env.WPGRAPHQL_URL || `https://wp.wildgerecht.de/graphql`,
       },
     },
 
@@ -58,14 +72,22 @@ module.exports = {
       // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter WordPress Blog`,
-        short_name: `GatsbyJS & WP`,
+        name: `Wildgerecht`,
+        short_name: `Wildgerecht`,
         start_url: `/`,
         background_color: `#ffffff`,
-        theme_color: `#663399`,
+        theme_color: `#000`,
         display: `minimal-ui`,
         icon: `content/assets/gatsby-icon.png`,
       },
+    },
+
+    {
+      resolve: `gatsby-plugin-netlify`,
+    },
+
+    {
+      resolve: `gatsby-plugin-scroll-reveal`,
     },
 
     // See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
