@@ -4,8 +4,15 @@ import { mq } from "../utils/presets"
 // import { GatsbyImage } from "gatsby-plugin-image"
 // import { getImage } from "gatsby-plugin-image"
 import Image from "gatsby-image"
-
+import Flickity from "react-flickity-component"
 import QuotationMark from "../images/quotationmark.svg"
+
+const flickityOptions = {
+  initialIndex: 4,
+  pageDots: false,
+  freeScroll: true,
+  wrapAround: true,
+}
 
 const Wrapper = styled.section`
   background: var(--color-darkgreen);
@@ -50,8 +57,31 @@ const Wrapper = styled.section`
     top: -2rem;
   }
 
+  .slider {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .slideitem {
+      width: 33.33%;
+    }
+  }
+
   /* tablet design */
   ${mq.tablet} {
+    .slider {
+      max-width: 60rem;
+      margin: 0 auto;
+      .slideitem {
+        width: 15%;
+      }
+      .flickity-button {
+        background: red;
+      }
+      .flickity-prev-next-button {
+        background: gold;
+      }
+    }
+
     ul li {
       width: 25%;
     }
@@ -85,9 +115,9 @@ const Wrapper = styled.section`
   ${mq.desktop} {
     margin: 5rem auto 5rem;
 
-    .flex {
+    /* .flex {
       display: flex;
-    }
+    } */
 
     ul li {
       width: 20%;
@@ -96,6 +126,7 @@ const Wrapper = styled.section`
     .textcontent {
       min-width: 800px;
       min-height: 390px;
+      text-align: center;
     }
 
     .quote1 {
@@ -153,9 +184,16 @@ const Partner = ({ partnergroup, image, logos }) => {
           </div>
         </div>
 
-        <ul className="logowrapper">
+        <Flickity
+          className={"carousel slider"} // default ''
+          elementType={"div"} // default 'div'
+          options={flickityOptions} // takes flickity options {}
+          disableImagesLoaded={false} // default false
+          reloadOnUpdate // default false
+          static // default false
+        >
           {partnerlogos.map((item, i) => (
-            <li key={item.partner.website + i}>
+            <li className="slideitem" key={item.partner.website + i}>
               {!!item.partner.website ? (
                 <a
                   href={item.partner.website.url}
@@ -173,17 +211,21 @@ const Partner = ({ partnergroup, image, logos }) => {
               ) : (
                 <>
                   {!!item.partner.image && (
-                    <Image
-                      className="img"
-                      fluid={item.partner.image.localFile.childImageSharp.fluid}
-                      alt={item.partner.image.altText}
-                    />
+                    <li className="slideitem">
+                      <Image
+                        className="img"
+                        fluid={
+                          item.partner.image.localFile.childImageSharp.fluid
+                        }
+                        alt={item.partner.image.altText}
+                      />
+                    </li>
                   )}
                 </>
               )}
             </li>
           ))}
-        </ul>
+        </Flickity>
       </Wrapper>
     </>
   )
