@@ -91,7 +91,7 @@ const Layout = ({ isHomePage, children, uri }) => {
         </div>
       </Header>
 
-      <Main>{children}</Main>
+      <Main title="testing">{children}</Main>
 
       <Footer />
     </div>
