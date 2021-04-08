@@ -175,7 +175,7 @@ const Partner = ({ partnergroup, image, logos }) => {
               )}
             </div>
             <div className="textcontent">
-              <h1>{partnergroup.title}</h1>
+              <h1>{parse(partnergroup.title)}</h1>
               <img
                 src={QuotationMark}
                 alt=""
