@@ -6,6 +6,7 @@ import { mq } from "../utils/presets"
 import Image from "gatsby-image"
 import Flickity from "react-flickity-component"
 import QuotationMark from "../images/quotationmark.svg"
+import parse from "html-react-parser"
 
 const flickityOptions = {
   initialIndex: 4,
