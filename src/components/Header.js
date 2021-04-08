@@ -1,18 +1,90 @@
-const Header = styled.header`
-  /* background: var(--color-black); */
-  height: 6rem;
+import React from "react"
+import UniversalLink from "./UniversalLink"
+import styled from "styled-components"
+import HeaderMenu from "./nav/HeaderMenu"
+// import Logo from "../images/wildgerecht-logo-gruppe.svg"
+import Logo from "../images/wildgerecht-logo-weiss.svg"
+import { mq } from "../utils/presets"
+import Headroom from "react-headroom"
+
+const HeaderWrapper = styled.header`
   z-index: 10;
-  position: relative;
-  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  ${mq.desktop} {
+  }
 `
 
-const Header = ({}) => {
+const Navwrapper = styled.nav`
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  max-width: var(--maxWidth-5xl);
+  margin: 0 auto;
+  .logolink {
+    flex: 0 1 auto;
+    line-height: 0;
+    display: block;
+    position: relative;
+    width: 100%;
+    img {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      top: 1rem;
+      display: block;
+      max-width: 300px;
+    }
+  }
+
+  ${mq.desktop} {
+    h1 {
+      text-align: left;
+      margin-left: 1rem;
+    }
+    .logolink {
+      width: initial;
+      position: initial;
+      padding: 1rem;
+      img {
+        width: 250px;
+        margin: 0;
+        position: initial;
+        transform: initial;
+        top: 0;
+      }
+    }
+  }
+`
+
+const Header = ({ isHomePage, title, uri, frontPage }) => {
   return (
-    <>
-      <Wrapper>
-        <h1>Header</h1>
-      </Wrapper>
-    </>
+    <HeaderWrapper className="global-header">
+      <Headroom disableInlineStyles>
+        <div>
+          <Navwrapper aria-label="horizontal" role="navigation">
+            {frontPage ? (
+              <UniversalLink
+                className="header-link-home logolink"
+                to="/"
+                aria-label="Link zur Startseite"
+                aria-current="page"
+              >
+                <img src={Logo} alt="Wildgerecht Logo" className="logo" />
+              </UniversalLink>
+            ) : (
+              <UniversalLink className="header-link-home logolink" to="/">
+                <img src={Logo} alt="Wildgerecht Logo" className="logo" />
+              </UniversalLink>
+            )}
+
+            <HeaderMenu uri={uri} />
+          </Navwrapper>
+        </div>
+      </Headroom>
+    </HeaderWrapper>
   )
 }
 

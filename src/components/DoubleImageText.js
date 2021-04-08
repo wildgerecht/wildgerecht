@@ -143,12 +143,12 @@ const DoubleImageText = ({
   }
 
   const featuredsloganImage = {
-    fluid: image?.localFile?.childImageSharp?.fluid,
+    fluid: sloganimage?.localFile?.childImageSharp?.fluid,
     alt: sloganimage?.altText || ``,
   }
 
   const backgroundImage = {
-    fluid: image?.localFile?.childImageSharp?.fluid,
+    fluid: backgroundimage?.localFile?.childImageSharp?.fluid,
     alt: backgroundimage?.altText || ``,
   }
   return (

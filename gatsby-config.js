@@ -81,7 +81,12 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
-
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require("sass"),
+      },
+    },
     {
       resolve: `gatsby-plugin-netlify`,
     },

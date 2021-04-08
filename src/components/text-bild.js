@@ -40,7 +40,7 @@ const Wrapper = styled.section`
 
     h1,
     h2 {
-      margin-top: 0;
+      margin-top: 1rem;
     }
 
     /* ul {
@@ -134,6 +134,11 @@ const Wrapper = styled.section`
       }
       .content {
         order: initial;
+
+        h1,
+        h2 {
+          margin-top: 0;
+        }
       }
     }
 

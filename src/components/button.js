@@ -4,7 +4,7 @@ import UniversalLink from "./UniversalLink"
 const Button = ({ button }) => {
   return (
     <>
-      {button && button.target ? (
+      {!!button && button.target ? (
         <>
           <a
             className="button"

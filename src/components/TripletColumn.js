@@ -26,7 +26,7 @@ const Wrapper = styled.div`
     .item {
       margin-bottom: 2rem;
       text-align: center;
-      width: 33.33%;
+      width: 100%;
       h3 {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
@@ -44,6 +44,7 @@ const Wrapper = styled.div`
         background-size: 100% 100%;
         padding: 3rem 2rem 3rem 2rem;
         max-width: 26rem;
+        margin: 0 auto;
 
         img {
           margin: 0 auto;
@@ -72,6 +73,7 @@ const Wrapper = styled.div`
   ${mq.xl}  {
     .flex {
       .item {
+        width: 33.33%;
         .content {
           padding: 3rem 5rem 3rem 5rem;
         }

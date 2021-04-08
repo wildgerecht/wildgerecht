@@ -163,7 +163,7 @@ const MoodPicture = ({
     <>
       <Wrapper>
         <div className={"imgwrap " + heightclass}>
-          {featuredImage && (
+          {!!featuredImage && (
             <Image
               className="img "
               fluid={featuredImage.fluid}
@@ -174,7 +174,7 @@ const MoodPicture = ({
           <div className={"content " + gradientClass}></div>
           <div className="textcontent" style={{ justifyContent: location }}>
             <div className="inner">
-              {title && (
+              {!!title && (
                 <h2
                   data-sal="slide-up"
                   data-sal-easing="ease"
@@ -184,7 +184,7 @@ const MoodPicture = ({
                 </h2>
               )}
 
-              {text && (
+              {!!text && (
                 <p
                   data-sal="slide-up"
                   data-sal-easing="ease"
@@ -194,7 +194,7 @@ const MoodPicture = ({
                 </p>
               )}
 
-              {button && (
+              {!!button && (
                 <Button
                   data-sal="slide-up"
                   data-sal-easing="ease"

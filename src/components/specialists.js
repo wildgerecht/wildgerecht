@@ -148,22 +148,22 @@ const SpecialistsSection = ({ text, allSpecialists }) => {
   const specialists = allSpecialists
 
   return (
-    <>
-      <Wrapper>
-        <div className="textcontent">
-          <div className="textcontentinner">{!!text && <>{parse(text)}</>}</div>
-          <img className="illustration" src={CameraImage} alt="Camera" />
-        </div>
+    <Wrapper>
+      <div className="textcontent">
+        <div className="textcontentinner">{!!text && <>{parse(text)}</>}</div>
+        <img className="illustration" src={CameraImage} alt="Camera" />
+      </div>
 
-        <Flickity
-          className={"carousel slider"} // default ''
-          elementType={"div"} // default 'div'
-          options={flickityOptions} // takes flickity options {}
-          disableImagesLoaded={false} // default false
-          reloadOnUpdate // default false
-          static // default false
-        >
-          {specialists.map(item => (
+      <Flickity
+        className={"carousel slider"} // default ''
+        elementType={"div"} // default 'div'
+        options={flickityOptions} // takes flickity options {}
+        disableImagesLoaded={false} // default false
+        reloadOnUpdate // default false
+        static // default false
+      >
+        {
+          !!specialists.map(item => (
             <div key={item.textcontent.title} className="slideitem">
               {!!item.image && (
                 <Image
@@ -184,10 +184,10 @@ const SpecialistsSection = ({ text, allSpecialists }) => {
                 </div>
               </div>
             </div>
-          ))}
-        </Flickity>
-      </Wrapper>
-    </>
+          ))
+        }
+      </Flickity>
+    </Wrapper>
   )
 }
 

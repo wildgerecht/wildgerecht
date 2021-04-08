@@ -15,7 +15,7 @@ const flickityOptions = {
 }
 
 const Wrapper = styled.section`
-  margin-top: -6rem;
+  /* margin-top: -2rem; */
 `
 
 const SliderWrapper = styled.div`
@@ -45,7 +45,7 @@ const SliderWrapper = styled.div`
       .contentinner {
         h1 {
           max-width: 50rem;
-          font-size: 3rem;
+          font-size: 2rem;
         }
       }
       img {
@@ -72,6 +72,16 @@ const SliderWrapper = styled.div`
       rgba(0, 0, 0, 0.5298494397759104) 65%,
       rgba(0, 0, 0, 0.8491771708683473) 100%
     );
+  }
+
+  ${mq.tablet} {
+    .contentwrapper {
+      contentinner {
+        h1 {
+          font-size: 3rem;
+        }
+      }
+    }
   }
 
   ${mq.desktop} {

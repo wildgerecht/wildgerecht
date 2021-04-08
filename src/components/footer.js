@@ -195,72 +195,67 @@ const Footer = styled.footer`
 `
 
 const FooterSection = () => (
-  <>
-    <Footer>
-      <div className="inner">
-        <div className="dog">
-          <img src={Dog} alt="Deutsch Drahthaar" />
-        </div>
-        <ul>
-          <li>
-            <Link to="/kompetenz">Kompetenz</Link>
-          </li>
-          <li>
-            <Link to="/leistungen">Leistungen</Link>
-          </li>
-          <li>
-            <Link to="/seminare">Seminare</Link>
-          </li>
-          <li>
-            <Link to="/kontakt">Kontakt</Link>
-          </li>
-          <li>
-            <Link to="/datenschutz">Datenschutz</Link>
-          </li>
-          <li>
-            <Link to="/impressum">Impressum</Link>
-          </li>
-          <li>
-            <a
-              href="https://facebook.com/wildgerecht"
-              target="_blank"
-              rel="noopener nofollow noreferrer"
-              aria-label="wildgerecht auf Facebook"
-            >
-              <FaFacebook
-                className="socialicon"
-                alt="wildgerecht auf Facebook"
-              />
-            </a>
-            <a
-              href="https://instagram.com/wildgerecht"
-              target="_blank"
-              rel="noopener nofollow noreferrer"
-              aria-label="wildgerecht auf Instagram"
-            >
-              <FaInstagram
-                className="socialicon"
-                alt="wildgerecht auf Instagram"
-              />
-            </a>
-          </li>
-        </ul>
-        <div className="buttons">
-          <a href="mailto:info@wildgerecht.de" className="button">
-            E-Mail
-          </a>
-          <a href="tel:+4992160806923" className="button">
-            Telefon
-          </a>
-        </div>
-        <Link className="logo" to="/" alt="Home">
-          <div className="logooriginal">
-            <img src={LogoWeiss} alt="Wildgerecht Logo" />
-          </div>
-        </Link>
+  <Footer>
+    <div className="inner">
+      <div className="dog">
+        <img src={Dog} alt="Deutsch Drahthaar" />
       </div>
-    </Footer>
-  </>
+      <ul>
+        <li>
+          <Link to="/kompetenz">Kompetenz</Link>
+        </li>
+        <li>
+          <Link to="/leistungen">Leistungen</Link>
+        </li>
+        <li>
+          <Link to="/seminare">Seminare</Link>
+        </li>
+        <li>
+          <Link to="/kontakt">Kontakt</Link>
+        </li>
+        <li>
+          <Link to="/datenschutz">Datenschutz</Link>
+        </li>
+        <li>
+          <Link to="/impressum">Impressum</Link>
+        </li>
+        <li>
+          <a
+            href="https://facebook.com/wildgerecht"
+            target="_blank"
+            rel="noopener nofollow noreferrer"
+            aria-label="wildgerecht auf Facebook"
+          >
+            <FaFacebook className="socialicon" alt="wildgerecht auf Facebook" />
+          </a>
+          <a
+            href="https://instagram.com/wildgerecht"
+            target="_blank"
+            rel="noopener nofollow noreferrer"
+            aria-label="wildgerecht auf Instagram"
+          >
+            <FaInstagram
+              className="socialicon"
+              alt="wildgerecht auf Instagram"
+            />
+          </a>
+        </li>
+      </ul>
+      <div className="buttons">
+        <a href="mailto:info@wildgerecht.de" className="button">
+          E-Mail
+        </a>
+        <a href="tel:+4992160806923" className="button">
+          Telefon
+        </a>
+      </div>
+      <Link className="logo" to="/" alt="Home">
+        <div className="logooriginal">
+          <img src={LogoWeiss} alt="Wildgerecht Logo" />
+        </div>
+      </Link>
+    </div>
+  </Footer>
 )
 
 export default FooterSection

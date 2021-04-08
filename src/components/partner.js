@@ -211,28 +211,16 @@ const Partner = ({ partnergroup, image, logos }) => {
             reloadOnUpdate // default false
             static // default false
           >
-            {partnerlogos.map((item, i) => (
-              <li className="slideitem" key={item.partner.website + i}>
-                {!!item.partner.website ? (
-                  <a
-                    href={item.partner.website.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {!!item.partner.image && (
-                      <Image
-                        className="img"
-                        fluid={
-                          item.partner.image.localFile.childImageSharp.fluid
-                        }
-                        alt={item.partner.image.altText}
-                      />
-                    )}
-                  </a>
-                ) : (
-                  <>
-                    {!!item.partner.image && (
-                      <li className="slideitem">
+            {
+              !!partnerlogos.map((item, i) => (
+                <li className="slideitem" key={item.partner.website + i}>
+                  {!!item.partner.website ? (
+                    <a
+                      href={item.partner.website.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {!!item.partner.image && (
                         <Image
                           className="img"
                           fluid={
@@ -240,12 +228,26 @@ const Partner = ({ partnergroup, image, logos }) => {
                           }
                           alt={item.partner.image.altText}
                         />
-                      </li>
-                    )}
-                  </>
-                )}
-              </li>
-            ))}
+                      )}
+                    </a>
+                  ) : (
+                    <>
+                      {!!item.partner.image && (
+                        <li className="slideitem">
+                          <Image
+                            className="img"
+                            fluid={
+                              item.partner.image.localFile.childImageSharp.fluid
+                            }
+                            alt={item.partner.image.altText}
+                          />
+                        </li>
+                      )}
+                    </>
+                  )}
+                </li>
+              ))
+            }
           </Flickity>
         </div>
       </Wrapper>

@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql, Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { mq, colors } from "../utils/presets"
+import { mq, colors } from "../../utils/presets"
 // import LanguageSelector from "./languageSelector"
 
 const MenuList = styled.ul`
@@ -17,12 +17,15 @@ const MenuList = styled.ul`
     }
   }
   display: none;
-  ${mq.tablet} {
+
+  ${mq.desktop} {
     margin: 0;
     list-style: none;
     display: flex;
     flex-flow: row;
     align-self: center;
+    flex: 1 0 auto;
+    justify-content: flex-end;
     li {
       display: block;
       margin: 0;
@@ -34,7 +37,7 @@ const MenuList = styled.ul`
       a {
         font-family: var(--fontFamily-sans);
         letter-spacing: 0.1em;
-        padding: 1rem 0.5rem;
+        padding: 1rem 0.5rem 0;
         display: block;
         text-decoration: none;
         font-size: 1rem;
@@ -101,7 +104,7 @@ const MenuList = styled.ul`
       margin-bottom: -1.2rem;
 
       a {
-        padding: 1rem 0.5rem;
+        padding: 1rem 0.5rem 0;
         font-size: 1.3rem;
       }
     }
