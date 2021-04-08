@@ -8,8 +8,17 @@ import Button from "../components/button"
 import { Accordion, AccordionItem } from "react-sanfona"
 import { mq } from "../utils/presets"
 
-const Wrapper = styled.section`
-  /* mobiles Layout */
+const Background = styled.section`
+  /* background: darkgreen;
+  color: black;
+  h2,
+  h1,
+  h3 {
+    color: black;
+  } */
+`
+
+const Wrapper = styled.div`
   max-width: var(--maxWidth-5xl);
   margin: 1rem auto 3rem;
   .wrap {
@@ -73,9 +82,9 @@ const Wrapper = styled.section`
         clear: both;
         position: absolute;
         display: block;
-        background-color: #fff;
+        background-color: #f47d00;
         height: 4px;
-        top: 50%;
+        top: 15px;
         z-index: 9;
         width: 20px;
         right: 0;
@@ -87,13 +96,14 @@ const Wrapper = styled.section`
         content: " ";
         position: absolute;
         display: block;
-        background-color: #fff;
+        background-color: #f47d00;
         width: 4px;
         right: 8px;
-        top: 15px;
+        top: 7px;
         bottom: 10px;
         z-index: 9;
         transition: all 0.3s;
+        height: 21px;
       }
     }
     .react-sanfona-item-expanded {
@@ -195,15 +205,15 @@ const TextBild = ({
   }
 
   return (
-    <>
+    <Background>
       <Wrapper>
         <div className="wrap">
           {textRightSide && textRightSide ? (
             <div className="content contentright" style={{ order: "1" }}>
               {settings.header && settings.header ? (
-                <h1>{!!title && title}</h1>
+                <h1>{!!title && parse(title)}</h1>
               ) : (
-                <h2>{!!title && title}</h2>
+                <h2>{!!title && parse(title)}</h2>
               )}
               {content && <div>{parse(content)}</div>}
               {!!activateaccordion === true && (
@@ -241,9 +251,9 @@ const TextBild = ({
           ) : (
             <div className="content">
               {settings.header && settings.header ? (
-                <h1>{!!title && title}</h1>
+                <h1>{!!title && parse(title)}</h1>
               ) : (
-                <h2>{!!title && title}</h2>
+                <h2>{!!title && parse(title)}</h2>
               )}
               {!!content && <div>{parse(content)}</div>}
               {!!activateaccordion === true && (
@@ -300,7 +310,7 @@ const TextBild = ({
           )}
         </div>
       </Wrapper>
-    </>
+    </Background>
   )
 }
 

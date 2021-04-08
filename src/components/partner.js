@@ -12,6 +12,9 @@ const flickityOptions = {
   pageDots: false,
   freeScroll: true,
   wrapAround: true,
+  autoPlay: 3000,
+  pauseAutoPlayOnHover: false,
+  prevNextButtons: false,
 }
 
 const Wrapper = styled.section`
@@ -19,18 +22,6 @@ const Wrapper = styled.section`
   .inner {
     max-width: var(--maxWidth-5xl);
     margin: 1rem auto 3rem;
-    ul {
-      list-style: none;
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-    }
-
-    ul li {
-      width: 50%;
-      padding: 1rem;
-      max-width: 400px;
-    }
 
     .textcontent {
       padding: 0 3rem 2rem 2rem;
@@ -59,33 +50,21 @@ const Wrapper = styled.section`
 
     .slider {
       list-style: none;
-      margin: 0;
-      padding: 0;
+      margin: 2rem 0;
+      padding: 1rem 0;
       .slideitem {
         width: 33.33%;
       }
     }
   }
 
-  /* tablet design */
   ${mq.tablet} {
     .inner {
+      padding-bottom: 2rem;
       .slider {
-        max-width: 60rem;
-        margin: 0 auto;
         .slideitem {
-          width: 15%;
+          width: 20%;
         }
-        .flickity-prev-next-button.next {
-          margin-right: -4rem;
-        }
-        .flickity-prev-next-button.previous {
-          margin-left: -4rem;
-        }
-      }
-
-      ul li {
-        width: 25%;
       }
 
       .imgwrap {
@@ -118,9 +97,13 @@ const Wrapper = styled.section`
     margin: 2rem 0;
     .inner {
       margin: 0 auto;
-      ul li {
-        width: 20%;
+
+      .slider {
+        .slideitem {
+          width: 14.9%;
+        }
       }
+
       .textcontent {
         text-align: center;
         .partnertext {
@@ -146,6 +129,13 @@ const Wrapper = styled.section`
     padding-top: 3rem;
     padding-bottom: 1rem;
     .inner {
+      .slider {
+        margin: 0;
+        .slideitem {
+          /* width: 12.5%; */
+        }
+      }
+
       .quote1 {
         height: 2rem;
         top: 8rem;
@@ -203,16 +193,16 @@ const Partner = ({ partnergroup, image, logos }) => {
             </div>
           </div>
 
-          <Flickity
-            className={"carousel slider"} // default ''
-            elementType={"div"} // default 'div'
-            options={flickityOptions} // takes flickity options {}
-            disableImagesLoaded={false} // default false
-            reloadOnUpdate // default false
-            static // default false
-          >
-            {
-              !!partnerlogos.map((item, i) => (
+          {!!partnerlogos && (
+            <Flickity
+              className={"carousel slider"} // default ''
+              elementType={"div"} // default 'div'
+              options={flickityOptions} // takes flickity options {}
+              disableImagesLoaded={false} // default false
+              reloadOnUpdate // default false
+              static // default false
+            >
+              {partnerlogos.map((item, i) => (
                 <li className="slideitem" key={item.partner.website + i}>
                   {!!item.partner.website ? (
                     <a
@@ -246,9 +236,9 @@ const Partner = ({ partnergroup, image, logos }) => {
                     </>
                   )}
                 </li>
-              ))
-            }
-          </Flickity>
+              ))}
+            </Flickity>
+          )}
         </div>
       </Wrapper>
     </>

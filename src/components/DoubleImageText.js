@@ -178,7 +178,7 @@ const DoubleImageText = ({
                   data-sal-easing="ease"
                   data-sal-duration="300"
                 >
-                  {title}
+                  {parse(title)}
                 </h2>
               )}
               {content && (

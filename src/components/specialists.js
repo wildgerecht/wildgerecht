@@ -6,10 +6,13 @@ import styled from "styled-components"
 import parse from "html-react-parser"
 import { mq } from "../utils/presets"
 import Flickity from "react-flickity-component"
-import CameraImage from "../images/specialists/camera.svg"
+// import CameraImage from "../images/specialists/camera.svg"
 
 const flickityOptions = {
   // initialIndex: 1,
+  autoPlay: 4000,
+  freeScroll: true,
+  wrapAround: true,
 }
 
 const Wrapper = styled.section`
@@ -123,7 +126,7 @@ const Wrapper = styled.section`
             color: black;
             &:hover {
               color: white;
-              background: black;
+              background: var(--color-black);
             }
           }
         }
@@ -142,16 +145,20 @@ const Wrapper = styled.section`
       width: 40%;
     }
   }
+  ${mq.xxl} {
+    padding-right: 0;
+  }
 `
 
 const SpecialistsSection = ({ text, allSpecialists }) => {
   const specialists = allSpecialists
+  console.log("specialists", specialists)
 
   return (
     <Wrapper>
       <div className="textcontent">
         <div className="textcontentinner">{!!text && <>{parse(text)}</>}</div>
-        <img className="illustration" src={CameraImage} alt="Camera" />
+        {/* <img className="illustration" src={CameraImage} alt="Camera" /> */}
       </div>
 
       <Flickity
@@ -162,30 +169,28 @@ const SpecialistsSection = ({ text, allSpecialists }) => {
         reloadOnUpdate // default false
         static // default false
       >
-        {
-          !!specialists.map(item => (
-            <div key={item.textcontent.title} className="slideitem">
-              {!!item.image && (
-                <Image
-                  className="img"
-                  fluid={item.image.localFile.childImageSharp.fluid}
-                  alt={item.image.altText}
-                />
-              )}
-              <div className="specialistcontent">
-                <div className="specialinner">
-                  {!!item?.textcontent?.title && (
-                    <h3>{parse(item.textcontent.title)}</h3>
-                  )}
-                  {!!item?.textcontent?.text && parse(item.textcontent.text)}
-                  {/* {!!item?.textcontent?.button && (
+        {specialists.map(item => (
+          <div key={item.textcontent.title} className="slideitem">
+            {!!item.image && (
+              <Image
+                className="img"
+                fluid={item.image.localFile.childImageSharp.fluid}
+                alt={item.image.altText}
+              />
+            )}
+            <div className="specialistcontent">
+              <div className="specialinner">
+                {!!item?.textcontent?.title && (
+                  <h3>{parse(item.textcontent.title)}</h3>
+                )}
+                {!!item?.textcontent?.text && parse(item.textcontent.text)}
+                {/* {!!item?.textcontent?.button && (
                     <Button button={item?.textcontent?.button} />
                   )} */}
-                </div>
               </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </Flickity>
     </Wrapper>
   )

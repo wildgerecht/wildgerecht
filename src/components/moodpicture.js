@@ -94,7 +94,7 @@ const Wrapper = styled.section`
       margin: 3rem 1rem 3rem;
       p {
         max-width: 800px;
-        margin: 0 auto;
+        margin: 0.5rem auto;
       }
     }
 
