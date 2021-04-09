@@ -47,9 +47,10 @@ const Navwrapper = styled.nav`
     .logolink {
       width: initial;
       position: initial;
-      padding: 1rem;
+      padding: 0.5rem;
+      /* padding: 1rem; */
       img {
-        width: 250px;
+        width: 170px;
         margin: 0;
         position: initial;
         transform: initial;

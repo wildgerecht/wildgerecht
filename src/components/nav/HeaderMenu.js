@@ -29,6 +29,8 @@ const MenuList = styled.ul`
     li {
       display: block;
       margin: 0;
+      padding-left: 2rem;
+      margin-bottom: -1.2rem;
       /* &:last-child {
         a {
           padding-right: 0;
@@ -44,6 +46,8 @@ const MenuList = styled.ul`
         text-transform: uppercase;
         color: white;
         transition: color 0.3s ease-in-out;
+        padding: 1rem 0.5rem 0;
+        font-size: 1.3rem;
         &:hover {
           color: ${colors.orange};
         }

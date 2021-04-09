@@ -7,11 +7,11 @@ import parse from "html-react-parser"
 import { mq } from "../utils/presets"
 import Flickity from "react-flickity-component"
 // import CameraImage from "../images/specialists/camera.svg"
+import Logo from "../images/wildgerecht-logo-weiss.svg"
 
 const flickityOptions = {
   // initialIndex: 1,
   autoPlay: 4000,
-  freeScroll: true,
   wrapAround: true,
 }
 
@@ -36,8 +36,8 @@ const Wrapper = styled.section`
       position: absolute;
       right: 0.5rem;
       bottom: 0.5rem;
-      width: 15rem;
-      opacity: 0.9;
+      width: 7rem;
+      opacity: 0.2;
     }
   }
   .slider {
@@ -50,12 +50,13 @@ const Wrapper = styled.section`
       &:first-child {
         /* display: block; */
       }
+      .img {
+        height: 60vh;
+      }
       .specialistcontent {
-        color: black;
         padding: 1rem;
         text-align: left;
         h3 {
-          color: black;
           margin-top: 0;
           margin-bottom: 0.7rem;
         }
@@ -83,7 +84,7 @@ const Wrapper = styled.section`
         padding: 2rem;
       }
       .illustration {
-        width: 25rem;
+        width: 9rem;
       }
     }
     .slider {
@@ -133,12 +134,40 @@ const Wrapper = styled.section`
       }
     }
   }
+  ${mq.desktop} {
+    .slider {
+      margin: 0 auto;
+      text-align: center;
+      .slideitem {
+        /* display: none; */
+        width: 100%;
+        overflow: hidden;
+        &:first-child {
+          /* display: block; */
+        }
+        .specialistcontent {
+          color: black;
+          padding: 1rem;
+          text-align: left;
+          h3 {
+            color: black;
+            margin-top: 0;
+            margin-bottom: 0.7rem;
+          }
+        }
+      }
+    }
+  }
   ${mq.xl} {
     .textcontent {
       width: 60%;
       padding-left: 3rem;
       .textcontentinner {
         padding: 3rem;
+      }
+      .illustration {
+        width: 12rem;
+        margin: 0.5rem;
       }
     }
     .slider {
@@ -147,18 +176,24 @@ const Wrapper = styled.section`
   }
   ${mq.xxl} {
     padding-right: 0;
+    .textcontent {
+      .illustration {
+        width: 14rem;
+        margin: 1rem;
+      }
+    }
   }
 `
 
 const SpecialistsSection = ({ text, allSpecialists }) => {
   const specialists = allSpecialists
-  console.log("specialists", specialists)
 
   return (
     <Wrapper>
       <div className="textcontent">
         <div className="textcontentinner">{!!text && <>{parse(text)}</>}</div>
         {/* <img className="illustration" src={CameraImage} alt="Camera" /> */}
+        <img className="illustration" src={Logo} alt="" />
       </div>
 
       <Flickity
@@ -183,7 +218,9 @@ const SpecialistsSection = ({ text, allSpecialists }) => {
                 {!!item?.textcontent?.title && (
                   <h3>{parse(item.textcontent.title)}</h3>
                 )}
-                {!!item?.textcontent?.text && parse(item.textcontent.text)}
+                {!!item?.textcontent?.text && (
+                  <p>{parse(item.textcontent.text)}</p>
+                )}
                 {/* {!!item?.textcontent?.button && (
                     <Button button={item?.textcontent?.button} />
                   )} */}

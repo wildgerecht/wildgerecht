@@ -11,7 +11,7 @@ import DoubleImageText from "../components/DoubleImageText"
 import SpecialistsSection from "../components/specialists"
 import PartnerSection from "../components/partner"
 
-const PageTemplate = ({ data: { page } }) => {
+const PageTemplate = ({ data: { page, frontPage } }) => {
   // const featuredImage = {
   //   image: getImage(page.featuredImage.node.localFile),
   //   alt: page.featuredImage.node.altText || ``,
@@ -19,8 +19,10 @@ const PageTemplate = ({ data: { page } }) => {
 
   const metaDesc = page.seo.metaDesc || ``
 
+  const mobilemenu = frontPage.mobileMenu.mobilemenu
+
   return (
-    <Layout uri={page.uri}>
+    <Layout uri={page.uri} mobilemenu={mobilemenu}>
       {/* lang={page.language.slug} */}
 
       <SEO title={page.title || ``} description={metaDesc} />
@@ -118,6 +120,39 @@ export default PageTemplate
 export const pageQuery = graphql`
   query PageById($id: String!) {
     # selecting the current page by id
+
+    frontPage: wpPage(isFrontPage: { eq: true }) {
+      title
+      mobileMenu {
+        mobilemenu {
+          link {
+            target
+            title
+            url
+          }
+          image {
+            altText
+            localFile {
+              childImageSharp {
+                fixed(width: 50, height: 50) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+          }
+          activeimage {
+            localFile {
+              childImageSharp {
+                fixed(width: 50, height: 50) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     page: wpPage(id: { eq: $id }) {
       id
       uri

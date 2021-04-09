@@ -210,11 +210,9 @@ const TextBild = ({
         <div className="wrap">
           {textRightSide && textRightSide ? (
             <div className="content contentright" style={{ order: "1" }}>
-              {settings.header && settings.header ? (
-                <h1>{!!title && parse(title)}</h1>
-              ) : (
-                <h2>{!!title && parse(title)}</h2>
-              )}
+              {settings.header && settings.header
+                ? !!title && parse(title)
+                : !!title && parse(title)}
               {content && <div>{parse(content)}</div>}
               {!!activateaccordion === true && (
                 <div className="akkwrap">
@@ -250,11 +248,9 @@ const TextBild = ({
             </div>
           ) : (
             <div className="content">
-              {settings.header && settings.header ? (
-                <h1>{!!title && parse(title)}</h1>
-              ) : (
-                <h2>{!!title && parse(title)}</h2>
-              )}
+              {settings.header && settings.header
+                ? !!title && parse(title)
+                : !!title && parse(title)}
               {!!content && <div>{parse(content)}</div>}
               {!!activateaccordion === true && (
                 <div className="akkwrap">

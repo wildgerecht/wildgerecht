@@ -175,13 +175,13 @@ const MoodPicture = ({
           <div className="textcontent" style={{ justifyContent: location }}>
             <div className="inner">
               {!!title && (
-                <h2
+                <div
                   data-sal="slide-up"
                   data-sal-easing="ease"
                   data-sal-duration="300"
                 >
                   {parse(title)}
-                </h2>
+                </div>
               )}
 
               {!!text && (
