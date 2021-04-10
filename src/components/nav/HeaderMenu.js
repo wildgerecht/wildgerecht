@@ -2,6 +2,7 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { mq, colors } from "../../utils/presets"
+import UniversalLink from "../UniversalLink"
 // import LanguageSelector from "./languageSelector"
 
 const MenuList = styled.ul`
@@ -36,7 +37,11 @@ const MenuList = styled.ul`
           padding-right: 0;
         }
       } */
-      a {
+      .dropdownicon {
+        font-size: 0.9rem;
+        padding-left: 0.4rem;
+      }
+      > a {
         font-family: var(--fontFamily-sans);
         letter-spacing: 0.1em;
         padding: 1rem 0.5rem 0;
@@ -76,7 +81,60 @@ const MenuList = styled.ul`
         visibility: visible;
         width: 100%;
       }
+
+      /* DROPDOWN MENU  */
+      position: relative;
+
+      @keyframes growDown {
+        0% {
+          transform: scaleY(0.7);
+        }
+        100% {
+          transform: scaleY(1);
+        }
+      }
+
+      .submenu {
+        visibility: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        perspective: 1000px;
+        display: none;
+        animation: growDown 300ms ease-in-out forwards;
+        transition: all 1.3s;
+        opacity: 0;
+        transform-origin: top center;
+        left: 0;
+        width: 15rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+          margin: 0 0.5rem 0 0;
+          /* background: green; */
+          &:first-child {
+            padding-top: 0.7rem;
+          }
+          a {
+            /* background: gold; */
+            padding: 0.5rem 0.5rem 0 0.5rem;
+          }
+        }
+      }
     }
+    .haschildren {
+      transition: all 0.3s;
+      &:hover {
+        .submenu {
+          display: block;
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+    /* KONTAKT */
     .kontakt {
       margin-left: 0.5rem;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
@@ -116,15 +174,43 @@ const MenuList = styled.ul`
 `
 
 const HeaderMenu = ({ uri, lang }) => {
+  // const flatListToHierarchical = (
+  //   data = [],
+  //   { idKey = "key", parentKey = "parentId", childrenKey = "children" } = {}
+  // ) => {
+  //   const tree = []
+  //   const childrenOf = {}
+  //   data.forEach(item => {
+  //     const newItem = { ...item }
+  //     const { [idKey]: id, [parentKey]: parentId = 0 } = newItem
+  //     childrenOf[id] = childrenOf[id] || []
+  //     newItem[childrenKey] = childrenOf[id]
+  //     parentId
+  //       ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem)
+  //       : tree.push(newItem)
+  //   })
+  //   return tree
+  // }
+
   const { wpMenu } = useStaticQuery(graphql`
     {
       wpMenu(slug: { eq: "hauptmenu" }) {
         name
         menuItems {
           nodes {
-            label
+            key: id
+            title: label
             url
-            databaseId
+            parentId
+            childItems {
+              nodes {
+                id
+                title: label
+                url
+                path
+                parentId
+              }
+            }
             connectedNode {
               node {
                 ... on WpContentNode {
@@ -140,35 +226,61 @@ const HeaderMenu = ({ uri, lang }) => {
 
   if (!wpMenu?.menuItems?.nodes || wpMenu.menuItems.nodes === 0) return null
 
+  // const hierarchicalList = flatListToHierarchical(wpMenu.menuItems.nodes)
+  // console.log(hierarchicalList)
+
   return (
     <MenuList className="nav__inner">
-      {wpMenu.menuItems.nodes.map((menuItem, i) => {
-        const path = menuItem?.connectedNode?.node?.uri ?? menuItem.url
+      {wpMenu.menuItems.nodes.map(menuItem => {
+        if (!menuItem.childItems.nodes.length !== 0 && !menuItem.parentId) {
+          const path = menuItem?.connectedNode?.node?.uri ?? menuItem.url
+          const itemId = "menu-item-" + menuItem.key
 
-        const itemId = "menu-item-" + menuItem.databaseId
+          const haschildren =
+            menuItem.childItems.nodes.length !== 0 && "haschildren"
 
-        return (
-          <li
-            id={itemId}
-            key={i + menuItem.url}
-            className={
-              "menu-item menu-item-type-custom menu-item-object-custom menu-item-home " +
-              itemId
-            }
-          >
-            <Link
-              className="left"
-              key={i + menuItem.url}
-              to={path}
-              activeStyle={{
-                color: "#FF6D20",
-              }}
-              activeClassName="active"
-            >
-              {menuItem.label}
-            </Link>
-          </li>
-        )
+          return (
+            <>
+              <li
+                id={itemId}
+                key={menuItem.key}
+                className={"menu-item " + haschildren}
+              >
+                <UniversalLink
+                  className="left"
+                  to={path}
+                  activeStyle={{
+                    color: "#FF6D20",
+                  }}
+                  activeClassName="active "
+                >
+                  {menuItem.title}
+                  {menuItem.childItems.nodes.length !== 0 && (
+                    <span className="dropdownicon">▼</span>
+                  )}
+                </UniversalLink>
+
+                {menuItem.childItems.nodes.length !== 0 && (
+                  <ul className="submenu">
+                    {menuItem.childItems.nodes.map((subMenuItem, i) => (
+                      <li>
+                        <UniversalLink
+                          to={subMenuItem.path}
+                          activeStyle={{
+                            color: "#FF6D20",
+                          }}
+                          activeClassName="active"
+                        >
+                          {subMenuItem.title}
+                        </UniversalLink>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            </>
+          )
+        }
       })}
       {/* <li>
         <LanguageSelector lang={lang} uri={uri} />
