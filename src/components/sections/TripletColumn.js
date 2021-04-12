@@ -1,12 +1,13 @@
 import React from "react"
-import Button from "./button"
+import Button from "../button"
 import styled from "styled-components"
-import { mq } from "../utils/presets"
+import { mq } from "../../utils/presets"
 import parse from "html-react-parser"
-import Greenbox from "../images/greenbox.png"
-import GreenboxRotated from "../images/greenbox-rotated.png"
+import Greenbox from "../../images/greenbox.png"
+import GreenboxRotated from "../../images/greenbox-rotated.png"
 
 const Wrapper = styled.div`
+  scroll-margin-block-start: 100px;
   max-width: var(--maxWidth-5xl);
   margin: 1rem auto 3rem;
   .introtext {
@@ -82,10 +83,11 @@ const Wrapper = styled.div`
   }
 `
 
-const TripletColumn = ({ button, boxen, introText }) => {
+const TripletColumn = ({ button, boxen, introText, sectionid }) => {
+  console.log("section id triplet: " + sectionid)
   return (
     <>
-      <Wrapper>
+      <Wrapper id={sectionid}>
         <div className="introtext">{introText && parse(introText)}</div>
         <div className="flex">
           {!!boxen &&

@@ -1,11 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import { mq } from "../utils/presets"
-// import { GatsbyImage } from "gatsby-plugin-image"
+import { mq } from "../../utils/presets" // import { GatsbyImage } from "gatsby-plugin-image"
 // import { getImage } from "gatsby-plugin-image"
 import Image from "gatsby-image"
 import Flickity from "react-flickity-component"
-import QuotationMark from "../images/quotationmark.svg"
+import QuotationMark from "../../images//quotationmark.svg"
 import parse from "html-react-parser"
 
 const flickityOptions = {
@@ -19,6 +18,7 @@ const flickityOptions = {
 }
 
 const Wrapper = styled.section`
+  scroll-margin-block-start: 100px;
   background: var(--color-darkgreen);
   .inner {
     max-width: var(--maxWidth-5xl);
@@ -152,7 +152,7 @@ const Wrapper = styled.section`
   }
 `
 
-const Partner = ({ partnergroup, image, logos }) => {
+const Partner = ({ partnergroup, image, logos, sectionid }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
     fluid: image?.localFile?.childImageSharp?.fluid,
@@ -163,7 +163,7 @@ const Partner = ({ partnergroup, image, logos }) => {
 
   return (
     <>
-      <Wrapper>
+      <Wrapper id={sectionid}>
         <div className="inner">
           <div className="flex">
             <div className="imgwrap">

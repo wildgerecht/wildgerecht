@@ -567,9 +567,9 @@ https://flickity.metafizzy.co
   }
 }
 
-.headroom--unfixed {
-  transform: translateY(0);
-}
+// .headroom--unfixed {
+//   transform: translateY(0%);
+// }
 
 .headroom--unpinned,
 .headroom--scrolled {
@@ -622,12 +622,13 @@ https://flickity.metafizzy.co
     }
 
     .logolink {
+      overflow: hidden;
       padding: 1rem;
       margin-left: -2.5rem;
     }
 
     transform: translateY(0%);
-    overflow: hidden;
+    // overflow: hidden;
     // background: var(--color-black);
     background: rgba(0 0 0 / 90%);
     border-bottom: 1px solid grey;

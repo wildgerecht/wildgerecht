@@ -126,8 +126,6 @@ const Layout = ({ isHomePage, children, uri, mobilemenu }) => {
     <div className="global-wrapper" data-is-root-path={isHomePage}>
       <Header frontPage={frontPage} title={title} uri={uri} />
 
-      {console.log(uri)}
-
       <Main>{children}</Main>
       <FixedBottomMenuWrapper id="bottomnav">
         <ul>

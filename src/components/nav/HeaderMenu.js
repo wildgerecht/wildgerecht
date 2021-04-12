@@ -1,4 +1,4 @@
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { mq, colors } from "../../utils/presets"
@@ -97,14 +97,16 @@ const MenuList = styled.ul`
       .submenu {
         visibility: hidden;
         position: absolute;
+        display: none;
+        opacity: 0;
         top: 100%;
         left: 0;
         width: 100%;
         perspective: 1000px;
-        display: none;
+
         animation: growDown 300ms ease-in-out forwards;
         transition: all 1.3s;
-        opacity: 0;
+
         transform-origin: top center;
         left: 0;
         width: 15rem;
@@ -240,45 +242,43 @@ const HeaderMenu = ({ uri, lang }) => {
             menuItem.childItems.nodes.length !== 0 && "haschildren"
 
           return (
-            <>
-              <li
-                id={itemId}
-                key={menuItem.key}
-                className={"menu-item " + haschildren}
+            <li
+              id={itemId}
+              key={menuItem.key}
+              className={"menu-item " + haschildren}
+            >
+              <UniversalLink
+                className="left"
+                to={path}
+                activeStyle={{
+                  color: "#FF6D20",
+                }}
+                activeClassName="active "
               >
-                <UniversalLink
-                  className="left"
-                  to={path}
-                  activeStyle={{
-                    color: "#FF6D20",
-                  }}
-                  activeClassName="active "
-                >
-                  {menuItem.title}
-                  {menuItem.childItems.nodes.length !== 0 && (
-                    <span className="dropdownicon">▼</span>
-                  )}
-                </UniversalLink>
-
+                {menuItem.title}
                 {menuItem.childItems.nodes.length !== 0 && (
-                  <ul className="submenu">
-                    {menuItem.childItems.nodes.map((subMenuItem, i) => (
-                      <li>
-                        <UniversalLink
-                          to={subMenuItem.path}
-                          activeStyle={{
-                            color: "#FF6D20",
-                          }}
-                          activeClassName="active"
-                        >
-                          {subMenuItem.title}
-                        </UniversalLink>
-                      </li>
-                    ))}
-                  </ul>
+                  <span className="dropdownicon">▼</span>
                 )}
-              </li>
-            </>
+              </UniversalLink>
+
+              {menuItem.childItems.nodes.length !== 0 && (
+                <ul className="submenu">
+                  {menuItem.childItems.nodes.map((subMenuItem, i) => (
+                    <li>
+                      <UniversalLink
+                        to={subMenuItem.path}
+                        activeStyle={{
+                          color: "#FF6D20",
+                        }}
+                        activeClassName="active"
+                      >
+                        {subMenuItem.title}
+                      </UniversalLink>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
           )
         }
       })}

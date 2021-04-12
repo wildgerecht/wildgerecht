@@ -4,10 +4,10 @@ import React from "react"
 import Image from "gatsby-image"
 import styled from "styled-components"
 import parse from "html-react-parser"
-import { mq } from "../utils/presets"
+import { mq } from "../../utils/presets"
 import Flickity from "react-flickity-component"
 // import CameraImage from "../images/specialists/camera.svg"
-import Logo from "../images/wildgerecht-logo-weiss.svg"
+import Logo from "../../images/wildgerecht-logo-weiss.svg"
 
 const flickityOptions = {
   // initialIndex: 1,
@@ -16,6 +16,7 @@ const flickityOptions = {
 }
 
 const Wrapper = styled.section`
+  scroll-margin-block-start: 100px;
   max-width: var(--maxWidth-5xl);
   margin: 3rem auto 3rem;
   .textcontent {
@@ -185,11 +186,11 @@ const Wrapper = styled.section`
   }
 `
 
-const SpecialistsSection = ({ text, allSpecialists }) => {
+const SpecialistsSection = ({ text, allSpecialists, sectionid }) => {
   const specialists = allSpecialists
 
   return (
-    <Wrapper>
+    <Wrapper id={sectionid}>
       <div className="textcontent">
         <div className="textcontentinner">{!!text && <>{parse(text)}</>}</div>
         {/* <img className="illustration" src={CameraImage} alt="Camera" /> */}

@@ -3,13 +3,13 @@ import { graphql } from "gatsby"
 // import { getImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import TextBild from "../components/text-bild"
-import MoodPicture from "../components/moodpicture"
-import TripletColumn from "../components/TripletColumn"
-import FullScreenHeader from "../components/fullscreen-header"
-import DoubleImageText from "../components/DoubleImageText"
-import SpecialistsSection from "../components/specialists"
-import PartnerSection from "../components/partner"
+import TextBild from "../components/sections/TextBild"
+import MoodPicture from "../components/sections/MoodPicture"
+import TripletColumn from "../components/sections/TripletColumn"
+import FullScreenHeader from "../components/sections/FullscreenHeader"
+import DoubleImageText from "../components/sections/DoubleImageText"
+import SpecialistsSection from "../components/sections/Specialists"
+import PartnerSection from "../components/sections/Partner"
 
 const IndexPageTemplate = ({ data: { page, frontPage } }) => {
   // const featuredImage = {
@@ -52,6 +52,7 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
                   textRightSide={item.settings.textRightSide}
                   activateaccordion={item.textcontent.activateaccordion}
                   akkordion={item.textcontent.akkordion}
+                  sectionid={item.settings.sectionid}
                 />
               )}
 
@@ -61,6 +62,7 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
                   partnergroup={item.partnergroup}
                   image={item.image}
                   logos={item.logos}
+                  sectionid={item.sectionid}
                 />
               )}
 
@@ -70,6 +72,7 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
                   key={i}
                   text={item.text}
                   allSpecialists={item.allspecialists}
+                  sectionid={item.sectionid}
                 />
               )}
               {item.fieldGroupName ===
@@ -83,6 +86,7 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
                   slogan={item.sloganWithImage.slogan}
                   sloganimage={item.sloganWithImage.image}
                   backgroundimage={item.sloganWithImage.slogan.backgroundimage}
+                  sectionid={item.sectionid}
                 />
               )}
 
@@ -93,6 +97,7 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
                   introText={item.introText}
                   button={item.button}
                   boxen={item.boxen}
+                  sectionid={item.sectionid}
                 />
               )}
 
@@ -107,6 +112,7 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
                   image={item.image}
                   horizontalLocation={item.settings.horizontalLocation}
                   gradient={item.settings.gradient}
+                  sectionid={item.sectionid}
                 />
               )}
             </div>
@@ -249,6 +255,7 @@ export const pageQuery = graphql`
               }
             }
             settings {
+              sectionid
               textRightSide
               header
             }
@@ -286,6 +293,7 @@ export const pageQuery = graphql`
 
           ... on WpPage_Pagebuilder_Layouts_Doubleimagetext {
             fieldGroupName
+            sectionid
             imageWithText {
               image {
                 altText
@@ -355,6 +363,7 @@ export const pageQuery = graphql`
 
           ... on WpPage_Pagebuilder_Layouts_Tripletcolumn {
             fieldGroupName
+            sectionid
             introText
             button {
               url
@@ -383,6 +392,7 @@ export const pageQuery = graphql`
 
           ... on WpPage_Pagebuilder_Layouts_Specialists {
             fieldGroupName
+            sectionid
             text
             allspecialists {
               textcontent {
@@ -463,6 +473,7 @@ export const pageQuery = graphql`
 
           ... on WpPage_Pagebuilder_Layouts_Moodpicture {
             fieldGroupName
+            sectionid
             text
             title
             button {

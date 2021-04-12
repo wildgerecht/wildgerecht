@@ -4,11 +4,12 @@ import Image from "gatsby-image"
 // import { getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import parse from "html-react-parser"
-import Button from "../components/button"
 import { Accordion, AccordionItem } from "react-sanfona"
-import { mq } from "../utils/presets"
+import { mq } from "../../utils/presets"
+import Button from "../button"
 
 const Background = styled.section`
+  scroll-margin-block-start: 100px;
   /* background: darkgreen;
   color: black;
   h2,
@@ -191,6 +192,7 @@ const TextBild = ({
   activateaccordion,
   akkordion,
   settings,
+  sectionid,
 }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
@@ -204,8 +206,10 @@ const TextBild = ({
     alt: logo?.altText || ``,
   }
 
+  console.log("section id textBild: " + sectionid)
+
   return (
-    <Background>
+    <Background id={sectionid}>
       <Wrapper>
         <div className="wrap">
           {textRightSide && textRightSide ? (

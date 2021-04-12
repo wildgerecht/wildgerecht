@@ -3,10 +3,11 @@ import React from "react"
 // import { getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import parse from "html-react-parser"
-import Button from "./button"
+import Button from "../button"
 import Image from "gatsby-image"
 
 const Wrapper = styled.section`
+  scroll-margin-block-start: 100px;
   position: relative;
   .background {
     text-align: center;
@@ -135,6 +136,7 @@ const DoubleImageText = ({
   slogan,
   sloganimage,
   backgroundimage,
+  sectionid,
 }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
@@ -152,89 +154,87 @@ const DoubleImageText = ({
     alt: backgroundimage?.altText || ``,
   }
   return (
-    <>
-      <Wrapper>
-        <div className="background">
-          {backgroundImage && (
-            <Image
-              className="backgroundimage"
-              fluid={backgroundImage?.fluid}
-              alt={backgroundImage?.alt}
-            />
-          )}
-        </div>
-        <div className="inner">
-          <div className="wrap">
-            <div className="image">
-              {featuredImage && (
-                <Image fluid={featuredImage?.fluid} alt={featuredImage?.alt} />
-              )}
-            </div>
-
-            <div className="content">
-              {title && (
-                <h2
-                  data-sal="slide-up"
-                  data-sal-easing="ease"
-                  data-sal-duration="300"
-                >
-                  {parse(title)}
-                </h2>
-              )}
-              {content && (
-                <div
-                  data-sal="slide-up"
-                  data-sal-easing="ease"
-                  data-sal-duration="300"
-                >
-                  {parse(content)}
-                </div>
-              )}
-              {button && (
-                <Button
-                  data-sal="slide-up"
-                  data-sal-easing="ease"
-                  data-sal-duration="300"
-                  button={button}
-                />
-              )}
-            </div>
+    <Wrapper id={sectionid}>
+      <div className="background">
+        {backgroundImage && (
+          <Image
+            className="backgroundimage"
+            fluid={backgroundImage?.fluid}
+            alt={backgroundImage?.alt}
+          />
+        )}
+      </div>
+      <div className="inner">
+        <div className="wrap">
+          <div className="image">
+            {featuredImage && (
+              <Image fluid={featuredImage?.fluid} alt={featuredImage?.alt} />
+            )}
           </div>
 
-          <div className="wrap sloganwrap">
-            <div className="image sloganimage">
-              {featuredsloganImage && (
-                <Image
-                  fluid={featuredsloganImage?.fluid}
-                  alt={featuredsloganImage?.alt}
-                />
-              )}
-            </div>
-
-            <div className="slogan">
-              {slogan.title && (
-                <h3
-                  data-sal="slide-up"
-                  data-sal-easing="ease"
-                  data-sal-duration="300"
-                >
-                  {parse(slogan.title)}
-                </h3>
-              )}
-              {slogan.text && (
-                <p
-                  data-sal="slide-up"
-                  data-sal-easing="ease"
-                  data-sal-duration="300"
-                >
-                  {parse(slogan.text)}
-                </p>
-              )}
-            </div>
+          <div className="content">
+            {title && (
+              <h2
+                data-sal="slide-up"
+                data-sal-easing="ease"
+                data-sal-duration="300"
+              >
+                {parse(title)}
+              </h2>
+            )}
+            {content && (
+              <div
+                data-sal="slide-up"
+                data-sal-easing="ease"
+                data-sal-duration="300"
+              >
+                {parse(content)}
+              </div>
+            )}
+            {button && (
+              <Button
+                data-sal="slide-up"
+                data-sal-easing="ease"
+                data-sal-duration="300"
+                button={button}
+              />
+            )}
           </div>
         </div>
-      </Wrapper>
-    </>
+
+        <div className="wrap sloganwrap">
+          <div className="image sloganimage">
+            {featuredsloganImage && (
+              <Image
+                fluid={featuredsloganImage?.fluid}
+                alt={featuredsloganImage?.alt}
+              />
+            )}
+          </div>
+
+          <div className="slogan">
+            {slogan.title && (
+              <h3
+                data-sal="slide-up"
+                data-sal-easing="ease"
+                data-sal-duration="300"
+              >
+                {parse(slogan.title)}
+              </h3>
+            )}
+            {slogan.text && (
+              <p
+                data-sal="slide-up"
+                data-sal-easing="ease"
+                data-sal-duration="300"
+              >
+                {parse(slogan.text)}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </Wrapper>
   )
 }
 

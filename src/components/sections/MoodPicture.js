@@ -1,8 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Button from "./button.js"
-import { mq } from "../utils/presets"
-// import { GatsbyImage } from "gatsby-plugin-image"
+import Button from "../button"
+import { mq } from "../../utils/presets" // import { GatsbyImage } from "gatsby-plugin-image"
 // import { getImage } from "gatsby-plugin-image"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
@@ -10,6 +9,7 @@ import parse from "html-react-parser"
 const Wrapper = styled.section`
   background: var(--color-black);
   padding-bottom: 3rem;
+  scroll-margin-block-start: 100px;
 
   .inner {
     padding: 0 1rem;
@@ -117,6 +117,7 @@ const MoodPicture = ({
   text,
   horizontalLocation,
   gradient,
+  sectionid,
 }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
@@ -160,53 +161,51 @@ const MoodPicture = ({
   }
 
   return (
-    <>
-      <Wrapper>
-        <div className={"imgwrap " + heightclass}>
-          {!!featuredImage && (
-            <Image
-              className="img "
-              fluid={featuredImage.fluid}
-              alt={featuredImage.alt}
-            />
-          )}
+    <Wrapper id={sectionid}>
+      <div className={"imgwrap " + heightclass}>
+        {!!featuredImage && (
+          <Image
+            className="img "
+            fluid={featuredImage.fluid}
+            alt={featuredImage.alt}
+          />
+        )}
 
-          <div className={"content " + gradientClass}></div>
-          <div className="textcontent" style={{ justifyContent: location }}>
-            <div className="inner">
-              {!!title && (
-                <div
-                  data-sal="slide-up"
-                  data-sal-easing="ease"
-                  data-sal-duration="300"
-                >
-                  {parse(title)}
-                </div>
-              )}
+        <div className={"content " + gradientClass}></div>
+        <div className="textcontent" style={{ justifyContent: location }}>
+          <div className="inner">
+            {!!title && (
+              <div
+                data-sal="slide-up"
+                data-sal-easing="ease"
+                data-sal-duration="300"
+              >
+                {parse(title)}
+              </div>
+            )}
 
-              {!!text && (
-                <p
-                  data-sal="slide-up"
-                  data-sal-easing="ease"
-                  data-sal-duration="300"
-                >
-                  {parse(text)}
-                </p>
-              )}
+            {!!text && (
+              <p
+                data-sal="slide-up"
+                data-sal-easing="ease"
+                data-sal-duration="300"
+              >
+                {parse(text)}
+              </p>
+            )}
 
-              {!!button && (
-                <Button
-                  data-sal="slide-up"
-                  data-sal-easing="ease"
-                  data-sal-duration="300"
-                  button={button}
-                />
-              )}
-            </div>
+            {!!button && (
+              <Button
+                data-sal="slide-up"
+                data-sal-easing="ease"
+                data-sal-duration="300"
+                button={button}
+              />
+            )}
           </div>
         </div>
-      </Wrapper>
-    </>
+      </div>
+    </Wrapper>
   )
 }
 
