@@ -31,7 +31,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
       {!!page.pageBuilder.layouts && (
         <>
           {page.pageBuilder.layouts.map((item, i) => (
-            <div key={i}>
+            <section key={i}>
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Fullscreenheader" && (
                 <FullScreenHeader key={i} slide={item.slide} />
@@ -113,7 +113,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   sectionid={item.sectionid}
                 />
               )}
-            </div>
+            </section>
           ))}
         </>
       )}
@@ -322,7 +322,6 @@ export const pageQuery = graphql`
             sloganWithImage {
               slogan {
                 title
-                text
                 backgroundimage {
                   altText
                   localFile {

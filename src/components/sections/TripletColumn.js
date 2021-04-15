@@ -9,7 +9,8 @@ import GreenboxRotated from "../../images/greenbox-rotated.png"
 const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
   max-width: var(--maxWidth-5xl);
-  margin: 1rem auto 3rem;
+  /* margin: 1rem auto 3rem; */
+  margin: var(--spacing-auto);
   .introtext {
     max-width: 50rem;
     margin: 0 auto;
@@ -86,31 +87,30 @@ const Wrapper = styled.div`
 const TripletColumn = ({ button, boxen, introText, sectionid }) => {
   console.log("section id triplet: " + sectionid)
   return (
-    <>
-      <Wrapper id={sectionid}>
-        <div className="introtext">{introText && parse(introText)}</div>
-        <div className="flex">
-          {!!boxen &&
-            boxen.map((item, i) => {
-              return (
-                <div className="item" key={i}>
-                  <div className="content">
-                    {!!item.box.icon.localFile.publicURL && (
-                      <img
-                        src={item.box.icon.localFile.publicURL}
-                        alt={item.box.icon.altText}
-                        aria-hidden="true"
-                      />
-                    )}
-                    {!!item.box.title && <h3>{parse(item.box.title)}</h3>}
-                    {!!item.box.text && <p>{parse(item.box.text)}</p>}
-                    {!!item.box.button && <Button button={item.box.button} />}
-                  </div>
+    <Wrapper id={sectionid}>
+      <div className="introtext">{introText && parse(introText)}</div>
+      <div className="flex">
+        {!!boxen &&
+          boxen.map((item, i) => {
+            return (
+              <div className="item" key={i}>
+                <div className="content">
+                  {!!item.box.icon.localFile.publicURL && (
+                    <img
+                      src={item.box.icon.localFile.publicURL}
+                      alt={item.box.icon.altText}
+                      aria-hidden="true"
+                    />
+                  )}
+                  {!!item.box.title && <h3>{parse(item.box.title)}</h3>}
+                  {!!item.box.text && <p>{parse(item.box.text)}</p>}
+                  {!!item.box.button && <Button button={item.box.button} />}
                 </div>
-              )
-            })}
+              </div>
+            )
+          })}
 
-          {/* <div className="item">
+        {/* <div className="item">
             <div className="content">
               <div className="icon lupe">
                 <StaticImage
@@ -128,7 +128,7 @@ const TripletColumn = ({ button, boxen, introText, sectionid }) => {
             </div>
           </div> */}
 
-          {/* <div className="item">
+        {/* <div className="item">
             <div className="bgimage second">
               <StaticImage
                 src="../images/greenbox.svg"
@@ -150,7 +150,7 @@ const TripletColumn = ({ button, boxen, introText, sectionid }) => {
             </div>
           </div> */}
 
-          {/* <div className="item">
+        {/* <div className="item">
             <div className="bgimage">
               <StaticImage
                 src="../images/greenbox.svg"
@@ -171,12 +171,9 @@ const TripletColumn = ({ button, boxen, introText, sectionid }) => {
               <p>{drittesFeld.text}</p>
             </div>
           </div> */}
-        </div>
-        <div className="buttonwrap">
-          {!!button && <Button button={button} />}
-        </div>
-      </Wrapper>
-    </>
+      </div>
+      <div className="buttonwrap">{!!button && <Button button={button} />}</div>
+    </Wrapper>
   )
 }
 

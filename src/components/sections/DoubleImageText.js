@@ -6,9 +6,10 @@ import parse from "html-react-parser"
 import Button from "../button"
 import Image from "gatsby-image"
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
   position: relative;
+  margin: var(--spacing-auto);
   .background {
     text-align: center;
     width: 100%;
@@ -58,6 +59,7 @@ const Wrapper = styled.section`
 
   /* desktop design */
   @media only screen and (min-width: 75rem) {
+    margin: 15rem auto 18rem;
     .inner {
       margin: 10rem auto 7rem;
       .wrap {
@@ -105,7 +107,7 @@ const Wrapper = styled.section`
 
           h3 {
             max-width: 30rem;
-            margin: 0 0 0.5rem auto;
+            margin: 0 0 0 auto;
             padding-bottom: 0;
           }
           p {
@@ -174,13 +176,13 @@ const DoubleImageText = ({
 
           <div className="content">
             {title && (
-              <h2
+              <div
                 data-sal="slide-up"
                 data-sal-easing="ease"
                 data-sal-duration="300"
               >
                 {parse(title)}
-              </h2>
+              </div>
             )}
             {content && (
               <div
@@ -214,22 +216,13 @@ const DoubleImageText = ({
 
           <div className="slogan">
             {slogan.title && (
-              <h3
+              <div
                 data-sal="slide-up"
                 data-sal-easing="ease"
                 data-sal-duration="300"
               >
                 {parse(slogan.title)}
-              </h3>
-            )}
-            {slogan.text && (
-              <p
-                data-sal="slide-up"
-                data-sal-easing="ease"
-                data-sal-duration="300"
-              >
-                {parse(slogan.text)}
-              </p>
+              </div>
             )}
           </div>
         </div>

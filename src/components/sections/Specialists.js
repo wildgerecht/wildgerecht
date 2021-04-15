@@ -15,10 +15,11 @@ const flickityOptions = {
   wrapAround: true,
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
   max-width: var(--maxWidth-5xl);
-  margin: 3rem auto 3rem;
+  /* margin: 3rem auto 3rem; */
+  margin: var(--spacing-auto);
   .textcontent {
     position: relative;
     h2 {
@@ -71,7 +72,8 @@ const Wrapper = styled.section`
     }
   }
   ${mq.desktop} {
-    margin: 7rem auto 7rem;
+    /* margin: 7rem auto 7rem; */
+    margin: var(--spacing-auto);
     display: flex;
     flex-flow: row;
     .textcontent {

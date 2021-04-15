@@ -17,9 +17,10 @@ const flickityOptions = {
   prevNextButtons: false,
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
   background: var(--color-darkgreen);
+  margin: var(--spacing-auto);
   .inner {
     max-width: var(--maxWidth-5xl);
     margin: 1rem auto 3rem;
@@ -98,7 +99,6 @@ const Wrapper = styled.section`
 
   /* desktop design */
   ${mq.desktop} {
-    margin: 2rem 0;
     .inner {
       margin: 0 auto;
 

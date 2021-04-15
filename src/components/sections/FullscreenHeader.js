@@ -13,7 +13,7 @@ const flickityOptions = {
   // initialIndex: 1,
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   /* margin-top: -2rem; */
 `
 

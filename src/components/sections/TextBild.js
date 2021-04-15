@@ -8,7 +8,7 @@ import { Accordion, AccordionItem } from "react-sanfona"
 import { mq } from "../../utils/presets"
 import Button from "../button"
 
-const Background = styled.section`
+const Background = styled.div`
   scroll-margin-block-start: 100px;
   /* background: darkgreen;
   color: black;
@@ -21,7 +21,8 @@ const Background = styled.section`
 
 const Wrapper = styled.div`
   max-width: var(--maxWidth-5xl);
-  margin: 1rem auto 3rem;
+  /* margin: 1rem auto 3rem; */
+  margin: var(--spacing-auto);
   .wrap {
     display: flex;
     flex-flow: column;
@@ -127,7 +128,8 @@ const Wrapper = styled.div`
   }
 
   ${mq.xl} {
-    margin: 5rem auto 3rem;
+    /* margin: 5rem auto 3rem; */
+    margin: var(--spacing-auto);
     .wrap {
       display: flex;
       flex-flow: row;

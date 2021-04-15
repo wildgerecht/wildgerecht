@@ -140,7 +140,7 @@ export const pageQuery = graphql`
             altText
             localFile {
               childImageSharp {
-                fixed(width: 50, height: 50) {
+                fixed(width: 40, height: 40) {
                   ...GatsbyImageSharpFixed
                 }
               }
@@ -149,7 +149,7 @@ export const pageQuery = graphql`
           activeimage {
             localFile {
               childImageSharp {
-                fixed(width: 50, height: 50) {
+                fixed(width: 40, height: 40) {
                   ...GatsbyImageSharpFixed
                 }
               }
@@ -323,7 +323,6 @@ export const pageQuery = graphql`
             sloganWithImage {
               slogan {
                 title
-                text
                 backgroundimage {
                   altText
                   localFile {
