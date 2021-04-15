@@ -27,6 +27,9 @@ const Wrapper = styled.section`
     .textcontent {
       padding: 0 3rem 2rem 2rem;
       position: relative;
+      p {
+        font-style: italic;
+      }
     }
 
     .author {
@@ -40,7 +43,7 @@ const Wrapper = styled.section`
     }
 
     .quote1 {
-      bottom: 0rem;
+      bottom: 1rem;
     }
 
     .quote2 {
@@ -108,21 +111,25 @@ const Wrapper = styled.section`
       .textcontent {
         text-align: center;
         .partnertext {
-          font-size: 1.3rem;
+          /* font-size: 1.3rem; */
           max-width: 65vw;
           margin: 0 auto;
         }
         .author {
-          font-size: 1.3rem;
+          /* font-size: 1.3rem; */
           font-style: italic;
         }
       }
       .quote1 {
-        bottom: 4rem;
+        height: 2rem;
+        top: 50%;
+        left: 0.5rem;
+        bottom: initial;
       }
       .quote2 {
-        right: 2rem;
-        top: 2.5rem;
+        height: 2rem;
+        top: 50%;
+        right: 0.5rem;
       }
     }
   }
@@ -139,13 +146,13 @@ const Wrapper = styled.section`
 
       .quote1 {
         height: 2rem;
-        top: 8rem;
+        top: 50%;
         left: -1rem;
         bottom: initial;
       }
       .quote2 {
         height: 2rem;
-        top: 8rem;
+        top: 50%;
         right: -1rem;
       }
     }
