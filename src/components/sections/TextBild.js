@@ -46,7 +46,7 @@ const Wrapper = styled.div`
   }
 
   .content {
-    min-height: 36rem;
+    /* min-height: 36rem; */
     padding: 0 1rem;
 
     h1,
@@ -177,9 +177,9 @@ const Wrapper = styled.div`
       flex: 1 0 auto;
       width: 50%;
       /* height: 65vh; */
-      .gatsby-image-wrapper {
+      /* .gatsby-image-wrapper {
         height: 100%;
-      }
+      } */
     }
   }
 `
@@ -208,14 +208,27 @@ const TextBild = ({
     alt: logo?.altText || ``,
   }
 
-  console.log("section id textBild: " + sectionid)
+  let customwidthsmall = "50%"
+  let customwidthbig = "50%"
+  if (settings.textthreequarters) {
+    customwidthsmall = "30%"
+    customwidthbig = "70%"
+  }
+
+  let customImageHeight = "initial"
+  if (settings.stretchimage) {
+    customImageHeight = "100%"
+  }
 
   return (
     <Background id={sectionid}>
       <Wrapper>
         <div className="wrap">
           {textRightSide && textRightSide ? (
-            <div className="content contentright" style={{ order: "1" }}>
+            <div
+              className="content contentright"
+              style={{ order: "1", width: customwidthbig }}
+            >
               {settings.header && settings.header
                 ? !!title && parse(title)
                 : !!title && parse(title)}
@@ -253,7 +266,7 @@ const TextBild = ({
               )}
             </div>
           ) : (
-            <div className="content">
+            <div className="content" style={{ width: customwidthbig }}>
               {settings.header && settings.header
                 ? !!title && parse(title)
                 : !!title && parse(title)}
@@ -293,20 +306,34 @@ const TextBild = ({
           )}
 
           {textRightSide && textRightSide ? (
-            <div className="image imageleft">
+            <div
+              className="image imageleft"
+              style={{ width: customwidthsmall }}
+            >
               {featuredImage && (
-                <Image fluid={featuredImage.fluid} alt={featuredImage.alt} />
+                <Image
+                  style={{ height: customImageHeight }}
+                  fluid={featuredImage.fluid}
+                  alt={featuredImage.alt}
+                />
               )}
             </div>
           ) : (
-            <div className="image imageright">
+            <div
+              className="image imageright"
+              style={{ width: customwidthsmall }}
+            >
               <div className="logowrapper">
                 {featuredLogo && (
                   <Image fluid={featuredLogo.fluid} alt={featuredLogo.alt} />
                 )}
               </div>
               {featuredImage && (
-                <Image fluid={featuredImage.fluid} alt={featuredImage.alt} />
+                <Image
+                  style={{ height: customImageHeight }}
+                  fluid={featuredImage.fluid}
+                  alt={featuredImage.alt}
+                />
               )}
             </div>
           )}

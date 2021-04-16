@@ -10,6 +10,7 @@ import FullScreenHeader from "../components/sections/FullscreenHeader"
 import DoubleImageText from "../components/sections/DoubleImageText"
 import SpecialistsSection from "../components/sections/Specialists"
 import PartnerSection from "../components/sections/Partner"
+import GallerySection from "../components/sections/Gallery"
 
 const PageTemplate = ({ data: { page, frontPage } }) => {
   // const featuredImage = {
@@ -73,6 +74,11 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   sectionid={item.sectionid}
                 />
               )}
+
+              {item.fieldGroupName === "page_Pagebuilder_Layouts_Gallery" && (
+                <GallerySection key={i} images={item.gallery} />
+              )}
+
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Doubleimagetext" && (
                 <DoubleImageText
@@ -257,12 +263,14 @@ export const pageQuery = graphql`
               sectionid
               textRightSide
               header
+              textthreequarters
+              stretchimage
             }
             image {
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920, quality: 100) {
+                  fluid(maxWidth: 1200, quality: 100) {
                     ...GatsbyImageSharpFluid
                   }
                   gatsbyImageData(
@@ -277,11 +285,30 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920, quality: 100) {
+                  fluid(maxWidth: 600, quality: 100) {
                     ...GatsbyImageSharpFluid
                   }
                   gatsbyImageData(
                     width: 1920
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
+                }
+              }
+            }
+          }
+
+          ... on WpPage_Pagebuilder_Layouts_Gallery {
+            fieldGroupName
+            gallery {
+              altText
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 1200, quality: 100) {
+                    ...GatsbyImageSharpFluid
+                  }
+                  gatsbyImageData(
+                    width: 1200
                     placeholder: BLURRED
                     formats: [AUTO, WEBP, AVIF]
                   )

@@ -85,7 +85,6 @@ const Wrapper = styled.div`
 `
 
 const TripletColumn = ({ button, boxen, introText, sectionid }) => {
-  console.log("section id triplet: " + sectionid)
   return (
     <Wrapper id={sectionid}>
       <div className="introtext">{introText && parse(introText)}</div>

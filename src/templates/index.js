@@ -258,12 +258,14 @@ export const pageQuery = graphql`
               sectionid
               textRightSide
               header
+              textthreequarters
+              stretchimage
             }
             image {
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920, quality: 100) {
+                  fluid(maxWidth: 1200, quality: 100) {
                     ...GatsbyImageSharpFluid
                   }
                   gatsbyImageData(
@@ -278,11 +280,30 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920, quality: 100) {
+                  fluid(maxWidth: 600, quality: 100) {
                     ...GatsbyImageSharpFluid
                   }
                   gatsbyImageData(
                     width: 1920
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
+                }
+              }
+            }
+          }
+
+          ... on WpPage_Pagebuilder_Layouts_Gallery {
+            fieldGroupName
+            gallery {
+              altText
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 1200, quality: 100) {
+                    ...GatsbyImageSharpFluid
+                  }
+                  gatsbyImageData(
+                    width: 1200
                     placeholder: BLURRED
                     formats: [AUTO, WEBP, AVIF]
                   )
