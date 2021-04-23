@@ -221,7 +221,7 @@ ol {
 ul li,
 ol li {
   padding-left: var(--spacing-0);
-  margin-bottom: calc(var(--spacing-4) / 2);
+  margin-bottom: calc(var(--spacing-2) / 2);
 }
 
 li > p {
@@ -572,17 +572,16 @@ https://flickity.metafizzy.co
 //   transform: translateY(0%);
 // }
 
-.headroom--unpinned,
-.headroom--scrolled {
-  transform: translateY(0%);
-  // overflow: hidden;
-  .logo {
-    left: 0.5rem !important;
-    top: 0 !important;
-    height: 55px;
-    transform: translate(0%, 0%) !important;
-  }
-}
+// .headroom--unpinned,
+// .headroom--scrolled {
+//   transform: translateY(0%);
+//   .logo {
+//     left: 0.5rem !important;
+//     top: 0 !important;
+//     height: 55px;
+//     transform: translate(0%, 0%) !important;
+//   }
+// }
 
 @media screen and (min-width: 1000px) {
   .headroom {

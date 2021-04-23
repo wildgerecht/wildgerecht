@@ -43,6 +43,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                 <TextBild
                   key={i}
                   image={item.image}
+                  slider={item.slider}
                   logo={item.logo}
                   title={item.textcontent.title}
                   content={item.textcontent.text}
@@ -265,6 +266,24 @@ export const pageQuery = graphql`
               header
               textthreequarters
               stretchimage
+              slider
+            }
+            slider {
+              image {
+                altText
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1200, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                    gatsbyImageData(
+                      width: 1920
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
+                  }
+                }
+              }
             }
             image {
               altText

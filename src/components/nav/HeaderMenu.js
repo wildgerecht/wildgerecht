@@ -20,7 +20,7 @@ const MenuList = styled.ul`
   display: none;
 
   ${mq.desktop} {
-    margin: 0;
+    margin-right: 1rem;
     list-style: none;
     display: flex;
     flex-flow: row;

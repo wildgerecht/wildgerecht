@@ -9,11 +9,12 @@ import Headroom from "react-headroom"
 
 const HeaderWrapper = styled.header`
   z-index: 10;
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   ${mq.desktop} {
+    position: fixed;
   }
 `
 

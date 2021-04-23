@@ -7,6 +7,15 @@ import parse from "html-react-parser"
 import { Accordion, AccordionItem } from "react-sanfona"
 import { mq } from "../../utils/presets"
 import Button from "../button"
+import Flickity from "react-flickity-component"
+
+const flickityOptions = {
+  pageDots: false,
+  freeScroll: true,
+  wrapAround: true,
+  autoPlay: 3000,
+  pauseAutoPlayOnHover: false,
+}
 
 const Background = styled.div`
   scroll-margin-block-start: 100px;
@@ -184,6 +193,13 @@ const Wrapper = styled.div`
   }
 `
 
+const Slider = styled.div`
+  width: 100%;
+  .slide {
+    width: 100%;
+  }
+`
+
 const TextBild = ({
   image,
   logo,
@@ -195,6 +211,7 @@ const TextBild = ({
   akkordion,
   settings,
   sectionid,
+  slider,
 }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
@@ -305,37 +322,98 @@ const TextBild = ({
             </div>
           )}
 
-          {textRightSide && textRightSide ? (
-            <div
-              className="image imageleft"
-              style={{ width: customwidthsmall }}
-            >
-              {featuredImage && (
-                <Image
-                  style={{ height: customImageHeight }}
-                  fluid={featuredImage.fluid}
-                  alt={featuredImage.alt}
-                />
+          {!settings?.slider && (
+            <>
+              {textRightSide && textRightSide ? (
+                <div
+                  className="image imageleft"
+                  style={{ width: customwidthsmall }}
+                >
+                  {featuredImage && (
+                    <Image
+                      style={{ height: customImageHeight }}
+                      fluid={featuredImage.fluid}
+                      alt={featuredImage.alt}
+                    />
+                  )}
+                </div>
+              ) : (
+                <div
+                  className="image imageright"
+                  style={{ width: customwidthsmall }}
+                >
+                  <div className="logowrapper">
+                    {featuredLogo && (
+                      <Image
+                        fluid={featuredLogo.fluid}
+                        alt={featuredLogo.alt}
+                      />
+                    )}
+                  </div>
+                  {featuredImage && (
+                    <Image
+                      style={{ height: customImageHeight }}
+                      fluid={featuredImage.fluid}
+                      alt={featuredImage.alt}
+                    />
+                  )}
+                </div>
               )}
-            </div>
-          ) : (
-            <div
-              className="image imageright"
-              style={{ width: customwidthsmall }}
-            >
-              <div className="logowrapper">
-                {featuredLogo && (
-                  <Image fluid={featuredLogo.fluid} alt={featuredLogo.alt} />
-                )}
-              </div>
-              {featuredImage && (
-                <Image
-                  style={{ height: customImageHeight }}
-                  fluid={featuredImage.fluid}
-                  alt={featuredImage.alt}
-                />
+            </>
+          )}
+
+          {settings?.slider && (
+            <>
+              {textRightSide && textRightSide ? (
+                <Slider
+                  className="image imageleft"
+                  style={{ width: customwidthsmall }}
+                >
+                  <Flickity
+                    className={"carousel slider"} // default ''
+                    elementType={"div"} // default 'div'
+                    options={flickityOptions} // takes flickity options {}
+                    disableImagesLoaded={false} // default false
+                    reloadOnUpdate // default false
+                    static // default false>
+                  >
+                    {slider.map((item, i) => (
+                      <div className="slide" key={i}>
+                        <Image
+                          style={{ height: customImageHeight }}
+                          fluid={item.image.localFile.childImageSharp.fluid}
+                          alt={item.image.localFile.childImageSharp.alt}
+                        />
+                      </div>
+                    ))}
+                  </Flickity>
+                </Slider>
+              ) : (
+                <Slider
+                  className="image imageright"
+                  style={{ width: customwidthsmall }}
+                >
+                  <Flickity
+                    className={"carousel slider"} // default ''
+                    elementType={"div"} // default 'div'
+                    options={flickityOptions} // takes flickity options {}
+                    disableImagesLoaded={false} // default false
+                    reloadOnUpdate // default false
+                    static // default false>
+                  >
+                    {slider.map((item, i) => (
+                      <div className="slide" key={i}>
+                        <Image
+                          style={{ height: customImageHeight }}
+                          fluid={item.image.localFile.childImageSharp.fluid}
+                          alt={item.image.localFile.childImageSharp.alt}
+                        />
+                      </div>
+                    ))}
+                  </Flickity>
+                </Slider>
               )}
-            </div>
+            </>
           )}
         </div>
       </Wrapper>
