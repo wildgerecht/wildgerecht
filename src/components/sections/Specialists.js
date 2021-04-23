@@ -124,6 +124,11 @@ const Wrapper = styled.div`
           width: 100%;
           .specialinner {
             padding: 1rem;
+            padding-bottom: 0;
+            padding-top: 0;
+            p {
+              margin-bottom: 0;
+            }
           }
           .button {
             background: white;
