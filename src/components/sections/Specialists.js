@@ -53,7 +53,7 @@ const Wrapper = styled.div`
         /* display: block; */
       }
       .img {
-        height: 60vh;
+        height: 75vh;
       }
       .specialistcontent {
         padding: 1rem;
@@ -83,7 +83,7 @@ const Wrapper = styled.div`
       padding-left: 2rem;
       height: 100%;
       .textcontentinner {
-        height: 66vh;
+        height: 75vh;
         padding: 2rem;
       }
       .illustration {
@@ -91,13 +91,13 @@ const Wrapper = styled.div`
       }
     }
     .slider {
-      height: 66vh;
+      height: 75vh;
       order: 0;
       width: 50%;
       flex: 1 0 auto;
       .slideitem {
         position: relative;
-        height: 66vh;
+        height: 75vh;
 
         &:hover {
           .specialistcontent {
@@ -107,7 +107,7 @@ const Wrapper = styled.div`
           }
         }
         .gatsby-image-wrapper {
-          height: 66vh;
+          height: 75vh;
           width: 100%;
         }
         .specialistcontent {
