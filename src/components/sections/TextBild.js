@@ -369,24 +369,28 @@ const TextBild = ({
                   className="image imageleft"
                   style={{ width: customwidthsmall }}
                 >
-                  <Flickity
-                    className={"carousel slider"} // default ''
-                    elementType={"div"} // default 'div'
-                    options={flickityOptions} // takes flickity options {}
-                    disableImagesLoaded={false} // default false
-                    reloadOnUpdate // default false
-                    static // default false>
-                  >
-                    {slider.map((item, i) => (
-                      <div className="slide" key={i}>
-                        <Image
-                          style={{ height: customImageHeight }}
-                          fluid={item.image.localFile.childImageSharp.fluid}
-                          alt={item.image.localFile.childImageSharp.alt}
-                        />
-                      </div>
-                    ))}
-                  </Flickity>
+                  {!!slider && (
+                    <Flickity
+                      className={"carousel slider"} // default ''
+                      elementType={"div"} // default 'div'
+                      options={flickityOptions} // takes flickity options {}
+                      disableImagesLoaded={false} // default false
+                      reloadOnUpdate // default false
+                      static // default false>
+                    >
+                      {slider.map((item, i) => (
+                        <div className="slide" key={i}>
+                          <Image
+                            style={{ height: customImageHeight }}
+                            fluid={
+                              item?.image?.localFile?.childImageSharp?.fluid
+                            }
+                            alt={item?.image?.localFile?.childImageSharp?.alt}
+                          />
+                        </div>
+                      ))}
+                    </Flickity>
+                  )}
                 </Slider>
               ) : (
                 <Slider
