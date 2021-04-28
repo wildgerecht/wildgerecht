@@ -7,6 +7,14 @@
  */
 
 module.exports = {
+  flags: {
+    PRESERVE_WEBPACK_CACHE: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    PARALLEL_SOURCING: true,
+    FAST_DEV: true,
+    DEV_SSR: true,
+    FAST_REFRESH: true,
+  },
   siteMetadata: {
     title: `wildgerecht`,
     description: `wildgerecht Jagdmarketing`,
