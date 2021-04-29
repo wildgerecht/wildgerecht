@@ -8,6 +8,7 @@ import { mq } from "../../utils/presets" // import LogoWeiss from "../images/wil
 // import { getImage } from "gatsby-plugin-image"
 import parse from "html-react-parser"
 import Flickity from "react-flickity-component"
+import scrollTo from "gatsby-plugin-smoothscroll"
 
 const flickityOptions = {
   // initialIndex: 1,
@@ -15,6 +16,8 @@ const flickityOptions = {
 
 const Wrapper = styled.div`
   /* margin-top: -2rem; */
+  height: 100vh;
+  overflow: hidden;
 `
 
 const SliderWrapper = styled.div`
@@ -100,6 +103,11 @@ const SliderWrapper = styled.div`
           h1 {
             font-size: calc(3.2rem + 0.2vw);
           }
+          button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+          }
         }
         img {
           display: block;
@@ -148,9 +156,12 @@ const FullScreenHeader = ({ slide }) => {
                     <div className="content">
                       <div className="contentinner">
                         {!!item.title && <h1>{parse(item.title)}</h1>}
-                        <Link to="#maincontent" className="button">
+                        <button
+                          className="button"
+                          onClick={() => scrollTo("#maincontent")}
+                        >
                           Mehr erfahren ↓
-                        </Link>
+                        </button>
                       </div>
                       {/* <img src={LogoWeiss} alt="Wildgerecht Logo" /> */}
                     </div>
@@ -176,9 +187,12 @@ const FullScreenHeader = ({ slide }) => {
               <div className="content">
                 <div className="contentinner">
                   {!!slide[0].title && <h1>{parse(slide[0].title)}</h1>}
-                  <Link to="#maincontent" className="button">
+                  <button
+                    className="button"
+                    onClick={() => scrollTo("#maincontent")}
+                  >
                     Mehr erfahren ↓
-                  </Link>
+                  </button>
                   {/* {slide[0].button && <Button button={slide[0].button} />} */}
                 </div>
                 {/* <img src={LogoWeiss} alt="Wildgerecht Logo" /> */}

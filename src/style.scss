@@ -82,10 +82,8 @@
   --color-text: #e0e0e0;
   --color-text-light: #4f5969;
   --color-heading: #f0f0f0;
-  --color-accent: #ff6600;
   --color-black: #070707;
   --color-darkgreen: #50533c;
-  --color-orange: #ff6600;
 }
 
 /* HTML elements */
@@ -101,7 +99,7 @@ html {
   font-size: var(--fontSize-root);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+  // scroll-behavior: unset;
 }
 
 body {
@@ -116,7 +114,7 @@ footer {
 }
 
 hr {
-  background: var(--color-accent);
+  background: var(--color-primary);
   height: 1px;
   border: 0;
 }
@@ -265,7 +263,7 @@ table {
 }
 
 table thead tr th {
-  border-bottom: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-primary);
 }
 
 /* Link */
@@ -620,6 +618,7 @@ https://flickity.metafizzy.co
       overflow: hidden;
       padding: 1rem;
       margin-left: -2.5rem;
+      height: 62px;
     }
 
     transform: translateY(0%);
@@ -629,13 +628,49 @@ https://flickity.metafizzy.co
     border-bottom: 1px solid grey;
     box-shadow: 0 0 25px rgba(0 0 0 / 30%);
     height: 70px;
-    overflow: hidden;
+    // overflow: hidden;
     .logo {
       transition: all 0.3s;
-      height: 113px;
-      margin-top: -0.85rem !important;
+      height: 105px;
+      margin-top: -0.8rem !important;
       margin-bottom: -2.1rem !important;
       padding: 0.7rem;
     }
   }
+}
+
+// SPACINGS
+
+.spacingtop-nospace {
+  margin-top: 0 !important;
+}
+.spacingtop-small {
+  margin-top: 7rem !important;
+}
+.spacingtop-medium {
+  margin-top: 14rem !important;
+}
+.spacingtop-big {
+  margin-top: 22rem !important;
+}
+
+.spacingbottom-nospace {
+  margin-top: 0 !important;
+}
+.spacingbottom-small {
+  margin-bottom: 7rem !important;
+}
+.spacingbottom-medium {
+  margin-bottom: 14rem !important;
+}
+.spacingbottom-big {
+  margin-bottom: 22rem !important;
+}
+
+.orangebackground {
+  background: var(--color-primary) !important;
+  color: var(--color-black) !important;
+}
+.greenbackground {
+  background: var(--color-darkgreen) !important;
 }

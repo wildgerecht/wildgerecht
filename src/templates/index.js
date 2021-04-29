@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 // import { getImage } from "gatsby-plugin-image"
-import Layout from "../components/layout"
+import Layout from "../layouts/index"
 import SEO from "../components/seo"
 import TextBild from "../components/sections/TextBild"
 import MoodPicture from "../components/sections/MoodPicture"
@@ -33,7 +33,7 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
       {!!page.pageBuilder.layouts && (
         <>
           {page.pageBuilder.layouts.map((item, i) => (
-            <div key={i}>
+            <section key={i}>
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Fullscreenheader" && (
                 <FullScreenHeader key={i} slide={item.slide} />
@@ -42,8 +42,8 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_TextMitBild" && (
                 <TextBild
-                  key={i}
                   image={item.image}
+                  slider={item.slider}
                   logo={item.logo}
                   title={item.textcontent.title}
                   content={item.textcontent.text}
@@ -53,12 +53,12 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
                   activateaccordion={item.textcontent.activateaccordion}
                   akkordion={item.textcontent.akkordion}
                   sectionid={item.settings.sectionid}
+                  settings={item.settings}
                 />
               )}
 
               {item.fieldGroupName === "page_Pagebuilder_Layouts_Partner" && (
                 <PartnerSection
-                  key={i}
                   partnergroup={item.partnergroup}
                   image={item.image}
                   logos={item.logos}
@@ -69,7 +69,6 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Specialists" && (
                 <SpecialistsSection
-                  key={i}
                   text={item.text}
                   allSpecialists={item.allspecialists}
                   sectionid={item.sectionid}
@@ -78,7 +77,6 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Doubleimagetext" && (
                 <DoubleImageText
-                  key={i}
                   image={item.imageWithText.image}
                   title={item.imageWithText.textcontent.title}
                   content={item.imageWithText.textcontent.text}
@@ -93,7 +91,6 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Tripletcolumn" && (
                 <TripletColumn
-                  key={i}
                   introText={item.introText}
                   button={item.button}
                   boxen={item.boxen}
@@ -104,7 +101,6 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Moodpicture" && (
                 <MoodPicture
-                  key={i}
                   vhheight={item.settings.vhheight}
                   title={item.title}
                   text={item.text}
@@ -113,9 +109,10 @@ const IndexPageTemplate = ({ data: { page, frontPage } }) => {
                   horizontalLocation={item.settings.horizontalLocation}
                   gradient={item.settings.gradient}
                   sectionid={item.sectionid}
+                  settings={item.settings}
                 />
               )}
-            </div>
+            </section>
           ))}
         </>
       )}
@@ -260,6 +257,10 @@ export const pageQuery = graphql`
               header
               textthreequarters
               stretchimage
+              slider
+              spacingTop
+              spacingBottom
+              backgroundcolor
             }
             image {
               altText
@@ -505,6 +506,8 @@ export const pageQuery = graphql`
               vhheight
               horizontalLocation
               gradient
+              spacingTop
+              spacingBottom
             }
             image {
               altText

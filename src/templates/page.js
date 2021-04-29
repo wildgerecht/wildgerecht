@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 // import { getImage } from "gatsby-plugin-image"
-import Layout from "../components/layout"
+import Layout from "../layouts/index"
 import SEO from "../components/seo"
 import TextBild from "../components/sections/TextBild"
 import MoodPicture from "../components/sections/MoodPicture"
@@ -35,13 +35,12 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
             <section key={i}>
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Fullscreenheader" && (
-                <FullScreenHeader key={i} slide={item.slide} />
+                <FullScreenHeader slide={item.slide} />
               )}
 
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_TextMitBild" && (
                 <TextBild
-                  key={i}
                   image={item.image}
                   slider={item.slider}
                   logo={item.logo}
@@ -53,12 +52,12 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   activateaccordion={item.textcontent.activateaccordion}
                   akkordion={item.textcontent.akkordion}
                   sectionid={item.settings.sectionid}
+                  settings={item.settings}
                 />
               )}
 
               {item.fieldGroupName === "page_Pagebuilder_Layouts_Partner" && (
                 <PartnerSection
-                  key={i}
                   partnergroup={item.partnergroup}
                   image={item.image}
                   logos={item.logos}
@@ -69,7 +68,6 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Specialists" && (
                 <SpecialistsSection
-                  key={i}
                   text={item.text}
                   allSpecialists={item.allspecialists}
                   sectionid={item.sectionid}
@@ -77,13 +75,12 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
               )}
 
               {item.fieldGroupName === "page_Pagebuilder_Layouts_Gallery" && (
-                <GallerySection key={i} images={item.gallery} />
+                <GallerySection images={item.gallery} />
               )}
 
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Doubleimagetext" && (
                 <DoubleImageText
-                  key={i}
                   image={item.imageWithText.image}
                   title={item.imageWithText.textcontent.title}
                   content={item.imageWithText.textcontent.text}
@@ -98,7 +95,6 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Tripletcolumn" && (
                 <TripletColumn
-                  key={i}
                   introText={item.introText}
                   button={item.button}
                   boxen={item.boxen}
@@ -109,7 +105,6 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Moodpicture" && (
                 <MoodPicture
-                  key={i}
                   vhheight={item.settings.vhheight}
                   title={item.title}
                   text={item.text}
@@ -118,6 +113,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   horizontalLocation={item.settings.horizontalLocation}
                   gradient={item.settings.gradient}
                   sectionid={item.sectionid}
+                  settings={item.settings}
                 />
               )}
             </section>
@@ -267,6 +263,9 @@ export const pageQuery = graphql`
               textthreequarters
               stretchimage
               slider
+              spacingTop
+              spacingBottom
+              backgroundcolor
             }
             slider {
               image {
@@ -319,6 +318,10 @@ export const pageQuery = graphql`
 
           ... on WpPage_Pagebuilder_Layouts_Gallery {
             fieldGroupName
+            settings {
+              spacingTop
+              spacingBottom
+            }
             gallery {
               altText
               localFile {
@@ -339,6 +342,11 @@ export const pageQuery = graphql`
           ... on WpPage_Pagebuilder_Layouts_Doubleimagetext {
             fieldGroupName
             sectionid
+            settings {
+              spacingTop
+              spacingBottom
+              backgroundcolor
+            }
             imageWithText {
               image {
                 altText
@@ -529,6 +537,8 @@ export const pageQuery = graphql`
               vhheight
               horizontalLocation
               gradient
+              spacingTop
+              spacingBottom
             }
             image {
               altText

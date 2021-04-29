@@ -27,23 +27,23 @@ exports.createPages = async gatsbyUtilities => {
 const createIndividualPagePages = async ({ pages, gatsbyUtilities }) =>
   Promise.all(
     pages.map(({ page }) => {
-      if (page.uri === "/") {
-        gatsbyUtilities.actions.createPage({
-          path: page.uri,
-          component: path.resolve(`./src/templates/index.js`),
-          context: {
-            id: page.id,
-          },
-        })
-      } else {
-        gatsbyUtilities.actions.createPage({
-          path: page.uri,
-          component: path.resolve(`./src/templates/page.js`),
-          context: {
-            id: page.id,
-          },
-        })
-      }
+      // if (page.uri === "/") {
+      //   gatsbyUtilities.actions.createPage({
+      //     path: page.uri,
+      //     component: path.resolve(`./src/templates/index.js`),
+      //     context: {
+      //       id: page.id,
+      //     },
+      //   })
+      // } else {
+      gatsbyUtilities.actions.createPage({
+        path: page.uri,
+        component: path.resolve(`./src/templates/page.js`),
+        context: {
+          id: page.id,
+        },
+      })
+      // }
     })
   )
 

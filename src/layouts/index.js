@@ -2,13 +2,16 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Footer from "../components/footer"
-import Header from "./Header"
+import Header from "../components/Header"
 import { mq } from "../utils/presets"
-import UniversalLink from "./UniversalLink"
+import UniversalLink from "../components/UniversalLink"
 import Image from "gatsby-image"
-import "../style.scss"
+// import "../style.scss"
+// import { TransitionProvider, TransitionViews } from "gatsby-plugin-transitions"
 
-const Main = styled.main``
+const Main = styled.main`
+  /* scroll-behavior: smooth; */
+`
 
 const FixedBottomMenuWrapper = styled.nav`
   display: block;
@@ -93,7 +96,7 @@ const FixedBottomMenuWrapper = styled.nav`
         display: inline !important;
       }
       p {
-        color: var(--color-orange) !important;
+        color: var(--color-primary) !important;
       }
     }
   }
@@ -105,7 +108,7 @@ const FixedBottomMenuWrapper = styled.nav`
   }
 `
 
-const Layout = ({ isHomePage, children, uri, mobilemenu }) => {
+const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
   const {
     wp: {
       generalSettings: { title },
@@ -126,7 +129,6 @@ const Layout = ({ isHomePage, children, uri, mobilemenu }) => {
   return (
     <div className="global-wrapper" data-is-root-path={isHomePage}>
       <Header frontPage={frontPage} title={title} uri={uri} />
-
       <Main>{children}</Main>
       <FixedBottomMenuWrapper id="bottomnav">
         <ul>
@@ -144,12 +146,18 @@ const Layout = ({ isHomePage, children, uri, mobilemenu }) => {
                       <div className="menuicon img-bottom">
                         {item.link.url === uri ? (
                           <Image
+                            height="40"
+                            width="40"
+                            imgStyle={{ width: 40, height: 40 }}
                             className="activeurl"
                             fixed={item.image.localFile.childImageSharp.fixed}
                             alt=""
                           />
                         ) : (
                           <Image
+                            height="40"
+                            width="40"
+                            imgStyle={{ width: 40, height: 40 }}
                             fixed={item.image.localFile.childImageSharp.fixed}
                             alt=""
                           />
@@ -157,6 +165,9 @@ const Layout = ({ isHomePage, children, uri, mobilemenu }) => {
                       </div>
                       <div className="menuicon img-top">
                         <Image
+                          height="40"
+                          width="40"
+                          imgStyle={{ width: 40, height: 40 }}
                           fixed={
                             item.activeimage.localFile.childImageSharp.fixed
                           }

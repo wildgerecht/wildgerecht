@@ -95,6 +95,7 @@ module.exports = {
         implementation: require("sass"),
       },
     },
+    // { resolve: `gatsby-plugin-layout` },
     {
       resolve: `gatsby-plugin-netlify`,
     },
@@ -103,6 +104,9 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-scroll-reveal`,
+    },
+    {
+      resolve: `gatsby-plugin-smoothscroll`,
     },
     `gatsby-plugin-react-helmet`,
     {

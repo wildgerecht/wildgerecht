@@ -6,14 +6,15 @@ import { mq } from "../../utils/presets" // import { GatsbyImage } from "gatsby-
 import Image from "gatsby-image"
 import parse from "html-react-parser"
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   background: var(--color-black);
-  padding-bottom: 3rem;
   scroll-margin-block-start: 100px;
 
   .inner {
     padding: 0 1rem;
     text-align: center;
+    max-width: 60rem;
+    margin: 0 auto;
   }
 
   .content {
@@ -43,8 +44,13 @@ const Wrapper = styled.section`
     .height-75vh {
       height: 75vh;
     }
+    .height-30vh {
+      height: 30vh;
+    }
+    .height-20vh {
+      height: 20vh;
+    }
 
-    margin-top: 5rem;
     padding: 0;
     .imgwrap {
       position: relative;
@@ -118,6 +124,7 @@ const MoodPicture = ({
   horizontalLocation,
   gradient,
   sectionid,
+  settings,
 }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
@@ -125,7 +132,37 @@ const MoodPicture = ({
     alt: image?.altText || ``,
   }
 
-  // DEFINE GRADIENT
+  // DEFINE SPACING
+
+  let spacingtop = ""
+  if (settings?.spacingTop === "nospace") {
+    spacingtop = "spacingtop-nospace"
+  }
+  if (settings?.spacingTop === "small") {
+    spacingtop = "spacingtop-small"
+  }
+  if (settings?.spacingTop === "medium") {
+    spacingtop = "spacingtop-medium"
+  }
+  if (settings?.spacingTop === "big") {
+    spacingtop = "spacingtop-big"
+  }
+
+  let spacingbottom = ""
+  if (settings?.spacingBottom === "nospace") {
+    spacingbottom = "spacingbottom-nospace"
+  }
+  if (settings?.spacingBottom === "small") {
+    spacingbottom = "spacingbottom-small"
+  }
+  if (settings?.spacingBottom === "medium") {
+    spacingbottom = "spacingbottom-medium"
+  }
+  if (settings?.spacingBottom === "big") {
+    spacingbottom = "spacingbottom-big"
+  }
+
+  // DEFINE  GRADIENT
   let gradientClass = "gradient-top"
   if (gradient === "none") {
     gradientClass = ""
@@ -136,6 +173,8 @@ const MoodPicture = ({
   if (gradient === "bottom") {
     gradientClass = "gradient-bottom"
   }
+
+  // DEFINE CONTENT LOCATION
 
   let location = "space-around"
 
@@ -151,18 +190,31 @@ const MoodPicture = ({
 
   // Height Classes
 
-  let heightclass = "height-100vh"
+  let heightclass = ""
 
+  if (vhheight === "20") {
+    heightclass = "height-20vh"
+  }
+  if (vhheight === "30") {
+    heightclass = "height-30vh"
+  }
   if (vhheight === "50") {
     heightclass = "height-50vh"
   }
   if (vhheight === "75") {
     heightclass = "height-75vh"
   }
+  if (vhheight === "100") {
+    heightclass = "height-100vh"
+  }
 
   return (
     <Wrapper id={sectionid}>
-      <div className={"imgwrap " + heightclass}>
+      <div
+        className={
+          "imgwrap " + heightclass + " " + spacingtop + " " + spacingbottom
+        }
+      >
         {!!featuredImage && (
           <Image
             className="img "
@@ -178,27 +230,27 @@ const MoodPicture = ({
               <div
                 data-sal="slide-up"
                 data-sal-easing="ease"
-                data-sal-duration="300"
+                data-sal-duration="1000"
               >
                 {parse(title)}
               </div>
             )}
 
             {!!text && (
-              <p
+              <div
                 data-sal="slide-up"
                 data-sal-easing="ease"
-                data-sal-duration="300"
+                data-sal-duration="1000"
               >
                 {parse(text)}
-              </p>
+              </div>
             )}
 
             {!!button && (
               <Button
                 data-sal="slide-up"
                 data-sal-easing="ease"
-                data-sal-duration="300"
+                data-sal-duration="1000"
                 button={button}
               />
             )}

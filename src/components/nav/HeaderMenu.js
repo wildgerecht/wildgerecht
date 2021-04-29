@@ -175,25 +175,7 @@ const MenuList = styled.ul`
   }
 `
 
-const HeaderMenu = ({ uri, lang }) => {
-  // const flatListToHierarchical = (
-  //   data = [],
-  //   { idKey = "key", parentKey = "parentId", childrenKey = "children" } = {}
-  // ) => {
-  //   const tree = []
-  //   const childrenOf = {}
-  //   data.forEach(item => {
-  //     const newItem = { ...item }
-  //     const { [idKey]: id, [parentKey]: parentId = 0 } = newItem
-  //     childrenOf[id] = childrenOf[id] || []
-  //     newItem[childrenKey] = childrenOf[id]
-  //     parentId
-  //       ? (childrenOf[parentId] = childrenOf[parentId] || []).push(newItem)
-  //       : tree.push(newItem)
-  //   })
-  //   return tree
-  // }
-
+const HeaderMenu = () => {
   const { wpMenu } = useStaticQuery(graphql`
     {
       wpMenu(slug: { eq: "hauptmenu" }) {
@@ -228,12 +210,9 @@ const HeaderMenu = ({ uri, lang }) => {
 
   if (!wpMenu?.menuItems?.nodes || wpMenu.menuItems.nodes === 0) return null
 
-  // const hierarchicalList = flatListToHierarchical(wpMenu.menuItems.nodes)
-  // console.log(hierarchicalList)
-
   return (
     <MenuList className="nav__inner">
-      {wpMenu.menuItems.nodes.map(menuItem => {
+      {wpMenu.menuItems.nodes.map((menuItem, i) => {
         if (!menuItem.childItems.nodes.length !== 0 && !menuItem.parentId) {
           const path = menuItem?.connectedNode?.node?.uri ?? menuItem.url
           const itemId = "menu-item-" + menuItem.key
@@ -244,7 +223,7 @@ const HeaderMenu = ({ uri, lang }) => {
           return (
             <li
               id={itemId}
-              key={menuItem.key}
+              key={menuItem.key + i}
               className={"menu-item " + haschildren}
             >
               <UniversalLink
@@ -264,7 +243,7 @@ const HeaderMenu = ({ uri, lang }) => {
               {menuItem.childItems.nodes.length !== 0 && (
                 <ul className="submenu">
                   {menuItem.childItems.nodes.map((subMenuItem, i) => (
-                    <li>
+                    <li key={i}>
                       <UniversalLink
                         to={subMenuItem.path}
                         activeStyle={{
