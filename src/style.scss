@@ -1,6 +1,6 @@
 /* Custom Fonts */
 
-@import "./typography.css";
+// @import "./typography.css";
 
 /* CSS Custom Properties Definitions */
 
@@ -589,11 +589,6 @@ https://flickity.metafizzy.co
     transition: transform 200ms ease-in-out;
     background: transparent;
     transition: all 0.3s;
-    .logo {
-      transition: all 0.3s;
-      height: 130px;
-      margin-top: -0.6rem;
-    }
   }
 
   .headroom--unfixed {
@@ -633,10 +628,12 @@ https://flickity.metafizzy.co
     background: rgba(0 0 0 / 90%);
     border-bottom: 1px solid grey;
     box-shadow: 0 0 25px rgba(0 0 0 / 30%);
+    height: 70px;
+    overflow: hidden;
     .logo {
       transition: all 0.3s;
-      height: 100px;
-      margin-top: -0.9rem !important;
+      height: 113px;
+      margin-top: -0.85rem !important;
       margin-bottom: -2.1rem !important;
       padding: 0.7rem;
     }

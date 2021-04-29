@@ -6,6 +6,7 @@ import Header from "./Header"
 import { mq } from "../utils/presets"
 import UniversalLink from "./UniversalLink"
 import Image from "gatsby-image"
+import "../style.scss"
 
 const Main = styled.main``
 

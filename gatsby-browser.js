@@ -1,6 +1,6 @@
 // custom typefaces
-import "typeface-zilla-slab"
+// import "typeface-zilla-slab"
 // normalize CSS across browsers
-import "./src/normalize.css"
 // custom CSS styles
-import "./src/style.scss"
+import "./src/normalize.css"
+// import "./src/style.scss"
