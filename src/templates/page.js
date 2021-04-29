@@ -89,6 +89,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   sloganimage={item.sloganWithImage.image}
                   backgroundimage={item.sloganWithImage.slogan.backgroundimage}
                   sectionid={item.sectionid}
+                  settings={item.settings}
                 />
               )}
 
