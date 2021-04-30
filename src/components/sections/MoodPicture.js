@@ -9,7 +9,7 @@ import parse from "html-react-parser"
 const Wrapper = styled.div`
   background: var(--color-black);
   scroll-margin-block-start: 100px;
-
+  padding: 2rem 0;
   .inner {
     padding: 0 1rem;
     text-align: center;

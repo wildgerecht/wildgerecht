@@ -174,8 +174,17 @@ const Wrapper = styled.div`
       padding-right: 3rem;
     }
 
+    .customwidth-small {
+      width: 35% !important;
+    }
+
+    .customwidth-big {
+      width: 65% !important;
+    }
+
     .contentright {
       padding-left: 3rem;
+      order: 1 !important;
     }
 
     .imageleft {
@@ -198,9 +207,29 @@ const Wrapper = styled.div`
 `
 
 const Slider = styled.div`
-  width: 100%;
-  .slide {
-    width: 100%;
+  .slider {
+    .slide {
+      width: 100%;
+      /* height: 35vh;
+      height: 50vh;
+      height: 70vh; */
+      .gatsby-image-wrapper {
+        object-fit: cover;
+        height: 100% !important;
+      }
+    }
+    .height-35vh {
+      height: 35vh;
+    }
+    .height-50vh {
+      height: 50vh;
+    }
+    .height-70vh {
+      height: 70vh;
+    }
+    .height-90vh {
+      height: 90vh;
+    }
   }
 `
 
@@ -216,6 +245,7 @@ const TextBild = ({
   settings,
   sectionid,
   slider,
+  slidersettings,
 }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
@@ -228,11 +258,42 @@ const TextBild = ({
   //   alt: logo?.altText || ``,
   // }
 
-  let customwidthsmall = "50%"
-  let customwidthbig = "50%"
+  // TEXT / IMAGE POSITION
+
+  let textrightside = "contentleft"
+  let imageposition = "imageright"
+  let slideleft = "slide-right"
+  let slideright = "slide-left"
+  if (textRightSide === true) {
+    textrightside = "contentright"
+    imageposition = "imageleft"
+    slideleft = "slide-left"
+    slideright = "slide-right"
+  }
+
+  // SLIDER SETTINGS HEIGHT
+
+  let sliderheight = ""
+  if (slidersettings?.height === "35") {
+    sliderheight = "height-35vh"
+  }
+  if (slidersettings?.height === "50") {
+    sliderheight = "height-50vh"
+  }
+  if (slidersettings?.height === "70") {
+    sliderheight = "height-70vh"
+  }
+  if (slidersettings?.height === "90") {
+    sliderheight = "height-90vh"
+  }
+
+  // CUSTOM WIDTH
+
+  let customwidthsmall = ""
+  let customwidthbig = ""
   if (settings.textthreequarters) {
-    customwidthsmall = "30%"
-    customwidthbig = "70%"
+    customwidthsmall = "customwidth-small"
+    customwidthbig = "customwidth-big"
   }
 
   let customImageHeight = "initial"
@@ -285,177 +346,79 @@ const TextBild = ({
       <div className={"midwrap" + " " + backgroundcolor}>
         <Wrapper>
           <div className="wrap">
-            {textRightSide && textRightSide ? (
-              <div
-                className="content contentright"
-                style={{ order: "1", width: customwidthbig }}
-                data-sal="slide-left"
-                data-sal-easing="ease"
-                data-sal-duration="1000"
-              >
-                {settings.header && settings.header
-                  ? !!title && parse(title)
-                  : !!title && parse(title)}
-                {content && <div>{parse(content)}</div>}
-                {!!activateaccordion === true && (
-                  <div className="akkwrap">
-                    {!!akkordion && (
-                      <Accordion>
-                        {akkordion.map((item, i) => {
-                          return (
-                            <AccordionItem
-                              className="akkordiontitle"
-                              key={item.title + i}
-                              title={item.title}
-                              expanded={item === 1}
-                            >
-                              {!!item.text && <div>{parse(item.text)}</div>}
-                              {!!item.akkordionbutton && (
-                                <Button button={item.akkordionbutton} />
-                              )}
-                            </AccordionItem>
-                          )
-                        })}
-                      </Accordion>
-                    )}
-                  </div>
-                )}
-                {button && (
-                  <Button
-                    data-sal="slide-up"
-                    data-sal-easing="ease"
-                    data-sal-duration="1000"
-                    button={button}
-                  />
-                )}
-              </div>
-            ) : (
-              <div
-                className="content"
-                style={{ width: customwidthbig }}
-                data-sal="slide-right"
-                data-sal-easing="ease"
-                data-sal-duration="1000"
-              >
-                {settings.header && settings.header
-                  ? !!title && parse(title)
-                  : !!title && parse(title)}
-                {!!content && <div>{parse(content)}</div>}
-                {!!activateaccordion === true && (
-                  <div className="akkwrap">
-                    {!!akkordion && (
-                      <Accordion>
-                        {akkordion.map((item, i) => {
-                          return (
-                            <AccordionItem
-                              className="akkordiontitle"
-                              key={item.title + i}
-                              title={item.title}
-                              expanded={item === 1}
-                            >
-                              {!!item.text && <div>{parse(item.text)}</div>}
-                              {!!item.akkordionbutton && (
-                                <Button button={item.akkordionbutton} />
-                              )}
-                            </AccordionItem>
-                          )
-                        })}
-                      </Accordion>
-                    )}
-                  </div>
-                )}
-                {button && (
-                  <Button
-                    data-sal="slide-up"
-                    data-sal-easing="ease"
-                    data-sal-duration="1000"
-                    button={button}
-                  />
-                )}
-              </div>
-            )}
+            <div
+              className={"content" + " " + textrightside + " " + customwidthbig}
+              data-sal={slideleft}
+              data-sal-easing="ease"
+              data-sal-duration="1000"
+            >
+              {settings.header && settings.header
+                ? !!title && parse(title)
+                : !!title && parse(title)}
+              {content && <div>{parse(content)}</div>}
+              {!!activateaccordion === true && (
+                <div className="akkwrap">
+                  {!!akkordion && (
+                    <Accordion>
+                      {akkordion.map((item, i) => {
+                        return (
+                          <AccordionItem
+                            className="akkordiontitle"
+                            key={item.title + i}
+                            title={item.title}
+                            expanded={item === 1}
+                          >
+                            {!!item.text && <div>{parse(item.text)}</div>}
+                            {!!item.akkordionbutton && (
+                              <Button button={item.akkordionbutton} />
+                            )}
+                          </AccordionItem>
+                        )
+                      })}
+                    </Accordion>
+                  )}
+                </div>
+              )}
+              {button && (
+                <Button
+                  data-sal="slide-up"
+                  data-sal-easing="ease"
+                  data-sal-duration="1000"
+                  button={button}
+                />
+              )}
+            </div>
 
             {!settings?.slider && (
               <>
-                {textRightSide && textRightSide ? (
-                  <div
-                    className="image imageleft"
-                    style={{ width: customwidthsmall }}
-                    data-sal="slide-right"
-                    data-sal-easing="ease"
-                    data-sal-duration="1000"
-                  >
-                    {featuredImage && (
-                      <Image
-                        style={{ height: customImageHeight }}
-                        fluid={featuredImage.fluid}
-                        alt={featuredImage.alt}
-                      />
-                    )}
-                  </div>
-                ) : (
-                  <div
-                    className="image imageright"
-                    style={{ width: customwidthsmall }}
-                    data-sal="slide-left"
-                    data-sal-easing="ease"
-                    data-sal-duration="1000"
-                  >
-                    {/* <div className="logowrapper">
-                      {!!featuredLogo && (
-                        <Image
-                          fluid={featuredLogo.fluid}
-                          alt={featuredLogo.alt}
-                        />
-                      )}
-                    </div> */}
-                    {featuredImage && (
-                      <Image
-                        style={{ height: customImageHeight }}
-                        fluid={featuredImage.fluid}
-                        alt={featuredImage.alt}
-                      />
-                    )}
-                  </div>
-                )}
+                <div
+                  className={"image " + imageposition + " " + customwidthsmall}
+                  data-sal={slideright}
+                  data-sal-easing="ease"
+                  data-sal-duration="1000"
+                >
+                  {featuredImage && (
+                    <Image
+                      style={{ height: customImageHeight }}
+                      fluid={featuredImage.fluid}
+                      alt={featuredImage.alt}
+                    />
+                  )}
+                </div>
               </>
             )}
 
             {settings?.slider && (
               <>
-                {textRightSide && textRightSide ? (
-                  <Slider
-                    className="image imageleft"
-                    style={{ width: customwidthsmall }}
-                  >
-                    {!!slider && (
-                      <Flickity
-                        className={"carousel slider"} // default ''
-                        elementType={"div"} // default 'div'
-                        options={flickityOptions} // takes flickity options {}
-                        disableImagesLoaded={false} // default false
-                        reloadOnUpdate // default false
-                        static // default false>
-                      >
-                        {slider.map((item, i) => (
-                          <div className="slide" key={i}>
-                            <Image
-                              style={{ height: customImageHeight }}
-                              fluid={
-                                item?.image?.localFile?.childImageSharp?.fluid
-                              }
-                              alt={item?.image?.localFile?.childImageSharp?.alt}
-                            />
-                          </div>
-                        ))}
-                      </Flickity>
-                    )}
-                  </Slider>
-                ) : (
-                  <Slider
-                    className="image imageright"
-                    style={{ width: customwidthsmall }}
-                  >
+                <Slider
+                  className={
+                    "image" + " " + imageposition + " " + customwidthsmall
+                  }
+                >
+                  {/* data-sal={slideright}
+                  data-sal-easing="ease"
+                  data-sal-duration="1000" */}
+                  {!!slider && (
                     <Flickity
                       className={"carousel slider"} // default ''
                       elementType={"div"} // default 'div'
@@ -465,17 +428,21 @@ const TextBild = ({
                       static // default false>
                     >
                       {slider.map((item, i) => (
-                        <div className="slide" key={i}>
+                        <div className={"slide " + sliderheight} key={i}>
                           <Image
+                            objectFit="cover"
+                            objectPosition="50% 50%"
                             style={{ height: customImageHeight }}
-                            fluid={item.image.localFile.childImageSharp.fluid}
-                            alt={item.image.localFile.childImageSharp.alt}
+                            fluid={
+                              item?.image?.localFile?.childImageSharp?.fluid
+                            }
+                            alt={item?.image?.localFile?.childImageSharp?.alt}
                           />
                         </div>
                       ))}
                     </Flickity>
-                  </Slider>
-                )}
+                  )}
+                </Slider>
               </>
             )}
           </div>

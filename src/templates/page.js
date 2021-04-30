@@ -43,6 +43,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                 <TextBild
                   image={item.image}
                   slider={item.slider}
+                  slidersettings={item.sliderSettings}
                   logo={item.logo}
                   title={item.textcontent.title}
                   content={item.textcontent.text}
@@ -52,7 +53,6 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   activateaccordion={item.textcontent.activateaccordion}
                   akkordion={item.textcontent.akkordion}
                   sectionid={item.settings.sectionid}
-                  settings={item.settings}
                 />
               )}
 
@@ -215,7 +215,7 @@ export const pageQuery = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1920, quality: 100) {
+                    fluid(maxWidth: 1920) {
                       ...GatsbyImageSharpFluid
                     }
                   }
@@ -268,19 +268,17 @@ export const pageQuery = graphql`
               spacingBottom
               backgroundcolor
             }
+            sliderSettings {
+              height
+            }
             slider {
               image {
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200, quality: 100) {
+                    fluid(maxWidth: 1200) {
                       ...GatsbyImageSharpFluid
                     }
-                    gatsbyImageData(
-                      width: 1920
-                      placeholder: BLURRED
-                      formats: [AUTO, WEBP, AVIF]
-                    )
                   }
                 }
               }
@@ -289,14 +287,9 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1200, quality: 100) {
+                  fluid(maxWidth: 1200) {
                     ...GatsbyImageSharpFluid
                   }
-                  gatsbyImageData(
-                    width: 1920
-                    placeholder: BLURRED
-                    formats: [AUTO, WEBP, AVIF]
-                  )
                 }
               }
             }
@@ -304,14 +297,9 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 600, quality: 100) {
+                  fluid(maxWidth: 600) {
                     ...GatsbyImageSharpFluid
                   }
-                  gatsbyImageData(
-                    width: 1920
-                    placeholder: BLURRED
-                    formats: [AUTO, WEBP, AVIF]
-                  )
                 }
               }
             }
@@ -327,14 +315,9 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1200, quality: 100) {
+                  fluid(maxWidth: 1200) {
                     ...GatsbyImageSharpFluid
                   }
-                  gatsbyImageData(
-                    width: 1200
-                    placeholder: BLURRED
-                    formats: [AUTO, WEBP, AVIF]
-                  )
                 }
               }
             }
@@ -353,14 +336,9 @@ export const pageQuery = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200, quality: 100) {
+                    fluid(maxWidth: 1200) {
                       ...GatsbyImageSharpFluid
                     }
-                    gatsbyImageData(
-                      width: 1200
-                      placeholder: BLURRED
-                      formats: [AUTO, WEBP, AVIF]
-                    )
                   }
                 }
               }
@@ -383,14 +361,9 @@ export const pageQuery = graphql`
                     publicURL
                     extension
                     childImageSharp {
-                      fluid(maxWidth: 1800, quality: 100) {
+                      fluid(maxWidth: 1800) {
                         ...GatsbyImageSharpFluid
                       }
-                      gatsbyImageData(
-                        width: 1800
-                        placeholder: BLURRED
-                        formats: [AUTO, WEBP, AVIF]
-                      )
                     }
                   }
                 }
@@ -400,14 +373,9 @@ export const pageQuery = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200, quality: 100) {
+                    fluid(maxWidth: 1200) {
                       ...GatsbyImageSharpFluid
                     }
-                    gatsbyImageData(
-                      width: 1200
-                      placeholder: BLURRED
-                      formats: [AUTO, WEBP, AVIF]
-                    )
                   }
                 }
               }
@@ -461,14 +429,9 @@ export const pageQuery = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200, quality: 100) {
+                    fluid(maxWidth: 1200) {
                       ...GatsbyImageSharpFluid
                     }
-                    gatsbyImageData(
-                      width: 1200
-                      placeholder: BLURRED
-                      formats: [AUTO, WEBP, AVIF]
-                    )
                   }
                 }
               }
@@ -481,14 +444,9 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920, quality: 100) {
+                  fluid(maxWidth: 1920) {
                     ...GatsbyImageSharpFluid
                   }
-                  gatsbyImageData(
-                    width: 1920
-                    placeholder: BLURRED
-                    formats: [AUTO, WEBP, AVIF]
-                  )
                 }
               }
             }
@@ -498,14 +456,9 @@ export const pageQuery = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      fluid(maxWidth: 400, quality: 100) {
+                      fluid(maxWidth: 400) {
                         ...GatsbyImageSharpFluid
                       }
-                      gatsbyImageData(
-                        width: 400
-                        placeholder: BLURRED
-                        formats: [AUTO, WEBP, AVIF]
-                      )
                     }
                   }
                 }
@@ -545,14 +498,9 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920, quality: 100) {
+                  fluid(maxWidth: 1920) {
                     ...GatsbyImageSharpFluid
                   }
-                  gatsbyImageData(
-                    width: 1920
-                    placeholder: BLURRED
-                    formats: [AUTO, WEBP, AVIF]
-                  )
                 }
               }
             }
@@ -564,14 +512,9 @@ export const pageQuery = graphql`
           altText
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1920, quality: 100) {
+              fluid(maxWidth: 1920) {
                 ...GatsbyImageSharpFluid
               }
-              gatsbyImageData(
-                width: 1920
-                placeholder: BLURRED
-                formats: [AUTO, WEBP, AVIF]
-              )
             }
           }
         }
