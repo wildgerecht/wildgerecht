@@ -78,10 +78,39 @@ const SliderWrapper = styled.div`
 
   ${mq.tablet} {
     .contentwrapper {
-      contentinner {
+      .contentinner {
         h1 {
           font-size: 3rem;
         }
+      }
+    }
+
+    .text-animation {
+      color: #fff;
+    }
+    .text-animation h1 {
+      position: relative;
+      top: 0px;
+      left: 0px;
+      opacity: 0;
+      animation: fade 900ms ease-in-out forwards;
+    }
+    @keyframes fade {
+      0% {
+        top: 0px;
+        left: 0px;
+        filter: blur(20px);
+        opacity: 0;
+      }
+      50% {
+        filter: blur(12px);
+        opacity: 0.9;
+      }
+      100% {
+        top: 0px;
+        left: 0px;
+        filter: blur(0px);
+        opacity: 1;
       }
     }
   }
@@ -107,6 +136,24 @@ const SliderWrapper = styled.div`
             cursor: pointer;
             border: none;
             outline: none;
+            position: relative;
+            opacity: 0;
+            animation: slideInLeft 1200ms ease-in-out forwards;
+          }
+          @keyframes slideInLeft {
+            0% {
+              top: -20px;
+              opacity: 0;
+            }
+            50% {
+              top: -20px;
+              opacity: 0;
+            }
+            100% {
+              top: 0px;
+              left: 0px;
+              opacity: 1;
+            }
           }
         }
         img {
@@ -128,6 +175,10 @@ const FullScreenHeader = ({ slide }) => {
   //   image: getImage(slide[0].image.localFile),
   //   alt: slide[0].image.altText || ``,
   // }
+
+  const title = slide[0].title
+
+  // const animatedTitle = title.replace(/./g, "<span>$&</span>")
 
   return (
     <Wrapper>
@@ -185,8 +236,9 @@ const FullScreenHeader = ({ slide }) => {
 
             <div className="contentwrapper">
               <div className="content">
-                <div className="contentinner">
-                  {!!slide[0].title && <h1>{parse(slide[0].title)}</h1>}
+                <div className="contentinner text-animation">
+                  {!!slide[0].title && <h1>{parse(title)}</h1>}
+                  {/* {!!slide[0].title && <h1>{parse(slide[0].title)}</h1>} */}
                   <button
                     className="button"
                     onClick={() => scrollTo("#maincontent")}
