@@ -343,11 +343,11 @@ const TextBild = ({
 
   return (
     <Background id={sectionid} className={spacingtop + " " + spacingbottom}>
-      <div className={"midwrap" + " " + backgroundcolor}>
+      <div className={"midwrap " + backgroundcolor}>
         <Wrapper>
           <div className="wrap">
             <div
-              className={"content" + " " + textrightside + " " + customwidthbig}
+              className={"content " + textrightside + " " + customwidthbig}
               data-sal={slideleft}
               data-sal-easing="ease"
               data-sal-duration="1000"
@@ -411,9 +411,7 @@ const TextBild = ({
             {settings?.slider && (
               <>
                 <Slider
-                  className={
-                    "image" + " " + imageposition + " " + customwidthsmall
-                  }
+                  className={"image " + imageposition + " " + customwidthsmall}
                 >
                   {/* data-sal={slideright}
                   data-sal-easing="ease"

@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import styled from "styled-components"
 import Image from "gatsby-image"
 // import Button from "../button"
@@ -9,6 +8,7 @@ import { mq } from "../../utils/presets" // import LogoWeiss from "../images/wil
 import parse from "html-react-parser"
 import Flickity from "react-flickity-component"
 import scrollTo from "gatsby-plugin-smoothscroll"
+import { motion } from "framer-motion"
 
 const flickityOptions = {
   // initialIndex: 1,
@@ -84,41 +84,31 @@ const SliderWrapper = styled.div`
         }
       }
     }
-
-    .text-animation {
-      color: #fff;
-    }
-    .text-animation h1 {
-      position: relative;
-      top: 0px;
-      left: 0px;
-      opacity: 0;
-      animation: fade 900ms ease-in-out forwards;
-    }
-    @keyframes fade {
-      0% {
-        top: 0px;
-        left: 0px;
-        filter: blur(20px);
-        opacity: 0;
-      }
-      50% {
-        filter: blur(12px);
-        opacity: 0.9;
-      }
-      100% {
-        top: 0px;
-        left: 0px;
-        filter: blur(0px);
-        opacity: 1;
-      }
-    }
   }
 
   ${mq.desktop} {
     height: 100vh;
     .imgwrap {
       height: 100vh;
+      .gatsby-image-wrapper {
+        picture {
+          img {
+            /* transform-origin: top right; */
+            animation: zoomInAndOut 30s ease infinite;
+          }
+          @keyframes zoomInAndOut {
+            0% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.1);
+            }
+            100% {
+              transform: scale(1);
+            }
+          }
+        }
+      }
     }
     .contentwrapper {
       .content {
@@ -131,6 +121,9 @@ const SliderWrapper = styled.div`
           padding-bottom: 5rem;
           h1 {
             font-size: calc(3.2rem + 0.2vw);
+            /* span {
+              filter: blur(5px);
+            } */
           }
           button {
             cursor: pointer;
@@ -138,15 +131,15 @@ const SliderWrapper = styled.div`
             outline: none;
             position: relative;
             opacity: 0;
-            animation: slideInLeft 1200ms ease-in-out forwards;
+            animation: slideInFromTop 2.8s ease-in-out forwards;
           }
-          @keyframes slideInLeft {
+          @keyframes slideInFromTop {
             0% {
-              top: -20px;
+              top: -10px;
               opacity: 0;
             }
-            50% {
-              top: -20px;
+            70% {
+              top: -10px;
               opacity: 0;
             }
             100% {
@@ -169,16 +162,37 @@ const SliderWrapper = styled.div`
 `
 
 const FullScreenHeader = ({ slide }) => {
-  // const firstSlide = slide[0]
-
-  // const featuredImage = {
-  //   image: getImage(slide[0].image.localFile),
-  //   alt: slide[0].image.altText || ``,
-  // }
-
   const title = slide[0].title
 
-  // const animatedTitle = title.replace(/./g, "<span>$&</span>")
+  const splitTitle = title.split("<br />")
+
+  const sentence = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 0.2,
+        staggerChildren: 0.02,
+      },
+    },
+  }
+
+  const letter = {
+    hidden: { opacity: 0, WebkitFilter: "blur(80px)" },
+    visible: {
+      WebkitFilter: "blur(0px)",
+      opacity: 1,
+      transition: {
+        duration: 0.7,
+      },
+    },
+  }
+
+  const singleImage = {
+    // image: getImage(image?.localFile),
+    fluid: slide[0]?.image?.localFile?.childImageSharp?.fluid,
+    alt: slide[0]?.image?.altText || ``,
+  }
 
   return (
     <Wrapper>
@@ -198,8 +212,8 @@ const FullScreenHeader = ({ slide }) => {
                   {item.image && (
                     <Image
                       className="img"
-                      fluid={item?.image?.localFile?.childImageSharp?.fluid}
-                      alt={item?.image?.altText}
+                      fluid={singleImage.fluid}
+                      alt={singleImage.alt}
                     />
                   )}
 
@@ -229,15 +243,42 @@ const FullScreenHeader = ({ slide }) => {
             {slide[0] && (
               <Image
                 className="img"
-                fluid={slide[0]?.image?.localFile?.childImageSharp?.fluid}
-                alt={slide[0]?.image?.altText}
+                fluid={singleImage.fluid}
+                alt={singleImage.alt}
               />
             )}
-
             <div className="contentwrapper">
               <div className="content">
                 <div className="contentinner text-animation">
-                  {!!slide[0].title && <h1>{parse(title)}</h1>}
+                  {!!slide[0]?.title && (
+                    <motion.h1
+                      initial="hidden"
+                      animate="visible"
+                      variants={sentence}
+                    >
+                      {splitTitle[0].split("").map((char, index) => {
+                        return (
+                          <motion.span
+                            key={char + "-" + index}
+                            variants={letter}
+                          >
+                            {char}
+                          </motion.span>
+                        )
+                      })}
+                      <br />
+                      {splitTitle[1].split("").map((char, index) => {
+                        return (
+                          <motion.span
+                            key={char + "-" + index}
+                            variants={letter}
+                          >
+                            {char}
+                          </motion.span>
+                        )
+                      })}
+                    </motion.h1>
+                  )}
                   {/* {!!slide[0].title && <h1>{parse(slide[0].title)}</h1>} */}
                   <button
                     className="button"
