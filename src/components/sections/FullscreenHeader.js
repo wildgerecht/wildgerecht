@@ -256,27 +256,29 @@ const FullScreenHeader = ({ slide }) => {
                       animate="visible"
                       variants={sentence}
                     >
-                      {splitTitle[0].split("").map((char, index) => {
-                        return (
-                          <motion.span
-                            key={char + "-" + index}
-                            variants={letter}
-                          >
-                            {char}
-                          </motion.span>
-                        )
-                      })}
+                      {!!splitTitle[0] &&
+                        splitTitle[0].split("").map((char, index) => {
+                          return (
+                            <motion.span
+                              key={char + "-" + index}
+                              variants={letter}
+                            >
+                              {char}
+                            </motion.span>
+                          )
+                        })}
                       <br />
-                      {splitTitle[1].split("").map((char, index) => {
-                        return (
-                          <motion.span
-                            key={char + "-" + index}
-                            variants={letter}
-                          >
-                            {char}
-                          </motion.span>
-                        )
-                      })}
+                      {!!splitTitle[1] &&
+                        splitTitle[1].split("").map((char, index) => {
+                          return (
+                            <motion.span
+                              key={char + "-" + index}
+                              variants={letter}
+                            >
+                              {char}
+                            </motion.span>
+                          )
+                        })}
                     </motion.h1>
                   )}
                   {/* {!!slide[0].title && <h1>{parse(slide[0].title)}</h1>} */}
