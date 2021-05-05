@@ -87,7 +87,7 @@ const MenuList = styled.ul`
 
       @keyframes growDown {
         0% {
-          transform: scaleY(0.7);
+          transform: scaleY(0.5);
         }
         100% {
           transform: scaleY(1);
@@ -104,24 +104,27 @@ const MenuList = styled.ul`
         width: 100%;
         perspective: 1000px;
 
-        animation: growDown 300ms ease-in-out forwards;
+        animation: growDown 200ms ease-in-out forwards;
         transition: all 1.3s;
 
         transform-origin: top center;
         left: 0;
-        width: 15rem;
+        min-width: 16rem;
         margin: 0;
         padding: 0;
         list-style: none;
         li {
-          margin: 0 0.5rem 0 0;
-          /* background: green; */
+          display: inline-block;
+          margin: 0 0.5rem 0.2rem 0;
+          width: 100px;
           &:first-child {
             padding-top: 0.7rem;
           }
           a {
-            /* background: gold; */
-            padding: 0.5rem 0.5rem 0 0.5rem;
+            padding: 0.35rem 0.6rem;
+          }
+          li:last-child {
+            padding-bottom: 1rem;
           }
         }
       }
@@ -131,8 +134,15 @@ const MenuList = styled.ul`
       &:hover {
         .submenu {
           display: block;
+          position: absolute;
           opacity: 1;
           visibility: visible;
+          li {
+            width: auto;
+            a {
+              background: rgba(0, 0, 0, 0.8);
+            }
+          }
         }
       }
     }
@@ -251,7 +261,7 @@ const HeaderMenu = () => {
                         }}
                         activeClassName="active"
                       >
-                        {subMenuItem.title}
+                        - {subMenuItem.title}
                       </UniversalLink>
                     </li>
                   ))}
