@@ -115,7 +115,7 @@ const MenuList = styled.ul`
         list-style: none;
         li {
           display: inline-block;
-          margin: 0 0.5rem 0.2rem 0;
+          margin: 0 0.5rem 1px 0;
           width: 100px;
           &:first-child {
             padding-top: 0.7rem;

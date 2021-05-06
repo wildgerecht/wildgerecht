@@ -11,6 +11,7 @@ import DoubleImageText from "../components/sections/DoubleImageText"
 import SpecialistsSection from "../components/sections/Specialists"
 import PartnerSection from "../components/sections/Partner"
 import GallerySection from "../components/sections/Gallery"
+import ContactSection from "../components/sections/Contact"
 
 const PageTemplate = ({ data: { page, frontPage } }) => {
   // const featuredImage = {
@@ -115,6 +116,14 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   gradient={item.settings.gradient}
                   sectionid={item.sectionid}
                   settings={item.settings}
+                />
+              )}
+
+              {item.fieldGroupName === "page_Pagebuilder_Layouts_Contact" && (
+                <ContactSection
+                  sectionid={item.sectionid}
+                  text={item.text}
+                  iconsWithText={item.iconMitText}
                 />
               )}
             </section>
@@ -431,6 +440,30 @@ export const pageQuery = graphql`
                   childImageSharp {
                     fluid(maxWidth: 1200) {
                       ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          ... on WpPage_Pagebuilder_Layouts_Contact {
+            fieldGroupName
+            text
+            sectionid
+            iconMitText {
+              text
+              button {
+                target
+                title
+                url
+              }
+              icon {
+                altText
+                localFile {
+                  childImageSharp {
+                    fixed(width: 120, height: 120) {
+                      ...GatsbyImageSharpFixed
                     }
                   }
                 }

@@ -24,6 +24,7 @@ const Wrapper = styled.div`
   h2 {
     margin-top: 2rem;
     font-size: var(--fontSize-7);
+    word-break: keep-all;
   }
 
   /* tablet design */
@@ -208,6 +209,9 @@ const MoodPicture = ({
     heightclass = "height-100vh"
   }
 
+  // remove line breaks from title coming from wordpress
+  const noShyTitle = title.replace(/\u00AD/g, "")
+
   return (
     <Wrapper id={sectionid}>
       <div
@@ -232,7 +236,7 @@ const MoodPicture = ({
                 data-sal-easing="ease"
                 data-sal-duration="1000"
               >
-                {parse(title)}
+                {parse(noShyTitle)}
               </div>
             )}
 
