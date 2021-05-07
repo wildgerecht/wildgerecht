@@ -33,6 +33,7 @@ const Wrapper = styled.div`
         padding-left: 1rem;
         width: 70%;
         flex: 1 0 auto;
+        padding-left: 2rem;
         h2 {
           margin: 0;
         }
@@ -52,6 +53,8 @@ const Wrapper = styled.div`
       .flex {
         .imgwrapper {
           width: 40%;
+          height: 60px;
+          align-self: flex-start;
         }
         .textcontent {
           padding-left: 3rem;
@@ -78,7 +81,7 @@ const Wrapper = styled.div`
       width: 60%;
       padding-top: 3rem;
       iframe {
-        height: 600px !important;
+        height: 615px !important;
       }
     }
   }
