@@ -21,10 +21,10 @@ const Wrapper = styled.div`
       align-content: flex-end;
       margin-top: 3rem;
       .imgwrapper {
-        width: 30%;
+        width: 35%;
         flex: 1 0 auto;
         overflow: hidden;
-        max-width: 4rem;
+        max-width: 3rem;
         .gatsby-image-wrapper {
           width: 100%;
         }
@@ -94,7 +94,7 @@ const Contact = ({ text, iconsWithText, sectionid }) => {
             return (
               <div className="flex" key={i}>
                 <div className="imgwrapper">
-                  {!!item.icon.localFile.childImageSharp.fixed && (
+                  {!!item?.icon?.localFile?.childImageSharp?.fixed && (
                     <Img
                       fixed={item.icon.localFile.childImageSharp.fixed}
                       alt={item.icon.localFile.childImageSharp?.altText}
