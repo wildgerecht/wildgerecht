@@ -8,7 +8,6 @@ import { mq } from "../../utils/presets" // import LogoWeiss from "../images/wil
 import parse from "html-react-parser"
 import Flickity from "react-flickity-component"
 import scrollTo from "gatsby-plugin-smoothscroll"
-import { motion } from "framer-motion"
 
 const flickityOptions = {
   // initialIndex: 1,
@@ -121,9 +120,21 @@ const SliderWrapper = styled.div`
           padding-bottom: 5rem;
           h1 {
             font-size: calc(3.2rem + 0.2vw);
-            /* span {
-              filter: blur(5px);
-            } */
+            filter: blur(25px);
+            opacity: 0;
+            animation: fadeIn 0.7s ease-in-out forwards;
+            @keyframes fadeIn {
+              0% {
+                top: -10px;
+                opacity: 0;
+              }
+              100% {
+                filter: blur(0px);
+                top: 0px;
+                left: 0px;
+                opacity: 1;
+              }
+            }
           }
           button {
             cursor: pointer;
@@ -131,7 +142,7 @@ const SliderWrapper = styled.div`
             outline: none;
             position: relative;
             opacity: 0;
-            animation: slideInFromTop 2.8s ease-in-out forwards;
+            animation: slideInFromTop 1s ease-in-out forwards;
           }
           @keyframes slideInFromTop {
             0% {
@@ -165,28 +176,6 @@ const FullScreenHeader = ({ slide }) => {
   const title = slide[0].title
 
   const splitTitle = title.split("<br />")
-
-  const sentence = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delay: 0.2,
-        staggerChildren: 0.02,
-      },
-    },
-  }
-
-  const letter = {
-    hidden: { opacity: 0, WebkitFilter: "blur(80px)" },
-    visible: {
-      WebkitFilter: "blur(0px)",
-      opacity: 1,
-      transition: {
-        duration: 0.7,
-      },
-    },
-  }
 
   const singleImage = {
     // image: getImage(image?.localFile),
@@ -250,38 +239,7 @@ const FullScreenHeader = ({ slide }) => {
             <div className="contentwrapper">
               <div className="content">
                 <div className="contentinner text-animation">
-                  {!!slide[0]?.title && (
-                    <motion.h1
-                      initial="hidden"
-                      animate="visible"
-                      variants={sentence}
-                    >
-                      {!!splitTitle[0] &&
-                        splitTitle[0].split("").map((char, index) => {
-                          return (
-                            <motion.span
-                              key={char + "-" + index}
-                              variants={letter}
-                            >
-                              {char}
-                            </motion.span>
-                          )
-                        })}
-                      <br />
-                      {!!splitTitle[1] &&
-                        splitTitle[1].split("").map((char, index) => {
-                          return (
-                            <motion.span
-                              key={char + "-" + index}
-                              variants={letter}
-                            >
-                              {char}
-                            </motion.span>
-                          )
-                        })}
-                    </motion.h1>
-                  )}
-                  {/* {!!slide[0].title && <h1>{parse(slide[0].title)}</h1>} */}
+                  {!!title && <h1>{parse(title)}</h1>}
                   <button
                     className="button"
                     onClick={() => scrollTo("#maincontent")}

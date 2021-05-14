@@ -34,9 +34,16 @@ const Wrapper = styled.div`
         width: 70%;
         flex: 1 0 auto;
         padding-left: 2rem;
-        h2 {
-          margin: 0;
+        a {
+          text-decoration: none;
         }
+        h2 {
+          margin-bottom: 0.7rem;
+          font-size: 1.8rem;
+        }
+        /* h2 {
+          margin: 0;
+        } */
         p {
           margin-top: 0.5rem;
         }
@@ -53,7 +60,7 @@ const Wrapper = styled.div`
       .flex {
         .imgwrapper {
           width: 40%;
-          height: 60px;
+          height: 50px;
           align-self: flex-start;
         }
         .textcontent {
