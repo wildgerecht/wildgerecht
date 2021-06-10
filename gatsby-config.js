@@ -96,6 +96,7 @@ module.exports = {
       },
     },
     // { resolve: `gatsby-plugin-layout` },
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-netlify`,
     },

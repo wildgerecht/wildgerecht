@@ -6,6 +6,10 @@ import Header from "../components/Header"
 import { mq } from "../utils/presets"
 import UniversalLink from "../components/UniversalLink"
 import Image from "gatsby-image"
+
+import "../../src/normalize.css"
+import "../style.scss"
+
 // import "../style.scss"
 // import { TransitionProvider, TransitionViews } from "gatsby-plugin-transitions"
 

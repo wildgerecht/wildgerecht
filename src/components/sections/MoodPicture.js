@@ -73,21 +73,30 @@ const Wrapper = styled.div`
     }
 
     .gradient-top {
+      background: var(--color-black);
+      background: linear-gradient(to bottom, #0a0a0a, rgba(255, 0, 0, 0));
+    }
+
+    /* .gradient-top {
       background: rgb(7, 7, 7);
       background: linear-gradient(
         180deg,
         rgba(7, 7, 7, 1) 0%,
         rgba(151, 255, 0, 0) 100%
       );
-    }
+    } */
 
-    .gradient-bottom {
+    /* .gradient-bottom {
       background: rgb(7, 7, 7);
       background: linear-gradient(
         180deg,
         rgba(7, 7, 7, 0) 0%,
         rgba(0, 0, 0, 1) 100%
       );
+    } */
+    .gradient-bottom {
+      background: var(--color-black);
+      background: linear-gradient(to top, #0a0a0a, rgba(255, 0, 0, 0));
     }
 
     .textcontent {

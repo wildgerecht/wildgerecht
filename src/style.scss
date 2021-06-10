@@ -82,7 +82,8 @@
   --color-text: #e0e0e0;
   --color-text-light: #4f5969;
   --color-heading: #f0f0f0;
-  --color-black: #070707;
+  --color-black: #0a0a0a;
+  // --color-black: #070707;
   --color-darkgreen: #50533c;
 }
 
@@ -670,6 +671,10 @@ https://flickity.metafizzy.co
 .orangebackground {
   background: var(--color-primary) !important;
   color: var(--color-black) !important;
+  .button {
+    background: var(--color-black);
+    color: white;
+  }
 }
 .greenbackground {
   background: var(--color-darkgreen) !important;

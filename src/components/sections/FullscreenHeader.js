@@ -93,7 +93,7 @@ const SliderWrapper = styled.div`
         picture {
           img {
             /* transform-origin: top right; */
-            animation: zoomInAndOut 30s ease infinite;
+            /* animation: zoomInAndOut 30s ease infinite; */
           }
           @keyframes zoomInAndOut {
             0% {
@@ -175,7 +175,7 @@ const SliderWrapper = styled.div`
 const FullScreenHeader = ({ slide }) => {
   const title = slide[0].title
 
-  const splitTitle = title.split("<br />")
+  // const splitTitle = title.split("<br />")
 
   const singleImage = {
     // image: getImage(image?.localFile),

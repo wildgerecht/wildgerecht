@@ -13,34 +13,29 @@ import PartnerSection from "../components/sections/Partner"
 import GallerySection from "../components/sections/Gallery"
 import ContactSection from "../components/sections/Contact"
 
-const PageTemplate = ({ data: { page, frontPage } }) => {
-  // const featuredImage = {
-  //   image: getImage(page.featuredImage.node.localFile),
-  //   alt: page.featuredImage.node.altText || ``,
-  // }
-
-  const metaDesc = page.seo.metaDesc || ``
+const PostTemplate = ({ data: { post, frontPage } }) => {
+  const metaDesc = post.seo.metaDesc || ``
 
   const mobilemenu = frontPage.mobileMenu.mobilemenu
 
   return (
-    <Layout uri={page.uri} mobilemenu={mobilemenu}>
-      {/* lang={page.language.slug} */}
+    <Layout uri={post.uri} mobilemenu={mobilemenu}>
+      {/* lang={post.language.slug} */}
 
-      <Seo title={page.title || ``} description={metaDesc} />
-      {/* lang={page.language.slug} */}
+      <Seo title={post.title || ``} description={metaDesc} />
+      {/* lang={post.language.slug} */}
 
-      {!!page.pageBuilder.layouts && (
+      {!!post.pageBuilder.layouts && (
         <>
-          {page.pageBuilder.layouts.map((item, i) => (
+          {post.pageBuilder.layouts.map((item, i) => (
             <section key={i}>
               {item.fieldGroupName ===
-                "page_Pagebuilder_Layouts_Fullscreenheader" && (
+                "post_Pagebuilder_Layouts_Fullscreenheader" && (
                 <FullScreenHeader slide={item.slide} />
               )}
 
               {item.fieldGroupName ===
-                "page_Pagebuilder_Layouts_TextMitBild" && (
+                "post_Pagebuilder_Layouts_TextMitBild" && (
                 <TextBild
                   image={item.image}
                   slider={item.slider}
@@ -57,7 +52,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                 />
               )}
 
-              {item.fieldGroupName === "page_Pagebuilder_Layouts_Partner" && (
+              {item.fieldGroupName === "post_Pagebuilder_Layouts_Partner" && (
                 <PartnerSection
                   partnergroup={item.partnergroup}
                   image={item.image}
@@ -67,7 +62,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
               )}
 
               {item.fieldGroupName ===
-                "page_Pagebuilder_Layouts_Specialists" && (
+                "post_Pagebuilder_Layouts_Specialists" && (
                 <SpecialistsSection
                   text={item.text}
                   allSpecialists={item.allspecialists}
@@ -75,12 +70,12 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                 />
               )}
 
-              {item.fieldGroupName === "page_Pagebuilder_Layouts_Gallery" && (
+              {item.fieldGroupName === "post_Pagebuilder_Layouts_Gallery" && (
                 <GallerySection images={item.gallery} />
               )}
 
               {item.fieldGroupName ===
-                "page_Pagebuilder_Layouts_Doubleimagetext" && (
+                "post_Pagebuilder_Layouts_Doubleimagetext" && (
                 <DoubleImageText
                   image={item.imageWithText.image}
                   title={item.imageWithText.textcontent.title}
@@ -95,7 +90,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
               )}
 
               {item.fieldGroupName ===
-                "page_Pagebuilder_Layouts_Tripletcolumn" && (
+                "post_Pagebuilder_Layouts_Tripletcolumn" && (
                 <TripletColumn
                   introText={item.introText}
                   button={item.button}
@@ -105,7 +100,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
               )}
 
               {item.fieldGroupName ===
-                "page_Pagebuilder_Layouts_Moodpicture" && (
+                "post_Pagebuilder_Layouts_Moodpicture" && (
                 <MoodPicture
                   vhheight={item.settings.vhheight}
                   title={item.title}
@@ -119,7 +114,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                 />
               )}
 
-              {item.fieldGroupName === "page_Pagebuilder_Layouts_Contact" && (
+              {item.fieldGroupName === "post_Pagebuilder_Layouts_Contact" && (
                 <ContactSection
                   sectionid={item.sectionid}
                   text={item.text}
@@ -134,10 +129,10 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
   )
 }
 
-export default PageTemplate
+export default PostTemplate
 
 export const pageQuery = graphql`
-  query PageById($id: String!) {
+  query PostById($id: String!) {
     # selecting the current page by id
 
     frontPage: wpPage(isFrontPage: { eq: true }) {
@@ -172,17 +167,13 @@ export const pageQuery = graphql`
       }
     }
 
-    page: wpPage(id: { eq: $id }) {
+    post: wpPost(id: { eq: $id }) {
       id
       uri
       content
       title
       nodeType
       date(formatString: "MMMM DD, YYYY")
-
-      # language {
-      #   slug
-      # }
 
       seo {
         title
@@ -217,7 +208,7 @@ export const pageQuery = graphql`
       pageBuilder {
         __typename
         layouts {
-          ... on WpPage_Pagebuilder_Layouts_Fullscreenheader {
+          ... on WpPost_Pagebuilder_Layouts_Fullscreenheader {
             fieldGroupName
             slide {
               image {
@@ -245,7 +236,7 @@ export const pageQuery = graphql`
             }
           }
 
-          ... on WpPage_Pagebuilder_Layouts_TextMitBild {
+          ... on WpPost_Pagebuilder_Layouts_TextMitBild {
             fieldGroupName
             textcontent {
               title
@@ -314,7 +305,7 @@ export const pageQuery = graphql`
             }
           }
 
-          ... on WpPage_Pagebuilder_Layouts_Gallery {
+          ... on WpPost_Pagebuilder_Layouts_Gallery {
             fieldGroupName
             settings {
               spacingTop
@@ -332,7 +323,7 @@ export const pageQuery = graphql`
             }
           }
 
-          ... on WpPage_Pagebuilder_Layouts_Doubleimagetext {
+          ... on WpPost_Pagebuilder_Layouts_Doubleimagetext {
             fieldGroupName
             sectionid
             settings {
@@ -391,7 +382,7 @@ export const pageQuery = graphql`
             }
           }
 
-          ... on WpPage_Pagebuilder_Layouts_Tripletcolumn {
+          ... on WpPost_Pagebuilder_Layouts_Tripletcolumn {
             fieldGroupName
             sectionid
             introText
@@ -420,7 +411,7 @@ export const pageQuery = graphql`
             }
           }
 
-          ... on WpPage_Pagebuilder_Layouts_Specialists {
+          ... on WpPost_Pagebuilder_Layouts_Specialists {
             fieldGroupName
             sectionid
             text
@@ -447,7 +438,7 @@ export const pageQuery = graphql`
             }
           }
 
-          ... on WpPage_Pagebuilder_Layouts_Contact {
+          ... on WpPost_Pagebuilder_Layouts_Contact {
             fieldGroupName
             text
             sectionid
@@ -471,7 +462,7 @@ export const pageQuery = graphql`
             }
           }
 
-          ... on WpPage_Pagebuilder_Layouts_Partner {
+          ... on WpPost_Pagebuilder_Layouts_Partner {
             fieldGroupName
             image {
               altText
@@ -510,7 +501,7 @@ export const pageQuery = graphql`
             }
           }
 
-          ... on WpPage_Pagebuilder_Layouts_Moodpicture {
+          ... on WpPost_Pagebuilder_Layouts_Moodpicture {
             fieldGroupName
             sectionid
             text

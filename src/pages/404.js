@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import Layout from "../layouts/index"
 import { mq } from "../utils/presets"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import { useStaticQuery, graphql } from "gatsby"
 
 import styled from "styled-components"
@@ -57,7 +57,7 @@ const NotFoundPage = () => {
   const mobilemenu = frontPage.mobileMenu.mobilemenu
   return (
     <Layout uri="/404/" mobilemenu={mobilemenu}>
-      <SEO title="404: Nichts gefunden" />
+      <Seo title="404: Nichts gefunden" />
       <Wrapper>
         <h1>Nichts gefunden</h1>
         <p>Diese Seite existiert leider nicht.</p>
