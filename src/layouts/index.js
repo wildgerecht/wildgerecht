@@ -7,7 +7,8 @@ import { mq } from "../utils/presets"
 import UniversalLink from "../components/UniversalLink"
 import Image from "gatsby-image"
 
-import "../../src/normalize.css"
+// import "../../src/normalize.css"
+import "../typography.css"
 import "../style.scss"
 
 // import "../style.scss"
@@ -131,7 +132,7 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
   const frontPage = isHomePage
 
   return (
-    <div className="global-wrapper" data-is-root-path={isHomePage}>
+    <div data-is-root-path={isHomePage}>
       <Header frontPage={frontPage} title={title} uri={uri} />
       <Main>{children}</Main>
       <FixedBottomMenuWrapper id="bottomnav">
