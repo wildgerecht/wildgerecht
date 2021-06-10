@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
-import Layout from "../layouts/index"
+import Layout from "../components/layout"
 import { mq } from "../utils/presets"
 import Seo from "../components/seo"
 import { useStaticQuery, graphql } from "gatsby"

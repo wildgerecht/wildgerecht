@@ -204,7 +204,7 @@ const Partner = ({ partnergroup, image, logos, sectionid }) => {
           {!!partnerlogos && (
             <Flickity
               className={"carousel slider"} // default ''
-              elementType={"div"} // default 'div'
+              elementType={"ul"} // default 'div'
               options={flickityOptions} // takes flickity options {}
               disableImagesLoaded={false} // default false
               reloadOnUpdate // default false
