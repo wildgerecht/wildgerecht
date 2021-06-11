@@ -101,9 +101,6 @@ module.exports = {
       resolve: `gatsby-plugin-netlify`,
     },
     {
-      resolve: "gatsby-plugin-netlify-cache",
-    },
-    {
       resolve: `gatsby-plugin-scroll-reveal`,
     },
     {

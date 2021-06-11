@@ -19,7 +19,6 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
   const mobilemenu = frontPage.mobileMenu.mobilemenu
 
   const title = page?.title
-
   const featuredImage = page?.featuredImage
 
   return (
