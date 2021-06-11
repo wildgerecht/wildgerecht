@@ -9,7 +9,7 @@ import "react-image-lightbox/style.css"
 
 const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
-  max-width: var(--maxWidth-5xl);
+  max-width: ${mq.maxWidth5xl};
   /* margin: 3rem auto 3rem; */
   margin: var(--spacing-auto);
 `
@@ -66,9 +66,6 @@ const GalleryImage = styled(Img)`
     height: 300px;
   }
 `
-
-// const GallerySection = ({ images }) => {
-//   console.log("images", images)
 
 export default class LightboxProjects extends Component {
   constructor(props) {

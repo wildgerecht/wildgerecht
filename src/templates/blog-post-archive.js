@@ -7,6 +7,7 @@ import { mq, colors } from "../utils/presets"
 import parse from "html-react-parser"
 import Button from "../components/button"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import FullScreenHeader from "../components/sections/FullscreenHeader"
 
 String.prototype.trunc = function (n, useWordBoundary) {
   if (this.length <= n) {
@@ -23,8 +24,7 @@ const NewsWrapper = styled.div`
   scroll-margin-block-start: 100px;
   position: relative;
   margin: var(--spacing-auto);
-  max-width: var(--maxWidth-5xl);
-  margin-top: 15rem;
+  max-width: ${mq.maxWidth5xl};
 `
 
 const News = styled.ul`
@@ -89,12 +89,8 @@ const News = styled.ul`
   }
 `
 
-const Title = styled.h1`
-  padding: 0 1rem;
-`
-
 const BlogIndex = ({
-  data: { post, frontPage },
+  data: { post, frontPage, postsPage },
   pageContext: { nextPagePath, previousPagePath },
 }) => {
   const posts = post.nodes
@@ -117,8 +113,12 @@ const BlogIndex = ({
         description="Neuigkeiten im Bereich Jagd- und Outdoormarketing."
       />
 
+      <FullScreenHeader
+        title={postsPage.title}
+        featuredImage={postsPage.featuredImage}
+      />
+
       <NewsWrapper>
-        <Title>News</Title>
         <News style={{ listStyle: `none` }}>
           {posts.map(post => {
             const title = post.title
@@ -232,6 +232,25 @@ export const pageQuery = graphql`
                   ...GatsbyImageSharpFixed
                 }
               }
+            }
+          }
+        }
+      }
+    }
+
+    postsPage: wpPage(isPostsPage: { eq: true }) {
+      title
+
+      featuredImage {
+        node {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 1920
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
             }
           }
         }

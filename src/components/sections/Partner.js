@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   background: var(--color-darkgreen);
   margin: var(--spacing-auto);
   .inner {
-    max-width: var(--maxWidth-5xl);
+    max-width: ${mq.maxWidth5xl};
     margin: 1rem auto 3rem;
 
     .textcontent {

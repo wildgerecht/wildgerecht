@@ -8,7 +8,7 @@ import GreenboxRotated from "../../images/greenbox-rotated.png"
 
 const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
-  max-width: var(--maxWidth-5xl);
+  max-width: ${mq.maxWidth5xl};
   /* margin: 1rem auto 3rem; */
   margin: var(--spacing-auto);
   .introtext {

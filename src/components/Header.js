@@ -22,7 +22,7 @@ const Navwrapper = styled.nav`
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  max-width: var(--maxWidth-5xl);
+  max-width: ${mq.maxWidth5xl};
   margin: 0 auto;
   .logolink {
     flex: 0 1 auto;

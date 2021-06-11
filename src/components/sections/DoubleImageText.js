@@ -5,6 +5,7 @@ import styled from "styled-components"
 import parse from "html-react-parser"
 import Button from "../button"
 import Image from "gatsby-image"
+import { mq } from "../../utils/presets"
 
 const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
   }
   .inner {
     overflow: hidden;
-    max-width: var(--maxWidth-5xl);
+    max-width: ${mq.maxWidth5xl};
     margin: 6rem auto 2rem;
 
     .wrap {

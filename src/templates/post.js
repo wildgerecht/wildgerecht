@@ -18,6 +18,9 @@ const PostTemplate = ({ data: { post, frontPage } }) => {
 
   const mobilemenu = frontPage.mobileMenu.mobilemenu
 
+  const title = post?.title
+  const featuredImage = post?.featuredImage
+
   return (
     <Layout uri={post.uri} mobilemenu={mobilemenu}>
       {/* lang={post.language.slug} */}
@@ -25,14 +28,16 @@ const PostTemplate = ({ data: { post, frontPage } }) => {
       <Seo title={post.title || ``} description={metaDesc} />
       {/* lang={post.language.slug} */}
 
+      <FullScreenHeader title={title} featuredImage={featuredImage} />
+
       {!!post.pageBuilder.layouts && (
         <>
           {post.pageBuilder.layouts.map((item, i) => (
             <section key={i}>
-              {item.fieldGroupName ===
+              {/* {item.fieldGroupName ===
                 "post_Pagebuilder_Layouts_Fullscreenheader" && (
                 <FullScreenHeader slide={item.slide} />
-              )}
+              )} */}
 
               {item.fieldGroupName ===
                 "post_Pagebuilder_Layouts_TextMitBild" && (
@@ -174,6 +179,21 @@ export const pageQuery = graphql`
       title
       nodeType
       date(formatString: "MMMM DD, YYYY")
+
+      featuredImage {
+        node {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 1920
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
+        }
+      }
 
       seo {
         title
@@ -526,18 +546,6 @@ export const pageQuery = graphql`
                     ...GatsbyImageSharpFluid
                   }
                 }
-              }
-            }
-          }
-        }
-      }
-      featuredImage {
-        node {
-          altText
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 1920) {
-                ...GatsbyImageSharpFluid
               }
             }
           }

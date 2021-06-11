@@ -1,9 +1,17 @@
 import React from "react"
 import styled from "styled-components"
+import Image from "gatsby-image"
+// import Button from "../button"
 import { mq } from "../../utils/presets" // import LogoWeiss from "../images/wildgerecht-logo-weiss.svg"
+// import { GatsbyImage } from "gatsby-plugin-image"
+// import { getImage } from "gatsby-plugin-image"
 import parse from "html-react-parser"
+import Flickity from "react-flickity-component"
 import scrollTo from "gatsby-plugin-smoothscroll"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+
+const flickityOptions = {
+  // initialIndex: 1,
+}
 
 const Wrapper = styled.div`
   /* margin-top: -2rem; */
@@ -11,7 +19,7 @@ const Wrapper = styled.div`
   overflow: hidden;
 `
 
-const ImageWrapper = styled.div`
+const SliderWrapper = styled.div`
   width: 100%;
   position: relative;
   height: 100vh;
@@ -83,10 +91,10 @@ const ImageWrapper = styled.div`
       height: 100vh;
       .gatsby-image-wrapper {
         picture {
-          /* img {
-            transform-origin: top right;
-            animation: zoomInAndOut 30s ease infinite;
-          } */
+          img {
+            /* transform-origin: top right; */
+            /* animation: zoomInAndOut 30s ease infinite; */
+          }
           @keyframes zoomInAndOut {
             0% {
               transform: scale(1);
@@ -164,42 +172,90 @@ const ImageWrapper = styled.div`
   }
 `
 
-const FullScreenHeader = ({ title, featuredImage }) => {
-  const headerImage = {
-    image: getImage(featuredImage?.node?.localFile),
-    alt: featuredImage?.altText || "",
+const FullScreenHeader = ({ slide }) => {
+  const title = slide[0].title
+
+  // const splitTitle = title.split("<br />")
+
+  const singleImage = {
+    // image: getImage(image?.localFile),
+    fluid: slide[0]?.image?.localFile?.childImageSharp?.fluid,
+    alt: slide[0]?.image?.altText || ``,
   }
 
   return (
     <Wrapper>
-      <ImageWrapper>
-        <div className="imgwrap">
-          {!!headerImage && (
-            <GatsbyImage
-              className="img"
-              image={headerImage.image}
-              alt={headerImage.alt}
-            />
-          )}
-          <div className="contentwrapper">
-            <div className="content">
-              <div className="contentinner text-animation">
-                {!!title && <h1>{parse(title)}</h1>}
-                <button
-                  className="button"
-                  onClick={() => scrollTo("#maincontent")}
-                >
-                  Mehr erfahren ↓
-                </button>
-                {/* {slide[0].button && <Button button={slide[0].button} />} */}
+      {!!slide && slide?.length > 1 ? (
+        <Flickity
+          className={"carousel slider"} // default ''
+          elementType={"div"} // default 'div'
+          options={flickityOptions} // takes flickity options {}
+          disableImagesLoaded={false} // default false
+          reloadOnUpdate // default false
+          static // default false
+        >
+          {!!slide &&
+            slide.map((item, i) => (
+              <SliderWrapper key={i}>
+                <div className="imgwrap">
+                  {item.image && (
+                    <Image
+                      className="img"
+                      fluid={singleImage.fluid}
+                      alt={singleImage.alt}
+                    />
+                  )}
+
+                  <div className="contentwrapper">
+                    <div className="content">
+                      <div className="contentinner">
+                        {!!item.title && <h1>{parse(item.title)}</h1>}
+                        <button
+                          className="button"
+                          onClick={() => scrollTo("#maincontent")}
+                        >
+                          Mehr erfahren ↓
+                        </button>
+                      </div>
+                      {/* <img src={LogoWeiss} alt="Wildgerecht Logo" /> */}
+                    </div>
+                    <div className="overlay"></div>
+                  </div>
+                </div>
+                <div id="maincontent"></div>
+              </SliderWrapper>
+            ))}
+        </Flickity>
+      ) : (
+        <SliderWrapper>
+          <div className="imgwrap">
+            {slide[0] && (
+              <Image
+                className="img"
+                fluid={singleImage.fluid}
+                alt={singleImage.alt}
+              />
+            )}
+            <div className="contentwrapper">
+              <div className="content">
+                <div className="contentinner text-animation">
+                  {!!title && <h1>{parse(title)}</h1>}
+                  <button
+                    className="button"
+                    onClick={() => scrollTo("#maincontent")}
+                  >
+                    Mehr erfahren ↓
+                  </button>
+                  {/* {slide[0].button && <Button button={slide[0].button} />} */}
+                </div>
+                {/* <img src={LogoWeiss} alt="Wildgerecht Logo" /> */}
               </div>
-              {/* <img src={LogoWeiss} alt="Wildgerecht Logo" /> */}
+              <div className="overlay"></div>
             </div>
-            <div className="overlay"></div>
           </div>
-        </div>
-        <div id="maincontent"></div>
-      </ImageWrapper>
+          <div id="maincontent"></div>
+        </SliderWrapper>
+      )}
     </Wrapper>
   )
 }

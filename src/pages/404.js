@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   margin: var(--spacing-auto);
   margin-top: 15rem;
   padding: 1rem;
-  max-width: var(--maxWidth-5xl);
+  max-width: ${mq.maxWidth5xl};
   ${mq.xxl} {
     padding: 0;
     min-height: 45vh;

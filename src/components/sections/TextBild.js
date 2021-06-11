@@ -32,7 +32,7 @@ const Background = styled.div`
 `
 
 const Wrapper = styled.div`
-  max-width: var(--maxWidth-5xl);
+  max-width: ${mq.maxWidth5xl};
   /* margin: 1rem auto 3rem; */
   /* margin: var(--spacing-auto); */
   .wrap {

@@ -14,14 +14,13 @@ import GallerySection from "../components/sections/Gallery"
 import ContactSection from "../components/sections/Contact"
 
 const PageTemplate = ({ data: { page, frontPage } }) => {
-  // const featuredImage = {
-  //   image: getImage(page.featuredImage.node.localFile),
-  //   alt: page.featuredImage.node.altText || ``,
-  // }
-
   const metaDesc = page.seo.metaDesc || ``
 
   const mobilemenu = frontPage.mobileMenu.mobilemenu
+
+  const title = page?.title
+
+  const featuredImage = page?.featuredImage
 
   return (
     <Layout uri={page.uri} mobilemenu={mobilemenu}>
@@ -30,15 +29,12 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
       <Seo title={page.title || ``} description={metaDesc} />
       {/* lang={page.language.slug} */}
 
+      <FullScreenHeader title={title} featuredImage={featuredImage} />
+
       {!!page.pageBuilder.layouts && (
         <>
           {page.pageBuilder.layouts.map((item, i) => (
             <section key={i}>
-              {item.fieldGroupName ===
-                "page_Pagebuilder_Layouts_Fullscreenheader" && (
-                <FullScreenHeader slide={item.slide} />
-              )}
-
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_TextMitBild" && (
                 <TextBild
@@ -180,6 +176,21 @@ export const pageQuery = graphql`
       nodeType
       date(formatString: "MMMM DD, YYYY")
 
+      featuredImage {
+        node {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                width: 1920
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
+        }
+      }
+
       # language {
       #   slug
       # }
@@ -217,34 +228,6 @@ export const pageQuery = graphql`
       pageBuilder {
         __typename
         layouts {
-          ... on WpPage_Pagebuilder_Layouts_Fullscreenheader {
-            fieldGroupName
-            slide {
-              image {
-                altText
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-
-                # altText
-                # localFile {
-                #   childImageSharp {
-                #     gatsbyImageData(
-                #       width: 1920
-                #       placeholder: BLURRED
-                #       formats: [AUTO, WEBP, AVIF]
-                #     )
-                #   }
-                # }
-              }
-              title
-            }
-          }
-
           ... on WpPage_Pagebuilder_Layouts_TextMitBild {
             fieldGroupName
             textcontent {
@@ -535,18 +518,6 @@ export const pageQuery = graphql`
                     ...GatsbyImageSharpFluid
                   }
                 }
-              }
-            }
-          }
-        }
-      }
-      featuredImage {
-        node {
-          altText
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 1920) {
-                ...GatsbyImageSharpFluid
               }
             }
           }

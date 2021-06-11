@@ -12,6 +12,7 @@ module.exports = {
     xl: `@media (min-width: 1200px)`,
     xxl: `@media (min-width: 1600px)`,
     xxxl: `@media (min-width: 2000px)`,
+    maxWidth5xl: `75rem`,
   },
   animation: {
     curveDefault: `cubic-bezier(0.4, 0, 0.2, 1)`,

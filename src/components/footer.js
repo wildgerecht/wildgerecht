@@ -14,7 +14,7 @@ const Footer = styled.footer`
   position: relative;
   background: var(--color-darkgreen);
   .inner {
-    max-width: var(--maxWidth-5xl);
+    max-width: ${mq.maxWidth5xl};
     margin: 0 auto;
     padding-top: 1rem;
     .dog {

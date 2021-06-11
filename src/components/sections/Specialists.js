@@ -17,7 +17,7 @@ const flickityOptions = {
 
 const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
-  max-width: var(--maxWidth-5xl);
+  max-width: ${mq.maxWidth5xl};
   /* margin: 3rem auto 3rem; */
   margin: var(--spacing-auto);
   .textcontent {
