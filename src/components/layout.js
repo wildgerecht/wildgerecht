@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-import Footer from "./Footer"
+import Footer from "./footer"
 import Header from "./Header"
 import { mq } from "../utils/presets"
 import UniversalLink from "./UniversalLink"
