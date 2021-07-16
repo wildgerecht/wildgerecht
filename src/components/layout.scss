@@ -590,6 +590,10 @@ https://flickity.metafizzy.co
     transition: all 0.3s;
   }
 
+  .headroom-wrapper {
+    height: 0 !important;
+  }
+
   .headroom--unfixed {
     transform: translateY(0);
 

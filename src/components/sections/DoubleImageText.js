@@ -180,7 +180,7 @@ const DoubleImageText = ({
               <div
                 data-sal="slide-up"
                 data-sal-easing="ease"
-                data-sal-duration="1000"
+                data-sal-duration="800"
               >
                 {parse(title)}
               </div>
@@ -189,7 +189,7 @@ const DoubleImageText = ({
               <div
                 data-sal="slide-up"
                 data-sal-easing="ease"
-                data-sal-duration="1000"
+                data-sal-duration="800"
               >
                 {parse(content)}
               </div>
@@ -198,7 +198,7 @@ const DoubleImageText = ({
               <Button
                 data-sal="slide-up"
                 data-sal-easing="ease"
-                data-sal-duration="1000"
+                data-sal-duration="800"
                 button={button}
               />
             )}
@@ -220,7 +220,7 @@ const DoubleImageText = ({
               <div
                 data-sal="slide-up"
                 data-sal-easing="ease"
-                data-sal-duration="1000"
+                data-sal-duration="800"
               >
                 {parse(slogan.title)}
               </div>

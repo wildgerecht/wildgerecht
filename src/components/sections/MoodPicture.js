@@ -5,6 +5,7 @@ import { mq } from "../../utils/presets" // import { GatsbyImage } from "gatsby-
 // import { getImage } from "gatsby-plugin-image"
 import Image from "gatsby-image"
 import parse from "html-react-parser"
+import { useInView } from "react-intersection-observer"
 
 const Wrapper = styled.div`
   background: var(--color-black);
@@ -15,6 +16,25 @@ const Wrapper = styled.div`
     text-align: center;
     max-width: 60rem;
     margin: 0 auto;
+  }
+
+  .blur-in {
+    font-size: calc(3.2rem + 0.2vw);
+    filter: blur(25px);
+    opacity: 0;
+    animation: fadeIn 2.7s ease-in-out forwards;
+    @keyframes fadeIn {
+      0% {
+        top: -10px;
+        opacity: 0;
+      }
+      100% {
+        filter: blur(0px);
+        top: 0px;
+        left: 0px;
+        opacity: 1;
+      }
+    }
   }
 
   .content {
@@ -136,6 +156,11 @@ const MoodPicture = ({
   sectionid,
   settings,
 }) => {
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 1,
+  })
+
   const featuredImage = {
     // image: getImage(image?.localFile),
     fluid: image?.localFile?.childImageSharp.fluid,
@@ -238,11 +263,17 @@ const MoodPicture = ({
 
         <div className={"content " + gradientClass}></div>
         <div className="textcontent" style={{ justifyContent: location }}>
-          <div className="inner">
+          <div className="inner" ref={ref}>
+            {/* {inView ? (
+              <div className="noblur"></div>
+            ) : (
+              <div className="blur-in">{parse(noShyTitle)}</div>
+            )} */}
+
             {!!title && (
               <div
-                data-sal="slide-up"
-                data-sal-easing="ease"
+                data-sal="zoom-in"
+                data-sal-easing="ease-in-out"
                 data-sal-duration="1000"
               >
                 {parse(noShyTitle)}
@@ -253,7 +284,7 @@ const MoodPicture = ({
               <div
                 data-sal="slide-up"
                 data-sal-easing="ease"
-                data-sal-duration="1000"
+                data-sal-duration="800"
               >
                 {parse(text)}
               </div>
@@ -263,7 +294,7 @@ const MoodPicture = ({
               <Button
                 data-sal="slide-up"
                 data-sal-easing="ease"
-                data-sal-duration="1000"
+                data-sal-duration="800"
                 button={button}
               />
             )}

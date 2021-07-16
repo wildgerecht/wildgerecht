@@ -350,7 +350,7 @@ const TextBild = ({
               className={"content " + textrightside + " " + customwidthbig}
               data-sal={slideleft}
               data-sal-easing="ease"
-              data-sal-duration="1000"
+              data-sal-duration="800"
             >
               {settings.header && settings.header
                 ? !!title && parse(title)
@@ -383,7 +383,7 @@ const TextBild = ({
                 <Button
                   data-sal="slide-up"
                   data-sal-easing="ease"
-                  data-sal-duration="1000"
+                  data-sal-duration="800"
                   button={button}
                 />
               )}
@@ -395,7 +395,7 @@ const TextBild = ({
                   className={"image " + imageposition + " " + customwidthsmall}
                   data-sal={slideright}
                   data-sal-easing="ease"
-                  data-sal-duration="1000"
+                  data-sal-duration="800"
                 >
                   {featuredImage && (
                     <Image
@@ -415,7 +415,7 @@ const TextBild = ({
                 >
                   {/* data-sal={slideright}
                   data-sal-easing="ease"
-                  data-sal-duration="1000" */}
+                  data-sal-duration="800" */}
                   {!!slider && (
                     <Flickity
                       className={"carousel slider"} // default ''
