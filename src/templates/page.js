@@ -12,6 +12,7 @@ import SpecialistsSection from "../components/sections/Specialists"
 import PartnerSection from "../components/sections/Partner"
 import GallerySection from "../components/sections/Gallery"
 import ContactSection from "../components/sections/Contact"
+import JustText from "../components/sections/JustText"
 
 const PageTemplate = ({ data: { page, frontPage } }) => {
   const metaDesc = page.seo.metaDesc || ``
@@ -21,6 +22,8 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
   const title = page?.title
   const featuredImage = page?.featuredImage
 
+  const titleWitHBreak = title.replace("^", "<br />")
+
   return (
     <Layout uri={page.uri} mobilemenu={mobilemenu}>
       {/* lang={page.language.slug} */}
@@ -28,7 +31,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
       <Seo title={page.title || ``} description={metaDesc} />
       {/* lang={page.language.slug} */}
 
-      <FullScreenHeader title={title} featuredImage={featuredImage} />
+      <FullScreenHeader title={titleWitHBreak} featuredImage={featuredImage} />
 
       {!!page.pageBuilder.layouts && (
         <>
@@ -49,6 +52,13 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   activateaccordion={item.textcontent.activateaccordion}
                   akkordion={item.textcontent.akkordion}
                   sectionid={item.settings.sectionid}
+                />
+              )}
+
+              {item.fieldGroupName === "page_Pagebuilder_Layouts_Justtext" && (
+                <JustText
+                  text={item.justtextcontent}
+                  settings={item.settings}
                 />
               )}
 
@@ -450,6 +460,19 @@ export const pageQuery = graphql`
                   }
                 }
               }
+            }
+          }
+
+          ... on WpPage_Pagebuilder_Layouts_Justtext {
+            fieldGroupName
+            justtextcontent
+            settings {
+              textthreequarters
+              spacingTop
+              spacingBottom
+              sectionid
+              fieldGroupName
+              backgroundcolor
             }
           }
 

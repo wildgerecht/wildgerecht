@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { FaFacebook } from "react-icons/fa"
+import { FaLinkedin } from "react-icons/fa"
 import { FaInstagram } from "react-icons/fa"
 import { mq } from "../utils/presets"
 import Dog from "../images/deutschdrahthaar.svg"
@@ -202,33 +203,41 @@ const FooterSection = () => (
       </div>
       <ul>
         <li>
-          <Link to="/kompetenz">Kompetenz</Link>
+          <Link to="/kompetenz/">Kompetenz</Link>
         </li>
         <li>
-          <Link to="/leistungen">Leistungen</Link>
+          <Link to="/leistungen/">Leistungen</Link>
         </li>
         <li>
-          <Link to="/seminare">Seminare</Link>
+          <Link to="/workshops/">Workshops</Link>
         </li>
         <li>
-          <Link to="/kontakt">Kontakt</Link>
+          <Link to="/kontakt/">Kontakt</Link>
         </li>
         <li>
-          <Link to="/datenschutz">Datenschutz</Link>
+          <Link to="/datenschutz/">Datenschutz</Link>
         </li>
         <li>
-          <Link to="/impressum">Impressum</Link>
+          <Link to="/impressum/">Impressum</Link>
         </li>
         <li>
           <a
+            href="http://de.linkedin.com/"
+            target="_blank"
+            rel="noopener nofollow noreferrer"
+            aria-label="wildgerecht auf LinkedIn"
+          >
+            <FaLinkedin className="socialicon" alt="wildgerecht auf LinkedIn" />
+          </a>
+          {/* <a
             href="https://facebook.com/wildgerecht"
             target="_blank"
             rel="noopener nofollow noreferrer"
             aria-label="wildgerecht auf Facebook"
           >
             <FaFacebook className="socialicon" alt="wildgerecht auf Facebook" />
-          </a>
-          <a
+          </a> */}
+          {/* <a
             href="https://instagram.com/wildgerecht"
             target="_blank"
             rel="noopener nofollow noreferrer"
@@ -238,7 +247,7 @@ const FooterSection = () => (
               className="socialicon"
               alt="wildgerecht auf Instagram"
             />
-          </a>
+          </a> */}
         </li>
       </ul>
       <div className="buttons">
