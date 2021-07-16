@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   position: relative;
   margin: var(--spacing-auto);
   .background {
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
     z-index: -1;
     opacity: 0.1;
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
 
     .slogan {
       padding: 1rem;
-      text-align: center;
+      /* text-align: center; */
       h3 {
         margin-top: 1rem;
         font-family: var(--fontFamily-sans);
@@ -96,24 +96,24 @@ const Wrapper = styled.div`
 
       .sloganwrap {
         margin-top: -4rem;
+
         .slogan {
           order: 0;
-          margin-top: auto;
           width: 50%;
           flex: 1 0 auto;
-          text-align: right;
           padding: 0;
           padding-right: 3rem;
-          text-align: right;
+          margin-top: 6rem;
+          /* text-align: right; */
 
           h3 {
-            max-width: 30rem;
+            /* max-width: 30rem; */
             margin: 0 0 0 auto;
             padding-bottom: 0;
           }
           p {
             margin: 0 0 0 auto;
-            max-width: 30rem;
+            /* max-width: 30rem; */
             margin-bottom: 0;
           }
         }

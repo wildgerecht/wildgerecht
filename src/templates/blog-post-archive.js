@@ -57,6 +57,7 @@ const News = styled.ul`
       flex-flow: column;
       padding: 1rem;
       color: white;
+
       .date {
         color: #ccc;
         font-size: 0.8rem;
@@ -67,6 +68,7 @@ const News = styled.ul`
         }
       }
       h2 {
+        line-height: 0.5;
         margin: 0 0 0.5rem;
       }
       h2 > span {
