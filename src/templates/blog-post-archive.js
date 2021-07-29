@@ -122,7 +122,7 @@ const BlogIndex = ({
 
       <NewsWrapper>
         <News style={{ listStyle: `none` }}>
-          {posts.map(post => {
+          {posts.map((post, i) => {
             const title = post.title
 
             let description = ""
@@ -144,7 +144,7 @@ const BlogIndex = ({
             }
 
             return (
-              <Link to={post.uri} itemProp="url">
+              <Link to={post.uri} itemProp="url" key={i}>
                 <li key={post.uri}>
                   <article
                     className="post-list-item"

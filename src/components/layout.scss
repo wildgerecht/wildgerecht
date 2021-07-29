@@ -683,3 +683,30 @@ https://flickity.metafizzy.co
 .greenbackground {
   background: var(--color-darkgreen) !important;
 }
+
+// Lists color
+
+ul,
+ol {
+  li {
+    color: var(--color-primary);
+  }
+}
+
+// IMAGE VIGNETTE
+// https://benjaminhorn.io/code/proper-lens-vignette-with-css/
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+.image-container:after {
+  content: "";
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  padding-bottom: 120%;
+  box-shadow: inset 0px 0px 150px 60px rgba(0, 0, 0, 0.8);
+  border-radius: 50%;
+}

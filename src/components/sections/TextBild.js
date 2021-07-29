@@ -35,6 +35,7 @@ const Wrapper = styled.div`
   max-width: ${mq.maxWidth5xl};
   /* margin: 1rem auto 3rem; */
   /* margin: var(--spacing-auto); */
+
   .wrap {
     display: flex;
     flex-flow: column;

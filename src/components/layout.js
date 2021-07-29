@@ -8,8 +8,8 @@ import UniversalLink from "./UniversalLink"
 import Image from "gatsby-image"
 
 // import "../../src/normalize.css"
-import "./typography.css"
 import "./layout.scss"
+import "./typography.css"
 
 // import "../style.scss"
 // import { TransitionProvider, TransitionViews } from "gatsby-plugin-transitions"
