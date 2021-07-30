@@ -90,6 +90,9 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-styled-components`,
+    },
+    {
       resolve: `gatsby-plugin-sass`,
       options: {
         implementation: require("sass"),
@@ -128,9 +131,7 @@ module.exports = {
         /* Self-hosted fonts config. Add font files and font CSS files to "static" folder */
         custom: [
           {
-            /* Exact name of the font as defied in @font-face CSS rule */
             name: ["BigNoodleTitling"],
-            /* Path to the font CSS file inside the "static" folder with @font-face definition */
             file: "/fonts/big_noodle_titlling.css",
           },
         ],
@@ -144,6 +145,11 @@ module.exports = {
             file:
               "https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500",
           },
+          // {
+          //   name: "Bebas Neue",
+          //   file:
+          //     "https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap",
+          // },
         ],
       },
     },

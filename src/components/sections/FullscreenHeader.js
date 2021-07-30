@@ -31,7 +31,8 @@ const ImageWrapper = styled.div`
       bottom: 0;
       right: 0;
       width: 100%;
-      max-width: ${mq.maxWidth5xl};
+      max-width: 75rem;
+      /* max-width: ${mq.maxWidth5xl}; */
       margin: 0 auto;
       padding: 1rem;
 

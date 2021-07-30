@@ -142,6 +142,8 @@ const Contact = ({ text, iconsWithText, sectionid }) => {
         <StaticImage
           src="../../images/mappreview.png"
           alt="Google Maps Vorschaubild des Wildgerecht Standorts"
+          height={600}
+          style={{ width: "100%" }}
         />
         <div id="maptext" className="maptext">
           <p>
