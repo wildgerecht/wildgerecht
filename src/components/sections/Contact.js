@@ -53,6 +53,12 @@ const GoogleMapsWrapper = styled.div`
   position: relative;
   overflow: hidden;
   height: 600px;
+  .mappreview {
+    height: 100%;
+    img {
+      object-fit: cover;
+    }
+  }
   picture {
     opacity: 0.4;
   }
@@ -140,6 +146,7 @@ const Contact = ({ text, iconsWithText, sectionid }) => {
       </Wrapper>
       <GoogleMapsWrapper id="mapsframe">
         <StaticImage
+          className="mappreview"
           src="../../images/mappreview.png"
           alt="Google Maps Vorschaubild des Wildgerecht Standorts"
           height={600}
