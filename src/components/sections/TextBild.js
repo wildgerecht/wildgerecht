@@ -247,6 +247,7 @@ const TextBild = ({
   sectionid,
   slider,
   slidersettings,
+  download,
 }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
@@ -387,6 +388,16 @@ const TextBild = ({
                   data-sal-duration="800"
                   button={button}
                 />
+              )}
+
+              {download && (
+                <a
+                  className="button"
+                  href={download.localFile.publicURL}
+                  download
+                >
+                  {download.title} ({download.localFile.prettySize})
+                </a>
               )}
             </div>
 

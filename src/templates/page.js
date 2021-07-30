@@ -52,6 +52,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   activateaccordion={item.textcontent.activateaccordion}
                   akkordion={item.textcontent.akkordion}
                   sectionid={item.settings.sectionid}
+                  download={item.download}
                 />
               )}
 
@@ -239,6 +240,14 @@ export const pageQuery = graphql`
         layouts {
           ... on WpPage_Pagebuilder_Layouts_TextMitBild {
             fieldGroupName
+            download {
+              title
+              altText
+              localFile {
+                publicURL
+                prettySize
+              }
+            }
             textcontent {
               title
               text
