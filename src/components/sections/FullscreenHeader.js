@@ -8,7 +8,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 const Wrapper = styled.div`
   /* margin-top: -2rem; */
   /* height: calc(100vh - 5.5rem); */
-  height: 89vh;
+  height: 77vh;
   overflow: hidden;
   ${mq.desktop} {
     height: 100vh;
@@ -19,13 +19,12 @@ const ImageWrapper = styled.div`
   width: 100%;
   position: relative;
   /* height: calc(100vh - 5.5rem); */
-  height: 89vh;
-  z-index: 0;
+  height: 77vh;
   .imgwrap {
     /* height: calc(100vh - 5.5rem); */
-    height: 89vh;
+    height: 77vh;
     .gatsby-image-wrapper {
-      z-index: -999;
+      z-index: -10;
       width: 100%;
       height: 100%;
     }
@@ -73,7 +72,6 @@ const ImageWrapper = styled.div`
   }
 
   .overlay {
-    z-index: -999;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -81,6 +79,19 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     background: rgba(7, 7, 7, 100%);
+    z-index: -5;
+
+    /* background: -webkit-linear-gradient(
+      to right,
+      rgba(245, 245, 245, 0.8),
+      #f5f5f5 65%
+    );
+    background: linear-gradient(
+      to right,
+      rgba(245, 245, 245, 0.8),
+      #f5f5f5 65%
+    ); */
+
     background: linear-gradient(
       180deg,
       rgba(7, 7, 7, 0.8855917366946778) 0%,
@@ -90,8 +101,6 @@ const ImageWrapper = styled.div`
       rgba(7, 7, 7, 0.5298494397759104) 65%,
       rgba(7, 7, 7, 0.8491771708683473) 100%
     );
-
-    z-index: -1;
   }
 
   ${mq.tablet} {
@@ -197,13 +206,6 @@ const FullScreenHeader = ({ title, featuredImage }) => {
     <Wrapper>
       <ImageWrapper>
         <div className="imgwrap">
-          {!!headerImage && (
-            <GatsbyImage
-              className="img"
-              image={headerImage.image}
-              alt={headerImage.alt}
-            />
-          )}
           <div className="contentwrapper">
             <div className="content">
               <div className="contentinner text-animation">
@@ -214,12 +216,17 @@ const FullScreenHeader = ({ title, featuredImage }) => {
                 >
                   Mehr erfahren ↓
                 </button>
-                {/* {slide[0].button && <Button button={slide[0].button} />} */}
               </div>
-              {/* <img src={LogoWeiss} alt="Wildgerecht Logo" /> */}
             </div>
           </div>
           <div className="overlay"></div>
+          {!!headerImage && (
+            <GatsbyImage
+              className="img"
+              image={headerImage.image}
+              alt={headerImage.alt}
+            />
+          )}
         </div>
         <div id="maincontent"></div>
       </ImageWrapper>
