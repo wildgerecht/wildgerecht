@@ -22,6 +22,8 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
   const title = page?.title
   const featuredImage = page?.featuredImage
 
+  const mobileImage = page?.mobileImage?.beitragsbild
+
   const titleWitHBreak = title.replace("^", "<br />")
 
   return (
@@ -31,7 +33,11 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
       <Seo title={page.title || ``} description={metaDesc} />
       {/* lang={page.language.slug} */}
 
-      <FullScreenHeader title={titleWitHBreak} featuredImage={featuredImage} />
+      <FullScreenHeader
+        title={titleWitHBreak}
+        featuredImage={featuredImage}
+        mobileImage={mobileImage}
+      />
 
       {!!page.pageBuilder.layouts && (
         <>
@@ -181,6 +187,17 @@ export const pageQuery = graphql`
       title
       nodeType
       date(formatString: "MMMM DD, YYYY")
+
+      mobileImage {
+        beitragsbild {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 600)
+            }
+          }
+        }
+      }
 
       featuredImage {
         node {

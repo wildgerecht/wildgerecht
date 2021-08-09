@@ -20,6 +20,11 @@ const ImageWrapper = styled.div`
   position: relative;
   /* height: calc(100vh - 5.5rem); */
   height: 77vh;
+
+  .smartphoneimage {
+    display: none !important;
+  }
+
   .imgwrap {
     /* height: calc(100vh - 5.5rem); */
     height: 77vh;
@@ -105,6 +110,12 @@ const ImageWrapper = styled.div`
   }
 
   ${mq.tablet} {
+    .smartphone {
+      display: none !important;
+    }
+    .smartphoneimage {
+      display: block !important;
+    }
     .contentwrapper {
       .contentinner {
         h1 {
@@ -197,19 +208,36 @@ const ImageWrapper = styled.div`
   }
 `
 
-const FullScreenHeader = ({ title, featuredImage }) => {
+const FullScreenHeader = ({ title, featuredImage, mobileImage }) => {
   const headerImage = {
     image: getImage(featuredImage?.node?.localFile),
     alt: featuredImage?.altText || "",
+  }
+
+  const smartphoneImage = {
+    image: getImage(mobileImage?.localFile),
+    alt: mobileImage?.altText || "",
+  }
+
+  let smartPhoneImageActivated = ""
+  if (mobileImage) {
+    smartPhoneImageActivated = "smartphoneimage"
   }
 
   return (
     <Wrapper>
       <ImageWrapper>
         <div className="imgwrap">
+          {!!smartphoneImage && (
+            <GatsbyImage
+              className="img smartphone"
+              image={smartphoneImage.image}
+              alt={smartphoneImage.alt}
+            />
+          )}
           {!!headerImage && (
             <GatsbyImage
-              className="img"
+              className={smartPhoneImageActivated + " img"}
               image={headerImage.image}
               alt={headerImage.alt}
             />
