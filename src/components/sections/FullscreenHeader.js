@@ -7,7 +7,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const Wrapper = styled.div`
   /* margin-top: -2rem; */
-  height: calc(100vh - 5.5rem);
+  /* height: calc(100vh - 5.5rem); */
+  height: 89vh;
   overflow: hidden;
   ${mq.desktop} {
     height: 100vh;
@@ -17,10 +18,12 @@ const Wrapper = styled.div`
 const ImageWrapper = styled.div`
   width: 100%;
   position: relative;
-  height: calc(100vh - 5.5rem);
+  /* height: calc(100vh - 5.5rem); */
+  height: 89vh;
   z-index: 0;
   .imgwrap {
-    height: calc(100vh - 5.5rem);
+    /* height: calc(100vh - 5.5rem); */
+    height: 89vh;
     .gatsby-image-wrapper {
       z-index: -999;
       width: 100%;
@@ -43,6 +46,19 @@ const ImageWrapper = styled.div`
         h1 {
           max-width: 50rem;
           font-size: 2rem;
+          animation: fadeIn 0.7s ease-in-out forwards;
+          @keyframes fadeIn {
+            0% {
+              top: -10px;
+              opacity: 0;
+            }
+            100% {
+              filter: blur(0px);
+              top: 0px;
+              left: 0px;
+              opacity: 1;
+            }
+          }
           @media screen and (max-width: 500px) {
             br {
               display: none;
@@ -64,7 +80,7 @@ const ImageWrapper = styled.div`
     right: 0;
     width: 100%;
     height: 100%;
-    background: rgb(7, 7, 7);
+    background: rgba(7, 7, 7, 100%);
     background: linear-gradient(
       180deg,
       rgba(7, 7, 7, 0.8855917366946778) 0%,
@@ -74,6 +90,8 @@ const ImageWrapper = styled.div`
       rgba(7, 7, 7, 0.5298494397759104) 65%,
       rgba(7, 7, 7, 0.8491771708683473) 100%
     );
+
+    z-index: -1;
   }
 
   ${mq.tablet} {
@@ -92,10 +110,6 @@ const ImageWrapper = styled.div`
       height: 100vh;
       .gatsby-image-wrapper {
         picture {
-          /* img {
-            transform-origin: top right;
-            animation: zoomInAndOut 30s ease infinite;
-          } */
           @keyframes zoomInAndOut {
             0% {
               transform: scale(1);
@@ -204,8 +218,8 @@ const FullScreenHeader = ({ title, featuredImage }) => {
               </div>
               {/* <img src={LogoWeiss} alt="Wildgerecht Logo" /> */}
             </div>
-            <div className="overlay"></div>
           </div>
+          <div className="overlay"></div>
         </div>
         <div id="maincontent"></div>
       </ImageWrapper>

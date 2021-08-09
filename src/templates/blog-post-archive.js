@@ -109,7 +109,7 @@ const BlogIndex = ({
   }
 
   return (
-    <Layout uri={post.uri} mobilemenu={mobilemenu}>
+    <Layout uri={postsPage.uri} mobilemenu={mobilemenu}>
       <Seo
         title="Neuigkeiten im Bereich Jagd- und Outdoormarketing"
         description="Neuigkeiten im Bereich Jagd- und Outdoormarketing."
@@ -221,18 +221,14 @@ export const pageQuery = graphql`
             altText
             localFile {
               childImageSharp {
-                fixed(width: 40, height: 40) {
-                  ...GatsbyImageSharpFixed
-                }
+                gatsbyImageData(width: 40)
               }
             }
           }
           activeimage {
             localFile {
               childImageSharp {
-                fixed(width: 40, height: 40) {
-                  ...GatsbyImageSharpFixed
-                }
+                gatsbyImageData(width: 40)
               }
             }
           }
@@ -242,7 +238,7 @@ export const pageQuery = graphql`
 
     postsPage: wpPage(isPostsPage: { eq: true }) {
       title
-
+      uri
       featuredImage {
         node {
           altText

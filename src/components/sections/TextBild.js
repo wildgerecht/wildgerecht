@@ -133,7 +133,7 @@ const Wrapper = styled.div`
     h3 {
       /* font-weight: 300; */
       /* line-height: calc(1.1em + 0.5vw); */
-      /* font-size: calc(1em + 0.4vw); */
+      font-size: calc(1.2em + 0.3vw);
       border-bottom: 2px solid #f47d00;
       padding-bottom: 0.3rem;
       position: relative;

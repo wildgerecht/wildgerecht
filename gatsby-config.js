@@ -12,7 +12,6 @@ module.exports = {
     PARALLEL_SOURCING: true,
     FAST_DEV: true,
     DEV_SSR: true,
-    FAST_REFRESH: true,
     LMDB_STORE: true,
   },
   siteMetadata: {

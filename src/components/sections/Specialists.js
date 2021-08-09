@@ -28,18 +28,15 @@ const Wrapper = styled.div`
     .textcontentinner {
       background: var(--color-darkgreen);
       padding: 1rem;
-      .illustration {
-        display: none;
-        transition: all 0.3s;
-      }
     }
     .illustration {
-      display: block;
+      display: none;
+      transition: all 0.3s;
       position: absolute;
       right: 0.5rem;
       bottom: 0.5rem;
       width: 7rem;
-      opacity: 0.2;
+      opacity: 0.15;
     }
   }
   .slider {
@@ -82,12 +79,13 @@ const Wrapper = styled.div`
       flex: 1 0 auto;
       padding-left: 2rem;
       height: 100%;
+      .illustration {
+        display: block;
+        width: 9rem;
+      }
       .textcontentinner {
         height: 75vh;
         padding: 2rem;
-      }
-      .illustration {
-        width: 9rem;
       }
     }
     .slider {

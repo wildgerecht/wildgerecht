@@ -1,11 +1,11 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import Footer from "./footer"
 import Header from "./Header"
 import { mq } from "../utils/presets"
 import UniversalLink from "./UniversalLink"
-import Image from "gatsby-image"
 
 // import "../../src/normalize.css"
 // import "./layout.scss"
@@ -150,34 +150,19 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
                   {!!item?.image && (
                     <div className="imgwrapper">
                       <div className="menuicon img-bottom">
-                        {item.link.url === uri ? (
-                          <Image
-                            height="40"
-                            width="40"
-                            imgStyle={{ width: 40, height: 40 }}
-                            className="activeurl"
-                            fixed={item.image.localFile.childImageSharp.fixed}
-                            alt=""
-                          />
-                        ) : (
-                          <Image
-                            height="40"
-                            width="40"
-                            imgStyle={{ width: 40, height: 40 }}
-                            fixed={item.image.localFile.childImageSharp.fixed}
-                            alt=""
-                          />
-                        )}
+                        <GatsbyImage
+                          backgroundColor="#202020"
+                          imgStyle={{ height: "40px", width: "40px" }}
+                          image={getImage(item.image.localFile)}
+                          alt=""
+                        />
                       </div>
                       <div className="menuicon img-top">
-                        <Image
-                          height="40"
-                          width="40"
-                          imgStyle={{ width: 40, height: 40 }}
-                          fixed={
-                            item.activeimage.localFile.childImageSharp.fixed
-                          }
-                          alt={item.activeimage.altText}
+                        <GatsbyImage
+                          backgroundColor="#202020"
+                          imgStyle={{ height: "40px", width: "40px" }}
+                          image={getImage(item.activeimage.localFile)}
+                          alt=""
                         />
                       </div>
                     </div>

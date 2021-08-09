@@ -1,9 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
-import { FaFacebook } from "react-icons/fa"
 import { FaLinkedin } from "react-icons/fa"
-import { FaInstagram } from "react-icons/fa"
 import { mq } from "../utils/presets"
 import Dog from "../images/deutschdrahthaar.svg"
 import LogoWeiss from "../images/wildgerecht-logo-weiss.svg"
@@ -14,6 +12,10 @@ const Footer = styled.footer`
   padding: 0;
   position: relative;
   background: var(--color-darkgreen);
+  padding-bottom: 6rem;
+  ${mq.desktop} {
+    padding-bottom: 0;
+  }
   .inner {
     max-width: ${mq.maxWidth5xl};
     margin: 0 auto;
