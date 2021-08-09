@@ -13,7 +13,7 @@ module.exports = {
     FAST_DEV: true,
     DEV_SSR: true,
     FAST_REFRESH: true,
-    // LMDB_STORE: true,
+    LMDB_STORE: true,
   },
   siteMetadata: {
     title: `wildgerecht`,

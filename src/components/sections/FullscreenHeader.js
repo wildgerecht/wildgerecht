@@ -7,17 +7,20 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const Wrapper = styled.div`
   /* margin-top: -2rem; */
-  height: 100vh;
+  height: calc(100vh - 5.5rem);
   overflow: hidden;
+  ${mq.desktop} {
+    height: 100vh;
+  }
 `
 
 const ImageWrapper = styled.div`
   width: 100%;
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 5.5rem);
   z-index: 0;
   .imgwrap {
-    height: 100vh;
+    height: calc(100vh - 5.5rem);
     .gatsby-image-wrapper {
       z-index: -999;
       width: 100%;
@@ -40,6 +43,11 @@ const ImageWrapper = styled.div`
         h1 {
           max-width: 50rem;
           font-size: 2rem;
+          @media screen and (max-width: 500px) {
+            br {
+              display: none;
+            }
+          }
         }
       }
       img {

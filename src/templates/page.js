@@ -40,10 +40,10 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_TextMitBild" && (
                 <TextBild
+                  video={item.video}
                   image={item.image}
                   slider={item.slider}
                   slidersettings={item.sliderSettings}
-                  logo={item.logo}
                   title={item.textcontent.title}
                   content={item.textcontent.text}
                   button={item.textcontent.button}
@@ -248,6 +248,7 @@ export const pageQuery = graphql`
                 prettySize
               }
             }
+            video
             textcontent {
               title
               text
@@ -277,6 +278,7 @@ export const pageQuery = graphql`
               spacingTop
               spacingBottom
               backgroundcolor
+              video
             }
             sliderSettings {
               height
@@ -303,16 +305,16 @@ export const pageQuery = graphql`
                 }
               }
             }
-            logo {
-              altText
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 600) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
+            # logo {
+            #   altText
+            #   localFile {
+            #     childImageSharp {
+            #       fluid(maxWidth: 600) {
+            #         ...GatsbyImageSharpFluid
+            #       }
+            #     }
+            #   }
+            # }
           }
 
           ... on WpPage_Pagebuilder_Layouts_Gallery {

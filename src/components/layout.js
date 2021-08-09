@@ -35,7 +35,7 @@ const FixedBottomMenuWrapper = styled.nav`
     list-style: none;
     justify-content: space-between;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-
+    padding-bottom: env(safe-area-inset-bottom);
     li {
       flex: 1 0 auto;
       width: 20%;
@@ -45,6 +45,7 @@ const FixedBottomMenuWrapper = styled.nav`
       text-align: center;
       /* border-right: 1px solid #ddd; */
       padding-bottom: 0.3rem;
+
       &:last-child {
         border: 0;
       }
@@ -55,7 +56,7 @@ const FixedBottomMenuWrapper = styled.nav`
         display: block;
         margin: 0;
         /* padding: 0.4rem 0.1rem 0.9rem; */
-        padding-bottom: env(safe-area-inset-bottom);
+
         font-size: 0.75rem;
         text-decoration: none;
         display: flex;

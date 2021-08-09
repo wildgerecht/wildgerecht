@@ -43,12 +43,15 @@ const Wrapper = styled.div`
 
   h2 {
     margin-top: 2rem;
-    font-size: var(--fontSize-7);
+    font-size: var(--fontSize-4);
     word-break: keep-all;
   }
 
   /* tablet design */
   ${mq.tablet} {
+    h2 {
+      font-size: var(--fontSize-7);
+    }
     .content {
       padding: 0 2rem;
     }
@@ -264,12 +267,6 @@ const MoodPicture = ({
         <div className={"content " + gradientClass}></div>
         <div className="textcontent" style={{ justifyContent: location }}>
           <div className="inner" ref={ref}>
-            {/* {inView ? (
-              <div className="noblur"></div>
-            ) : (
-              <div className="blur-in">{parse(noShyTitle)}</div>
-            )} */}
-
             {!!title && (
               <div
                 data-sal="zoom-in"

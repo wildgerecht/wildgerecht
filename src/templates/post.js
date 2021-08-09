@@ -45,7 +45,6 @@ const PostTemplate = ({ data: { post, frontPage } }) => {
                   image={item.image}
                   slider={item.slider}
                   slidersettings={item.sliderSettings}
-                  logo={item.logo}
                   title={item.textcontent.title}
                   content={item.textcontent.text}
                   button={item.textcontent.button}
@@ -277,6 +276,7 @@ export const pageQuery = graphql`
                 url
               }
             }
+            video
             settings {
               sectionid
               textRightSide
@@ -287,6 +287,7 @@ export const pageQuery = graphql`
               spacingTop
               spacingBottom
               backgroundcolor
+              video
             }
             sliderSettings {
               height
@@ -313,16 +314,16 @@ export const pageQuery = graphql`
                 }
               }
             }
-            logo {
-              altText
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 600) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
+            # logo {
+            #   altText
+            #   localFile {
+            #     childImageSharp {
+            #       fluid(maxWidth: 600) {
+            #         ...GatsbyImageSharpFluid
+            #       }
+            #     }
+            #   }
+            # }
           }
 
           ... on WpPost_Pagebuilder_Layouts_Gallery {

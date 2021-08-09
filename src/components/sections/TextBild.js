@@ -8,6 +8,7 @@ import { Accordion, AccordionItem } from "react-sanfona"
 import { mq } from "../../utils/presets"
 import Button from "../button"
 import Flickity from "react-flickity-component"
+import { StaticImage } from "gatsby-plugin-image"
 
 const flickityOptions = {
   pageDots: false,
@@ -35,6 +36,51 @@ const Wrapper = styled.div`
   max-width: ${mq.maxWidth5xl};
   /* margin: 1rem auto 3rem; */
   /* margin: var(--spacing-auto); */
+  overflow: hidden;
+
+  .video {
+    display: flex;
+    min-width: 50%;
+    .video-container-wrapper {
+      width: 100%;
+      max-width: 100%;
+      /* width: 600px; */
+      left: 0;
+      right: 0;
+      margin: auto;
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 0;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .video-container iframe,
+      .video-container object,
+      .video-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .downloadbutton {
+    position: relative;
+    .gatsby-image-wrapper {
+      position: absolute;
+      left: 0.5rem;
+      top: 0.2rem;
+      object-fit: contain;
+    }
+    .buttontext {
+      padding-left: 1.7rem;
+      margin: 0;
+    }
+  }
 
   .wrap {
     display: flex;
@@ -236,7 +282,6 @@ const Slider = styled.div`
 
 const TextBild = ({
   image,
-  logo,
   title,
   content,
   button,
@@ -248,6 +293,7 @@ const TextBild = ({
   slider,
   slidersettings,
   download,
+  video,
 }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
@@ -392,16 +438,24 @@ const TextBild = ({
 
               {download && (
                 <a
-                  className="button"
+                  className="button downloadbutton"
                   href={download.localFile.publicURL}
                   download
                 >
-                  {download.title} ({download.localFile.prettySize})
+                  <StaticImage
+                    src="../../images/WG-Download_RGB_orange mit weß.svg"
+                    alt=""
+                    width="32"
+                    height="40"
+                  />{" "}
+                  <span className="buttontext">
+                    {download.title} ({download.localFile.prettySize})
+                  </span>
                 </a>
               )}
             </div>
 
-            {!settings?.slider && (
+            {!settings?.slider && !settings?.video && (
               <>
                 <div
                   className={"image " + imageposition + " " + customwidthsmall}
@@ -416,6 +470,18 @@ const TextBild = ({
                       alt={featuredImage.alt}
                     />
                   )}
+                </div>
+              </>
+            )}
+
+            {settings?.video && (
+              <>
+                <div className="video">
+                  <div className="video-container-wrapper">
+                    <div className="video-container">
+                      {video && parse(video)}
+                    </div>
+                  </div>
                 </div>
               </>
             )}
