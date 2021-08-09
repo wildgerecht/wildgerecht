@@ -24,13 +24,14 @@ const ImageWrapper = styled.div`
     /* height: calc(100vh - 5.5rem); */
     height: 77vh;
     .gatsby-image-wrapper {
-      z-index: -10;
       width: 100%;
       height: 100%;
     }
   }
   .contentwrapper {
+    z-index: 2;
     .content {
+      z-index: 2;
       position: absolute;
       left: 0;
       bottom: 0;
@@ -72,6 +73,7 @@ const ImageWrapper = styled.div`
   }
 
   .overlay {
+    z-index: 1;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -79,7 +81,6 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
     background: rgba(7, 7, 7, 100%);
-    z-index: -5;
 
     /* background: -webkit-linear-gradient(
       to right,
@@ -206,20 +207,6 @@ const FullScreenHeader = ({ title, featuredImage }) => {
     <Wrapper>
       <ImageWrapper>
         <div className="imgwrap">
-          <div className="contentwrapper">
-            <div className="content">
-              <div className="contentinner text-animation">
-                {!!title && <h1>{parse(title)}</h1>}
-                <button
-                  className="button"
-                  onClick={() => scrollTo("#maincontent")}
-                >
-                  Mehr erfahren ↓
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="overlay"></div>
           {!!headerImage && (
             <GatsbyImage
               className="img"
@@ -228,6 +215,20 @@ const FullScreenHeader = ({ title, featuredImage }) => {
             />
           )}
         </div>
+        <div className="contentwrapper">
+          <div className="content">
+            <div className="contentinner text-animation">
+              {!!title && <h1>{parse(title)}</h1>}
+              <button
+                className="button"
+                onClick={() => scrollTo("#maincontent")}
+              >
+                Mehr erfahren ↓
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="overlay"></div>
         <div id="maincontent"></div>
       </ImageWrapper>
     </Wrapper>
