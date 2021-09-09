@@ -64,6 +64,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
 
               {item.fieldGroupName === "page_Pagebuilder_Layouts_Justtext" && (
                 <JustText
+                  sectionid={item.sectionid}
                   text={item.justtextcontent}
                   settings={item.settings}
                 />

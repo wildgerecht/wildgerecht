@@ -11,11 +11,19 @@ const Wrapper = styled.div`
   max-width: ${mq.maxWidth5xl};
   /* margin: 1rem auto 3rem; */
   margin: var(--spacing-auto);
+  margin-top: 0;
+  margin-bottom: 3rem;
+  ${mq.tablet} {
+    padding-top: 2rem;
+  }
   .introtext {
     max-width: 50rem;
     margin: 0 auto;
     padding: 1rem 1rem 2rem;
     text-align: center;
+    h2 {
+      margin-top: 0;
+    }
   }
 
   .flex {
@@ -32,6 +40,7 @@ const Wrapper = styled.div`
       h3 {
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
+        word-break: normal;
       }
       &:nth-child(2) {
         background-image: url(${GreenboxRotated});

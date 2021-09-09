@@ -661,10 +661,10 @@ https://flickity.metafizzy.co
   margin-top: 0 !important;
 }
 .spacingtop-small {
-  margin-top: 1rem !important;
+  margin-top: 0 !important;
 }
 .spacingtop-medium {
-  margin-top: 2rem !important;
+  margin-top: 0 !important;
 }
 .spacingtop-big {
   margin-top: 10rem !important;
@@ -674,14 +674,42 @@ https://flickity.metafizzy.co
   margin-top: 0 !important;
 }
 .spacingbottom-small {
-  margin-bottom: 1rem !important;
+  margin-bottom: 0 !important;
 }
 .spacingbottom-medium {
-  margin-bottom: 2rem !important;
+  margin-bottom: 0 !important;
 }
 .spacingbottom-big {
   margin-bottom: 10rem !important;
 }
+
+// @media screen and (min-width: 500px) {
+//   .spacingtop-nospace {
+//     margin-top: 0 !important;
+//   }
+//   .spacingtop-small {
+//     margin-top: 2rem !important;
+//   }
+//   .spacingtop-medium {
+//     margin-top: 5rem !important;
+//   }
+//   .spacingtop-big {
+//     margin-top: 9rem !important;
+//   }
+
+//   .spacingbottom-nospace {
+//     margin-top: 0 !important;
+//   }
+//   .spacingbottom-small {
+//     margin-bottom: 2rem !important;
+//   }
+//   .spacingbottom-medium {
+//     margin-bottom: 5rem !important;
+//   }
+//   .spacingbottom-big {
+//     margin-bottom: 9rem !important;
+//   }
+// }
 
 @media screen and (min-width: 1000px) {
   .spacingtop-nospace {
@@ -748,4 +776,16 @@ ol {
   padding-bottom: 120%;
   box-shadow: inset 0px 0px 150px 60px rgba(0, 0, 0, 0.8);
   border-radius: 50%;
+}
+
+// NO MOBILE
+
+.nomobile {
+  display: none;
+}
+
+@media screen and (min-width: 1000px) {
+  .nomobile {
+    display: list-item;
+  }
 }

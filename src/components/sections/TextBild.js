@@ -21,6 +21,10 @@ const flickityOptions = {
 
 const Background = styled.div`
   scroll-margin-block-start: 100px;
+
+  .midwrap {
+    padding-bottom: 2rem;
+  }
   ${mq.xl} {
     .midwrap {
       padding: 2rem 0;
@@ -308,8 +312,6 @@ const TextBild = ({
   download,
   video,
 }) => {
-  console.log(settings)
-
   const featuredImage = {
     // image: getImage(image?.localFile),
     image: image?.localFile?.childImageSharp,

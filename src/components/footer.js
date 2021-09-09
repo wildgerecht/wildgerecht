@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
+import { FaLinkedinIn } from "react-icons/fa"
 import { FaLinkedin } from "react-icons/fa"
 import { mq } from "../utils/presets"
 import Dog from "../images/deutschdrahthaar.svg"
@@ -12,31 +13,56 @@ const Footer = styled.footer`
   padding: 0;
   position: relative;
   background: var(--color-darkgreen);
-  padding-bottom: 6rem;
-  ${mq.desktop} {
-    padding-bottom: 0;
-  }
+  padding-bottom: 4.3rem;
   .inner {
     max-width: ${mq.maxWidth5xl};
     margin: 0 auto;
     padding-top: 1rem;
+    display: flex;
+    flex-flow: column;
     .dog {
-      display: none;
+      z-index: 0;
+      order: 4;
+      display: block;
+      position: relative;
+      width: 100%;
+      flex: 1 0 auto;
+      pointer-events: none;
+      img {
+        /* display: none; */
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        left: -1rem;
+        bottom: 0;
+        width: 12rem;
+        margin: 0 auto;
+      }
     }
     ul {
-      list-style: none;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      padding-right: 2rem;
+      padding-left: 2rem;
+      column-count: 1;
+      text-align: center;
+      order: 3;
       margin: 0;
-      padding: 1rem;
-      column-count: 2;
-      column-gap: 50px;
-
-      margin-bottom: 1rem;
+      .nomobile {
+        display: none;
+      }
       li {
-        margin: 0;
-        padding: 0;
+        display: inline;
+        list-style: none;
+        word-break: keep-all;
         .socialicon {
-          margin: 1rem 1.5rem 1rem 0;
+          margin-top: 1rem;
+          margin-bottom: 0;
           font-size: 1.8rem;
+          display: block;
+          text-align: center;
+          width: 100%;
         }
         a {
           font-size: 1.1rem;
@@ -53,8 +79,10 @@ const Footer = styled.footer`
       }
     }
     .logo {
+      order: 0;
       margin: 0 auto;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1rem 1.5rem;
+      width: 10rem;
       display: block;
       text-align: center;
       text-decoration: none;
@@ -88,31 +116,81 @@ const Footer = styled.footer`
       }
     }
     .buttons {
+      order: 2;
       display: flex;
       justify-content: space-between;
+      margin-bottom: 6rem;
       .button {
         width: 50%;
         flex: 0 1 auto;
-        margin: 0 1rem 2rem;
+        margin: 0 0.5rem 2.5rem;
+        &:first-child {
+          margin-left: 1rem;
+        }
+        &:last-child {
+          margin-right: 1rem;
+        }
+        ${mq.phablet} {
+          margin: 0 1rem 2rem;
+        }
         text-align: center;
+      }
+      .linkedinbutton {
+        padding-top: 0.7rem;
+        padding-bottom: 0;
+        width: 3rem;
+        ${mq.desktop} {
+          display: none !important;
+        }
       }
     }
   }
 
-  /* tablet design */
-  ${mq.tablet} {
+  ${mq.desktop} {
+    padding-bottom: 0;
     .inner {
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
+      .dog {
+        flex: 0 1 auto;
+        display: block;
+        width: 20%;
+        order: 1;
+        ${mq.xxl} {
+          width: 30%;
+        }
+        img {
+          pointer-events: none;
+          position: absolute;
+          left: -5rem;
+          bottom: 0;
+          width: 17rem;
+          ${mq.xxl} {
+            width: 22rem;
+          }
+        }
+      }
       ul {
-        width: 40%;
+        display: block;
+        gap: 30px;
+        column-count: 2;
+        width: 25%;
         flex: 0 1 auto;
         order: 1;
         margin: 0;
         padding: 0;
-        margin-top: 1.5rem;
+        margin-top: 1rem;
+        text-align: left;
+        .nomobile {
+          display: block;
+        }
+        .linkedinicon {
+          display: flex;
+        }
         li {
+          text-align: left;
+          display: list-item;
           .socialicon {
             margin: 0.5rem 0 0 0;
             &:first-child {
@@ -122,6 +200,8 @@ const Footer = styled.footer`
         }
       }
       .logo {
+        min-width: initial;
+        max-width: initial;
         margin: 0;
         text-align: left;
         margin-top: 1rem;
@@ -133,64 +213,14 @@ const Footer = styled.footer`
       .buttons {
         text-align: right;
         margin-top: 1.5rem;
-        width: 25%;
+        width: 20%;
         order: 2;
         flex: 0 1 auto;
         flex-flow: column;
+        margin-bottom: 0;
         .button {
           width: initial;
           min-width: 7rem;
-        }
-      }
-    }
-  }
-  ${mq.xl} {
-    .inner {
-      padding-top: 0;
-      .logo {
-        max-width: initial;
-        width: 30%;
-        padding: 0;
-        .logooriginal {
-          img {
-            max-height: 8.5rem;
-          }
-        }
-      }
-      .dog {
-        order: 1;
-        display: block;
-        position: relative;
-        width: 15%;
-        flex: 1 0 auto;
-        img {
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 17rem;
-        }
-      }
-      ul {
-        flex: 0 1 auto;
-        width: 25%;
-        li {
-          .socialicon {
-            font-size: 2.2rem;
-            margin: 1rem 0 0 0;
-            &:first-child {
-              margin-right: 0.5rem;
-            }
-          }
-        }
-      }
-      .buttons {
-        width: initial;
-        /* margin-top: 1.8rem; */
-        /* margin-bottom: 2rem; */
-
-        .button {
-          display: inline;
-          width: initial;
         }
       }
     }
@@ -204,16 +234,16 @@ const FooterSection = () => (
         <img src={Dog} alt="Deutsch Drahthaar" />
       </div>
       <ul>
-        <li>
+        <li className="nomobile">
           <Link to="/kompetenz/">Kompetenz</Link>
         </li>
-        <li>
+        <li className="nomobile">
           <Link to="/leistungen/">Leistungen</Link>
         </li>
-        <li>
+        <li className="nomobile">
           <Link to="/workshops/">Workshops</Link>
         </li>
-        <li>
+        <li className="nomobile">
           <Link to="/kontakt/">Kontakt</Link>
         </li>
         <li>
@@ -222,7 +252,7 @@ const FooterSection = () => (
         <li>
           <Link to="/impressum/">Impressum</Link>
         </li>
-        <li>
+        <li className="nomobile linkedinicon">
           <a
             href="http://de.linkedin.com/"
             target="_blank"
@@ -256,11 +286,14 @@ const FooterSection = () => (
         <a href="mailto:info@wildgerecht.de" className="button">
           E-Mail
         </a>
+        <a href="mailto:info@wildgerecht.de" className="button linkedinbutton">
+          <FaLinkedinIn className="socialicon" alt="wildgerecht auf LinkedIn" />{" "}
+        </a>
         <a href="tel:+4992160806923" className="button">
           Telefon
         </a>
       </div>
-      <Link className="logo" to="/" alt="Home">
+      <Link className="logo" to="/" rel="Home">
         <div className="logooriginal">
           <img src={LogoWeiss} alt="Wildgerecht Logo" />
         </div>

@@ -21,9 +21,15 @@ const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
   background: var(--color-darkgreen);
   margin: var(--spacing-auto);
+  margin-top: 0;
+  margin-bottom: 0;
+
   .inner {
     max-width: ${mq.maxWidth5xl};
-    margin: 1rem auto 3rem;
+    margin: 1rem auto 0rem;
+    ${mq.tablet} {
+      margin-bottom: 2rem;
+    }
 
     .textcontent {
       padding: 0 3rem 2rem 2rem;
