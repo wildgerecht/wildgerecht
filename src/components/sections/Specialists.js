@@ -50,7 +50,7 @@ const Wrapper = styled.div`
         /* display: block; */
       }
       .img {
-        height: 75vh;
+        height: 50vh;
       }
       .specialistcontent {
         padding: 1rem;

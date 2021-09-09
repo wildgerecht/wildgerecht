@@ -1,5 +1,5 @@
 import React from "react"
-import Image from "gatsby-image"
+// import Image from "gatsby-image"
 // import { GatsbyImage } from "gatsby-plugin-image"
 // import { getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
@@ -9,6 +9,7 @@ import { mq } from "../../utils/presets"
 import Button from "../button"
 import Flickity from "react-flickity-component"
 import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const flickityOptions = {
   pageDots: false,
@@ -20,8 +21,10 @@ const flickityOptions = {
 
 const Background = styled.div`
   scroll-margin-block-start: 100px;
-  .midwrap {
-    padding: 2rem 0;
+  ${mq.xl} {
+    .midwrap {
+      padding: 2rem 0;
+    }
   }
   /* background: darkgreen;
   color: black;
@@ -86,9 +89,19 @@ const Wrapper = styled.div`
     display: flex;
     flex-flow: column;
 
+    .imagefullheight {
+      .gatsby-image-wrapper {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+
     .image {
+      /* max-height: 65vh; */
       order: 0;
-      position: relative;
+      /* position: relative; */
+
       .logowrapper {
         position: absolute;
         max-width: 200px;
@@ -186,7 +199,7 @@ const Wrapper = styled.div`
     }
   }
 
-  ${mq.xl} {
+  ${mq.desktop} {
     /* margin: 5rem auto 3rem; */
     /* margin: var(--spacing-auto); */
     margin: 0 auto;
@@ -295,8 +308,11 @@ const TextBild = ({
   download,
   video,
 }) => {
+  console.log(settings)
+
   const featuredImage = {
     // image: getImage(image?.localFile),
+    image: image?.localFile?.childImageSharp,
     fluid: image?.localFile?.childImageSharp?.fluid,
     alt: image?.altText || ``,
   }
@@ -345,8 +361,10 @@ const TextBild = ({
   }
 
   let customImageHeight = "initial"
+  let imagefullheight = ""
   if (settings.stretchimage) {
     customImageHeight = "100%"
+    imagefullheight = "imagefullheight"
   }
 
   // DEFINE SPACING
@@ -445,8 +463,8 @@ const TextBild = ({
                   <StaticImage
                     src="../../images/WG-Download_RGB_orange mit weß.svg"
                     alt=""
-                    width="32"
-                    height="40"
+                    width={32}
+                    height={40}
                   />{" "}
                   <span className="buttontext">
                     {download.title} ({download.localFile.prettySize})
@@ -458,15 +476,21 @@ const TextBild = ({
             {!settings?.slider && !settings?.video && (
               <>
                 <div
-                  className={"image " + imageposition + " " + customwidthsmall}
+                  className={
+                    "image " +
+                    imagefullheight +
+                    " " +
+                    imageposition +
+                    " " +
+                    customwidthsmall
+                  }
                   data-sal={slideright}
                   data-sal-easing="ease"
                   data-sal-duration="800"
                 >
                   {featuredImage && (
-                    <Image
-                      style={{ height: customImageHeight }}
-                      fluid={featuredImage.fluid}
+                    <GatsbyImage
+                      image={getImage(featuredImage.image)}
                       alt={featuredImage.alt}
                     />
                   )}
@@ -489,7 +513,14 @@ const TextBild = ({
             {settings?.slider && (
               <>
                 <Slider
-                  className={"image " + imageposition + " " + customwidthsmall}
+                  className={
+                    "image " +
+                    imagefullheight +
+                    " " +
+                    imageposition +
+                    " " +
+                    customwidthsmall
+                  }
                 >
                   {/* data-sal={slideright}
                   data-sal-easing="ease"
@@ -505,13 +536,11 @@ const TextBild = ({
                     >
                       {slider.map((item, i) => (
                         <div className={"slide " + sliderheight} key={i}>
-                          <Image
+                          <GatsbyImage
                             objectFit="cover"
                             objectPosition="50% 50%"
                             style={{ height: customImageHeight }}
-                            fluid={
-                              item?.image?.localFile?.childImageSharp?.fluid
-                            }
+                            image={getImage(item?.image?.localFile)}
                             alt={item?.image?.localFile?.childImageSharp?.alt}
                           />
                         </div>

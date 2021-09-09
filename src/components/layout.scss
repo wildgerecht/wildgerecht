@@ -8,7 +8,8 @@
   --maxWidth-none: "none";
 
   --minWidth-tablet: 38rem; /* 768px */
-  --minWidth-desktop: 60rem; /* 1200px */
+  --minWidth-bigtablet: 60rem; /* 1200px */
+  --minWidth-desktop: 75rem; /* 1200px */
   --minWidth-widescreen: 100rem; /* 2000px */
 
   /* --minWidth-tablet: 48rem; 
@@ -28,8 +29,11 @@
   --maxWidth-full: "100%";
   --maxWidth-wrapper: var(--maxWidth-2xl);
 
-  --spacing-auto: 2rem auto;
+  --spacing-auto: 0rem auto;
   @media screen and (min-width: 1000px) {
+    --spacing-auto: 2rem auto;
+  }
+  @media screen and (min-width: 1400px) {
     --spacing-auto: 10rem auto;
   }
 
@@ -393,8 +397,8 @@ a:focus {
   text-decoration: none;
   font-family: var(--fontFamily-sans);
   letter-spacing: 2px;
-
   font-size: 1.2rem;
+  text-align: center;
 }
 .button:hover {
   color: white;
@@ -657,10 +661,10 @@ https://flickity.metafizzy.co
   margin-top: 0 !important;
 }
 .spacingtop-small {
-  margin-top: 3rem !important;
+  margin-top: 1rem !important;
 }
 .spacingtop-medium {
-  margin-top: 6rem !important;
+  margin-top: 2rem !important;
 }
 .spacingtop-big {
   margin-top: 10rem !important;
@@ -670,10 +674,10 @@ https://flickity.metafizzy.co
   margin-top: 0 !important;
 }
 .spacingbottom-small {
-  margin-bottom: 3rem !important;
+  margin-bottom: 1rem !important;
 }
 .spacingbottom-medium {
-  margin-bottom: 6rem !important;
+  margin-bottom: 2rem !important;
 }
 .spacingbottom-big {
   margin-bottom: 10rem !important;
@@ -684,26 +688,26 @@ https://flickity.metafizzy.co
     margin-top: 0 !important;
   }
   .spacingtop-small {
-    margin-top: 7rem !important;
+    margin-top: 2rem !important;
   }
   .spacingtop-medium {
-    margin-top: 14rem !important;
+    margin-top: 5rem !important;
   }
   .spacingtop-big {
-    margin-top: 22rem !important;
+    margin-top: 9rem !important;
   }
 
   .spacingbottom-nospace {
     margin-top: 0 !important;
   }
   .spacingbottom-small {
-    margin-bottom: 7rem !important;
+    margin-bottom: 2rem !important;
   }
   .spacingbottom-medium {
-    margin-bottom: 14rem !important;
+    margin-bottom: 5rem !important;
   }
   .spacingbottom-big {
-    margin-bottom: 22rem !important;
+    margin-bottom: 9rem !important;
   }
 }
 

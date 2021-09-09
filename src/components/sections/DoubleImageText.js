@@ -10,7 +10,7 @@ import { mq } from "../../utils/presets"
 const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
   position: relative;
-  margin: var(--spacing-auto);
+  /* margin: var(--spacing-auto); */
   .background {
     /* text-align: center; */
     width: 100%;
@@ -44,13 +44,6 @@ const Wrapper = styled.div`
 
     .slogan {
       padding: 1rem;
-      /* text-align: center; */
-      h3 {
-        margin-top: 1rem;
-        font-family: var(--fontFamily-sans);
-        line-height: var(--lineHeight-tight);
-        font-size: var(--fontSize-7);
-      }
     }
   }
 
@@ -59,13 +52,16 @@ const Wrapper = styled.div`
   }
 
   /* desktop design */
-  @media only screen and (min-width: 75rem) {
-    margin: 15rem auto 18rem;
+  ${mq.xl} {
+    /* margin: 15rem auto 18rem; */
     .inner {
-      margin: 10rem auto 7rem;
+      margin: 4rem auto 7rem;
       .wrap {
         display: flex;
         flex-flow: row;
+        h3 {
+          margin: 2rem 0 1rem;
+        }
         .content {
           padding: 0 3rem 0 3rem;
           margin-bottom: 6rem;
@@ -103,14 +99,13 @@ const Wrapper = styled.div`
           flex: 1 0 auto;
           padding: 0;
           padding-right: 3rem;
+          padding-left: 1rem;
+          ${mq.xxl} {
+            padding-left: 0;
+          }
           margin-top: 6rem;
           /* text-align: right; */
 
-          h3 {
-            /* max-width: 30rem; */
-            margin: 0 0 0 auto;
-            padding-bottom: 0;
-          }
           p {
             margin: 0 0 0 auto;
             /* max-width: 30rem; */
