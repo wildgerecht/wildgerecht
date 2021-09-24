@@ -63,7 +63,7 @@ const Wrapper = styled.div`
     height: 100vh;
   }
   .height-50vh {
-    height: 60vh;
+    height: 70vh;
   }
   .height-75vh {
     height: 80vh;

@@ -8,7 +8,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 const Wrapper = styled.div`
   /* margin-top: -2rem; */
   /* height: calc(100vh - 5.5rem); */
-  height: 77vh;
+  height: 100vh;
+  height: calc(100vh - 8rem);
   overflow: hidden;
   ${mq.desktop} {
     height: 100vh;
@@ -19,7 +20,8 @@ const ImageWrapper = styled.div`
   width: 100%;
   position: relative;
   /* height: calc(100vh - 5.5rem); */
-  height: 77vh;
+  height: 100vh;
+  height: calc(100vh - 8rem);
 
   .smartphoneimage {
     display: none !important;
@@ -27,7 +29,8 @@ const ImageWrapper = styled.div`
 
   .imgwrap {
     /* height: calc(100vh - 5.5rem); */
-    height: 77vh;
+    height: 100vh;
+    height: calc(100vh - 8rem);
     .gatsby-image-wrapper {
       width: 100%;
       height: 100%;
@@ -109,6 +112,10 @@ const ImageWrapper = styled.div`
     );
   }
 
+  .button {
+    display: none;
+  }
+
   ${mq.tablet} {
     .smartphone {
       display: none !important;
@@ -126,6 +133,10 @@ const ImageWrapper = styled.div`
   }
 
   ${mq.desktop} {
+    .button {
+      display: block;
+    }
+
     height: 100vh;
     .imgwrap {
       height: 100vh;

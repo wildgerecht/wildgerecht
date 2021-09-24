@@ -45,6 +45,18 @@ const Wrapper = styled.div`
   /* margin: var(--spacing-auto); */
   overflow: hidden;
 
+  /* .desktoptitle {
+    display: none;
+  } */
+
+  .mobiletitle {
+    padding: 0 1rem;
+    margin-top: 2rem;
+    h2 {
+      margin-top: 0;
+    }
+  }
+
   .video {
     display: flex;
     min-width: 50%;
@@ -207,6 +219,12 @@ const Wrapper = styled.div`
     /* margin: 5rem auto 3rem; */
     /* margin: var(--spacing-auto); */
     margin: 0 auto;
+    .desktoptitle {
+      display: block;
+    }
+    .mobiletitle {
+      display: none;
+    }
     .wrap {
       display: flex;
       flex-flow: row;
@@ -414,6 +432,11 @@ const TextBild = ({
       <div className={"midwrap " + backgroundcolor}>
         <Wrapper>
           <div className="wrap">
+            {/* <div className="mobiletitle">
+              {settings.header && settings.header
+                ? !!title && parse(title)
+                : !!title && parse(title)}
+            </div> */}
             <div
               className={"content " + textrightside + " " + customwidthbig}
               data-sal={slideleft}
@@ -421,8 +444,8 @@ const TextBild = ({
               data-sal-duration="800"
             >
               {settings.header && settings.header
-                ? !!title && parse(title)
-                : !!title && parse(title)}
+                ? !!title && <div className="desktoptitle">{parse(title)}</div>
+                : !!title && <div className="desktoptitle">{parse(title)}</div>}
               {content && <div>{parse(content)}</div>}
               {!!activateaccordion === true && (
                 <div className="akkwrap">

@@ -289,7 +289,7 @@ const FooterSection = () => (
         <a href="mailto:info@wildgerecht.de" className="button linkedinbutton">
           <FaLinkedinIn className="socialicon" alt="wildgerecht auf LinkedIn" />{" "}
         </a>
-        <a href="tel:+4992160806923" className="button">
+        <a href="tel:+4992719079880" className="button">
           Telefon
         </a>
       </div>
