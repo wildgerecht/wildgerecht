@@ -109,7 +109,7 @@ const MenuList = styled.ul`
 
         transform-origin: top center;
         left: 0;
-        min-width: 16rem;
+        min-width: 18rem;
         margin: 0;
         padding: 0;
         list-style: none;

@@ -23,7 +23,7 @@ const Background = styled.div`
   scroll-margin-block-start: 100px;
 
   .midwrap {
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
   }
   ${mq.xl} {
     .midwrap {

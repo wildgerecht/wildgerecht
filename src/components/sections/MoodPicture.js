@@ -97,7 +97,7 @@ const Wrapper = styled.div`
 
   .gradient-top {
     background: var(--color-black);
-    background: linear-gradient(to bottom, #0a0a0a, rgba(255, 0, 0, 0));
+    background: linear-gradient(to bottom, #0a0a0a, rgba(0, 0, 0, 0));
   }
 
   /* .gradient-top {
@@ -105,7 +105,7 @@ const Wrapper = styled.div`
       background: linear-gradient(
         180deg,
         rgba(7, 7, 7, 1) 0%,
-        rgba(151, 255, 0, 0) 100%
+        rgba(151, 0, 0, 0) 100%
       );
     } */
 
@@ -119,7 +119,7 @@ const Wrapper = styled.div`
     } */
   .gradient-bottom {
     background: var(--color-black);
-    background: linear-gradient(to top, #0a0a0a, rgba(255, 0, 0, 0));
+    background: linear-gradient(to top, #0a0a0a, rgba(0, 0, 0, 0));
   }
 
   .textcontent {
