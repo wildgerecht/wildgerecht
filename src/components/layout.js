@@ -6,6 +6,7 @@ import Footer from "./footer"
 import Header from "./Header"
 import { mq } from "../utils/presets"
 import UniversalLink from "./UniversalLink"
+import SelfCookieConsent from "./SelfCookieConsent"
 
 // import "../../src/normalize.css"
 // import "./layout.scss"
@@ -175,6 +176,7 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
         </ul>
       </FixedBottomMenuWrapper>
       <Footer />
+      <SelfCookieConsent />
     </div>
   )
 }

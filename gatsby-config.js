@@ -88,6 +88,19 @@ module.exports = {
         icon: `content/assets/wildgerecht-icon.png`,
       },
     },
+
+    {
+      resolve: `gatsby-plugin-gdpr-cookies`,
+      options: {
+        googleAnalytics: {
+          trackingId: "G-VH4566Z1FB",
+          cookieName: "gatsby-gdpr-google-analytics",
+          anonymize: true, // https://github.com/andrezimpel/gatsby-plugin-gdpr-cookies#anonymize
+          allowAdFeatures: false,
+        },
+      },
+    },
+
     {
       resolve: `gatsby-plugin-styled-components`,
     },
