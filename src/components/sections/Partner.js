@@ -196,8 +196,8 @@ const Partner = ({ partnergroup, image, logos, sectionid }) => {
                 aria-hidden="true"
                 className="quotationmark quote1"
               />
-              <p className="partnertext">{partnergroup.partnertext}</p>
-              <p className="author">{partnergroup.author}</p>
+              <p className="partnertext">{parse(partnergroup.partnertext)}</p>
+              <p className="author">{parse(partnergroup.author)}</p>
               <img
                 src={QuotationMark}
                 alt=""
