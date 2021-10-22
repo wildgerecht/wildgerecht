@@ -4,7 +4,7 @@ import { mq } from "../../utils/presets" // import { GatsbyImage } from "gatsby-
 // import { getImage } from "gatsby-plugin-image"
 import Image from "gatsby-image"
 import Flickity from "react-flickity-component"
-import QuotationMark from "../../images//quotationmark.svg"
+import QuotationMark from "../../images/quotationmark.svg"
 import parse from "html-react-parser"
 
 const flickityOptions = {
