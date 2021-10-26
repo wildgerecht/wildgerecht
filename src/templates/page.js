@@ -67,6 +67,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   sectionid={item.sectionid}
                   text={item.justtextcontent}
                   settings={item.settings}
+                  download={item.downloadButton}
                 />
               )}
 
@@ -74,6 +75,7 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                 <PartnerSection
                   partnergroup={item.partnergroup}
                   image={item.image}
+                  textAboveLogos={item.textAboveLogos}
                   logos={item.logos}
                   sectionid={item.sectionid}
                 />
@@ -498,6 +500,14 @@ export const pageQuery = graphql`
           ... on WpPage_Pagebuilder_Layouts_Justtext {
             fieldGroupName
             justtextcontent
+            downloadButton {
+              title
+              altText
+              localFile {
+                publicURL
+                prettySize
+              }
+            }
             settings {
               textthreequarters
               spacingTop
@@ -514,21 +524,26 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                  }
+                  gatsbyImageData(
+                    width: 1400
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
                 }
               }
             }
+            textAboveLogos
             logos {
               partner {
                 image {
                   altText
                   localFile {
                     childImageSharp {
-                      fluid(maxWidth: 400) {
-                        ...GatsbyImageSharpFluid
-                      }
+                      gatsbyImageData(
+                        width: 300
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
                     }
                   }
                 }

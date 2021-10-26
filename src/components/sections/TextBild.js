@@ -479,7 +479,7 @@ const TextBild = ({
                 />
               )}
 
-              {download && (
+              {!!download && (
                 <a
                   className="button downloadbutton"
                   href={download.localFile.publicURL}

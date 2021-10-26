@@ -6,6 +6,7 @@ import Image from "gatsby-image"
 import Flickity from "react-flickity-component"
 import QuotationMark from "../../images/quotationmark.svg"
 import parse from "html-react-parser"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const flickityOptions = {
   initialIndex: 4,
@@ -23,6 +24,7 @@ const Wrapper = styled.div`
   margin: var(--spacing-auto);
   margin-top: 0;
   margin-bottom: 0;
+  padding-bottom: 0;
 
   .inner {
     max-width: ${mq.maxWidth5xl};
@@ -62,7 +64,7 @@ const Wrapper = styled.div`
     .slider {
       list-style: none;
       margin: 2rem 0;
-      padding: 1rem 0;
+      padding: 1rem 0 0;
       .slideitem {
         width: 33.33%;
       }
@@ -71,7 +73,7 @@ const Wrapper = styled.div`
 
   ${mq.tablet} {
     .inner {
-      padding-bottom: 2rem;
+      padding-bottom: 0;
       .slider {
         .slideitem {
           width: 20%;
@@ -141,7 +143,6 @@ const Wrapper = styled.div`
   }
   ${mq.xxl} {
     padding-top: 3rem;
-    padding-bottom: 1rem;
     .inner {
       .slider {
         margin: 0;
@@ -165,11 +166,10 @@ const Wrapper = styled.div`
   }
 `
 
-const Partner = ({ partnergroup, image, logos, sectionid }) => {
+const Partner = ({ partnergroup, image, logos, textAboveLogos, sectionid }) => {
   const featuredImage = {
-    // image: getImage(image?.localFile),
-    fluid: image?.localFile?.childImageSharp?.fluid,
-    alt: image?.localFile?.altText || ``,
+    image: getImage(image?.localFile),
+    alt: image?.altText || "",
   }
 
   const partnerlogos = logos
@@ -181,9 +181,9 @@ const Partner = ({ partnergroup, image, logos, sectionid }) => {
           <div className="flex">
             <div className="imgwrap">
               {!!featuredImage && (
-                <Image
+                <GatsbyImage
                   className="img"
-                  fluid={featuredImage.fluid}
+                  image={featuredImage.image}
                   alt={featuredImage.alt}
                 />
               )}
@@ -207,6 +207,12 @@ const Partner = ({ partnergroup, image, logos, sectionid }) => {
             </div>
           </div>
 
+          {!!textAboveLogos && (
+            <h2 style={{ width: "100%", textAlign: "center" }}>
+              Marketing Kompetenz in den Bereichen
+            </h2>
+          )}
+
           {!!partnerlogos && (
             <Flickity
               className={"carousel slider"} // default ''
@@ -224,28 +230,22 @@ const Partner = ({ partnergroup, image, logos, sectionid }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {!!item.partner.image && (
-                        <Image
+                      {!!item?.partner?.image && (
+                        <GatsbyImage
                           className="img"
-                          fluid={
-                            item.partner.image.localFile.childImageSharp.fluid
-                          }
-                          alt={item.partner.image.altText}
+                          image={getImage(item?.partner?.image?.localFile)}
+                          alt={item?.partner?.image?.altText}
                         />
                       )}
                     </a>
                   ) : (
                     <>
-                      {!!item.partner.image && (
-                        <li className="slideitem">
-                          <Image
-                            className="img"
-                            fluid={
-                              item.partner.image.localFile.childImageSharp.fluid
-                            }
-                            alt={item.partner.image.altText}
-                          />
-                        </li>
+                      {!!item?.partner?.image && (
+                        <GatsbyImage
+                          className="img"
+                          image={getImage(item?.partner?.image?.localFile)}
+                          alt={item?.partner?.image?.altText}
+                        />
                       )}
                     </>
                   )}
