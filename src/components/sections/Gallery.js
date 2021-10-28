@@ -1,7 +1,5 @@
 import React, { Component } from "react"
-// import { GatsbyImage } from "gatsby-plugin-image"
-// import { getImage } from "gatsby-plugin-image"
-import Img from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import { mq } from "../../utils/presets"
 import Lightbox from "react-image-lightbox"
@@ -57,13 +55,18 @@ const CustomGallery = styled.div`
   }
 `
 
-const GalleryImage = styled(Img)`
+const GalleryImage = styled.button`
   width: 31%;
   height: 120px;
   object-fit: cover;
   margin: 1%;
   ${mq.tablet} {
     height: 300px;
+  }
+  .gatsby-image-wrapper {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
   }
 `
 
@@ -81,7 +84,7 @@ export default class LightboxProjects extends Component {
     const gallery = this.props.images
 
     const images = this.props.images
-      ? this.props.images.map(item => item.localFile.childImageSharp.fluid.src)
+      ? this.props.images.map(item => item.localFile.childImageSharp.resize.src)
       : null
 
     const { photoIndex, isOpen } = this.state
@@ -92,22 +95,23 @@ export default class LightboxProjects extends Component {
           {gallery !== null && (
             <CustomGallery>
               {gallery.map((image, i) => {
+                const galleryImage = {
+                  image: getImage(image.localFile),
+                  alt: image.altText || "",
+                }
+
                 return (
-                  <button
+                  <GalleryImage
                     key={i}
                     onClick={() =>
                       this.setState({ isOpen: true, photoIndex: i })
                     }
                   >
-                    <GalleryImage
-                      key={i}
-                      type="button"
-                      objectFit="cover"
-                      objectPosition="50% 50%"
-                      fluid={image.localFile.childImageSharp.fluid}
-                      alt={image.title}
+                    <GatsbyImage
+                      image={galleryImage.image}
+                      alt={galleryImage.alt}
                     />
-                  </button>
+                  </GalleryImage>
                 )
               })}
             </CustomGallery>

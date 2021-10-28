@@ -13,24 +13,31 @@ import PartnerSection from "../components/sections/Partner"
 import GallerySection from "../components/sections/Gallery"
 import ContactSection from "../components/sections/Contact"
 import JustText from "../components/sections/JustText"
+import GoogleMaps from "../components/sections/GoogleMaps"
 
 const PageTemplate = ({ data: { page, frontPage } }) => {
-  const metaDesc = page.seo.metaDesc || ``
+  const seo = page?.seo
+  const seoTitle =
+    page?.seo?.opengraphTitle.replace("^", "") ||
+    page.title.replace("^", "") ||
+    ``
+  const metaDesc = seo.metaDesc || ``
 
   const mobilemenu = frontPage.mobileMenu.mobilemenu
+  const mobileImage = page?.mobileImage?.beitragsbild
 
   const title = page?.title
   const featuredImage = page?.featuredImage
 
-  const mobileImage = page?.mobileImage?.beitragsbild
-
   const titleWitHBreak = title.replace("^", "<br />")
+
+  const seoImage = page?.ogImage?.node.localFile.childImageSharp.resize
 
   return (
     <Layout uri={page.uri} mobilemenu={mobilemenu}>
       {/* lang={page.language.slug} */}
 
-      <Seo title={page.title || ``} description={metaDesc} />
+      <Seo title={seoTitle} description={metaDesc} image={seoImage} />
       {/* lang={page.language.slug} */}
 
       <FullScreenHeader
@@ -59,6 +66,16 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   akkordion={item.textcontent.akkordion}
                   sectionid={item.settings.sectionid}
                   download={item.download}
+                />
+              )}
+
+              {item.fieldGroupName ===
+                "page_Pagebuilder_Layouts_Googlemaps" && (
+                <GoogleMaps
+                  sectionid={item.sectionid}
+                  iframe={item.iframe}
+                  text={item.justtextcontent}
+                  settings={item.settings}
                 />
               )}
 
@@ -217,6 +234,23 @@ export const pageQuery = graphql`
         }
       }
 
+      ogImage: featuredImage {
+        node {
+          localFile {
+            childImageSharp {
+              resize(width: 1200, height: 627) {
+                src
+                tracedSVG
+                width
+                height
+                aspectRatio
+                originalName
+              }
+            }
+          }
+        }
+      }
+
       # language {
       #   slug
       # }
@@ -322,22 +356,9 @@ export const pageQuery = graphql`
                     placeholder: BLURRED
                     formats: [AUTO, WEBP, AVIF]
                   )
-                  fluid(maxWidth: 1200) {
-                    ...GatsbyImageSharpFluid
-                  }
                 }
               }
             }
-            # logo {
-            #   altText
-            #   localFile {
-            #     childImageSharp {
-            #       fluid(maxWidth: 600) {
-            #         ...GatsbyImageSharpFluid
-            #       }
-            #     }
-            #   }
-            # }
           }
 
           ... on WpPage_Pagebuilder_Layouts_Gallery {
@@ -350,9 +371,14 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1200) {
-                    ...GatsbyImageSharpFluid
+                  resize(width: 2200) {
+                    src
                   }
+                  gatsbyImageData(
+                    width: 600
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
                 }
               }
             }
@@ -371,9 +397,11 @@ export const pageQuery = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200) {
-                      ...GatsbyImageSharpFluid
-                    }
+                    gatsbyImageData(
+                      width: 1200
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
                   }
                 }
               }
@@ -396,21 +424,24 @@ export const pageQuery = graphql`
                     publicURL
                     extension
                     childImageSharp {
-                      fluid(maxWidth: 1800) {
-                        ...GatsbyImageSharpFluid
-                      }
+                      gatsbyImageData(
+                        width: 1400
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
                     }
                   }
                 }
               }
-
               image {
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200) {
-                      ...GatsbyImageSharpFluid
-                    }
+                    gatsbyImageData(
+                      width: 1200
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
                   }
                 }
               }
@@ -454,19 +485,16 @@ export const pageQuery = graphql`
               textcontent {
                 title
                 text
-                # button {
-                #   url
-                #   title
-                #   target
-                # }
               }
               image {
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200) {
-                      ...GatsbyImageSharpFluid
-                    }
+                    gatsbyImageData(
+                      width: 1200
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
                   }
                 }
               }
@@ -488,12 +516,27 @@ export const pageQuery = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    fixed(width: 120, height: 120) {
-                      ...GatsbyImageSharpFixed
-                    }
+                    gatsbyImageData(
+                      width: 120
+                      height: 120
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
                   }
                 }
               }
+            }
+          }
+
+          ... on WpPage_Pagebuilder_Layouts_Googlemaps {
+            fieldGroupName
+            iframe
+            justtextcontent
+            settings {
+              spacingTop
+              spacingBottom
+              sectionid
+              fieldGroupName
             }
           }
 
@@ -525,7 +568,7 @@ export const pageQuery = graphql`
               localFile {
                 childImageSharp {
                   gatsbyImageData(
-                    width: 1400
+                    width: 1800
                     placeholder: BLURRED
                     formats: [AUTO, WEBP, AVIF]
                   )
@@ -583,9 +626,11 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                  }
+                  gatsbyImageData(
+                    width: 1920
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
                 }
               }
             }

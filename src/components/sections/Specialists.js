@@ -1,12 +1,9 @@
 import React from "react"
-// import { GatsbyImage } from "gatsby-plugin-image"
-// import { getImage } from "gatsby-plugin-image"
-import Image from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import parse from "html-react-parser"
 import { mq } from "../../utils/presets"
 import Flickity from "react-flickity-component"
-// import CameraImage from "../images/specialists/camera.svg"
 import Logo from "../../images/wildgerecht-logo-weiss.svg"
 
 const flickityOptions = {
@@ -212,11 +209,11 @@ const SpecialistsSection = ({ text, allSpecialists, sectionid }) => {
       >
         {specialists.map(item => (
           <div key={item.textcontent.title} className="slideitem">
-            {!!item.image && (
-              <Image
+            {!!item?.image && (
+              <GatsbyImage
                 className="img"
-                fluid={item.image.localFile.childImageSharp.fluid}
-                alt={item.image.altText}
+                image={getImage(item?.image?.localFile)}
+                alt={item?.image?.altText || ""}
               />
             )}
             <div className="specialistcontent">

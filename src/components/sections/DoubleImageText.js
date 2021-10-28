@@ -1,26 +1,37 @@
 import React from "react"
-// import { GatsbyImage } from "gatsby-plugin-image"
-// import { getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import parse from "html-react-parser"
 import Button from "../button"
-import Image from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { mq } from "../../utils/presets"
 
 const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
   position: relative;
-  /* margin: var(--spacing-auto); */
   .background {
-    /* text-align: center; */
+    position: absolute;
     width: 100%;
     z-index: -1;
     opacity: 0.1;
-    position: absolute;
     left: 0;
     right: 0;
     bottom: -5rem;
+    object-fit: cover;
+    overflow: hidden;
+    height: 70vw;
+    ${mq.desktop} {
+      height: 60%;
+    }
+    .gatsby-image-wrapper {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      img {
+        object-fit: cover;
+      }
+    }
   }
+
   .inner {
     overflow: hidden;
     max-width: ${mq.maxWidth5xl};
@@ -45,10 +56,6 @@ const Wrapper = styled.div`
     .slogan {
       padding: 1rem;
     }
-  }
-
-  /* tablet design */
-  @media only screen and (min-width: var(--minWidth-tablet)) {
   }
 
   /* desktop design */
@@ -135,30 +142,31 @@ const DoubleImageText = ({
   sloganimage,
   backgroundimage,
   sectionid,
+  settings,
 }) => {
   const featuredImage = {
     // image: getImage(image?.localFile),
-    fluid: image?.localFile?.childImageSharp?.fluid,
+    image: getImage(image?.localFile),
     alt: image?.altText || ``,
   }
 
   const featuredsloganImage = {
-    fluid: sloganimage?.localFile?.childImageSharp?.fluid,
+    image: getImage(sloganimage?.localFile),
     alt: sloganimage?.altText || ``,
   }
 
   const backgroundImage = {
-    fluid: backgroundimage?.localFile?.childImageSharp?.fluid,
+    image: getImage(backgroundimage?.localFile),
     alt: backgroundimage?.altText || ``,
   }
   return (
     <Wrapper id={sectionid}>
       <div className="background">
         {backgroundImage && (
-          <Image
-            className="backgroundimage"
-            fluid={backgroundImage?.fluid}
+          <GatsbyImage
+            image={backgroundImage?.image}
             alt={backgroundImage?.alt}
+            objectFit="cover"
           />
         )}
       </div>
@@ -166,7 +174,10 @@ const DoubleImageText = ({
         <div className="wrap">
           <div className="image">
             {featuredImage && (
-              <Image fluid={featuredImage?.fluid} alt={featuredImage?.alt} />
+              <GatsbyImage
+                image={featuredImage?.image}
+                alt={featuredImage?.alt}
+              />
             )}
           </div>
 
@@ -203,8 +214,8 @@ const DoubleImageText = ({
         <div className="wrap sloganwrap">
           <div className="image sloganimage">
             {featuredsloganImage && (
-              <Image
-                fluid={featuredsloganImage?.fluid}
+              <GatsbyImage
+                image={featuredsloganImage?.image}
                 alt={featuredsloganImage?.alt}
               />
             )}

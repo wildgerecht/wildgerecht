@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ newimage, description, meta, keywords, title, yoast, lang }) {
+function SEO({ image, description, meta, title, lang }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -41,10 +41,8 @@ function SEO({ newimage, description, meta, keywords, title, yoast, lang }) {
   const metaDescription = description || site.siteMetadata.description
   // const image = metaImage || site.siteMetadata.image
 
-  const metaImage =
-    newimage && newimage.src
-      ? `${site.siteMetadata.siteUrl}${newimage.src}`
-      : null
+  const metaImageSrc =
+    image && image.src ? `${site.siteMetadata.siteUrl}${image.src}` : null
 
   // const image = metaImage && metaImage.src ? `${site.siteMetadata.siteUrl}${metaImage.src}` : null
 
@@ -54,11 +52,11 @@ function SEO({ newimage, description, meta, keywords, title, yoast, lang }) {
         lang,
       }}
       title={site.siteMetadata.title}
-      titleTemplate={`${nodashtitle} | %s`}
+      titleTemplate={`${nodashtitle}`}
       meta={[
         {
           name: `image`,
-          content: metaImage,
+          content: metaImageSrc,
         },
         {
           name: `description`,
@@ -104,11 +102,11 @@ function SEO({ newimage, description, meta, keywords, title, yoast, lang }) {
         },
       ]
         .concat(
-          metaImage
+          metaImageSrc
             ? [
                 {
                   property: "og:image",
-                  content: metaImage,
+                  content: metaImageSrc,
                 },
                 {
                   property: "og:image:alt",
@@ -116,11 +114,11 @@ function SEO({ newimage, description, meta, keywords, title, yoast, lang }) {
                 },
                 {
                   property: "og:image:width",
-                  content: newimage.width,
+                  content: image.width,
                 },
                 {
                   property: "og:image:height",
-                  content: newimage.height,
+                  content: image.height,
                 },
                 {
                   name: "twitter:card",
@@ -136,15 +134,15 @@ function SEO({ newimage, description, meta, keywords, title, yoast, lang }) {
         )
         .concat(
           // handle Secure Image
-          metaImage && metaImage.indexOf("https") > -1
+          metaImageSrc && metaImageSrc.indexOf("https") > -1
             ? [
                 {
                   property: "twitter:image:secure_url",
-                  content: metaImage,
+                  content: metaImageSrc,
                 },
                 {
                   property: "og:image:secure_url",
-                  content: metaImage,
+                  content: metaImageSrc,
                 },
               ]
             : []

@@ -1,8 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 import { mq } from "../../utils/presets" // import { GatsbyImage } from "gatsby-plugin-image"
-// import { getImage } from "gatsby-plugin-image"
-import Image from "gatsby-image"
 import Flickity from "react-flickity-component"
 import QuotationMark from "../../images/quotationmark.svg"
 import parse from "html-react-parser"
@@ -196,7 +194,9 @@ const Partner = ({ partnergroup, image, logos, textAboveLogos, sectionid }) => {
                 aria-hidden="true"
                 className="quotationmark quote1"
               />
-              <p className="partnertext">{parse(partnergroup.partnertext)}</p>
+              <div className="partnertext">
+                {parse(partnergroup.partnertext)}
+              </div>
               <p className="author">{parse(partnergroup.author)}</p>
               <img
                 src={QuotationMark}

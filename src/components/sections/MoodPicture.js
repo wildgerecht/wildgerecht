@@ -2,8 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Button from "../button"
 import { mq } from "../../utils/presets" // import { GatsbyImage } from "gatsby-plugin-image"
-// import { getImage } from "gatsby-plugin-image"
-import Image from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import parse from "html-react-parser"
 import { useInView } from "react-intersection-observer"
 
@@ -166,9 +165,8 @@ const MoodPicture = ({
   })
 
   const featuredImage = {
-    // image: getImage(image?.localFile),
-    fluid: image?.localFile?.childImageSharp.fluid,
-    alt: image?.altText || ``,
+    image: getImage(image?.localFile),
+    alt: image?.localFile?.altText || "",
   }
 
   // DEFINE SPACING
@@ -258,10 +256,10 @@ const MoodPicture = ({
         }
       >
         {!!featuredImage && (
-          <Image
+          <GatsbyImage
             className="img "
-            fluid={featuredImage.fluid}
-            alt={featuredImage.alt}
+            image={featuredImage.image}
+            alt={featuredImage.alt || ""}
           />
         )}
 

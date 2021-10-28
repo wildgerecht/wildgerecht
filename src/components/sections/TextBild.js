@@ -1,7 +1,4 @@
 import React from "react"
-// import Image from "gatsby-image"
-// import { GatsbyImage } from "gatsby-plugin-image"
-// import { getImage } from "gatsby-plugin-image"
 import styled from "styled-components"
 import parse from "html-react-parser"
 import { Accordion, AccordionItem } from "react-sanfona"
@@ -333,14 +330,8 @@ const TextBild = ({
   const featuredImage = {
     // image: getImage(image?.localFile),
     image: image?.localFile?.childImageSharp,
-    fluid: image?.localFile?.childImageSharp?.fluid,
     alt: image?.altText || ``,
   }
-
-  // const featuredLogo = {
-  //   fluid: logo?.localFile?.childImageSharp?.fluid,
-  //   alt: logo?.altText || ``,
-  // }
 
   // TEXT / IMAGE POSITION
 

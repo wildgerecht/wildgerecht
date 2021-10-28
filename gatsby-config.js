@@ -52,6 +52,13 @@ module.exports = {
       },
     },
 
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://www.wildgerecht.de`,
+      },
+    },
+
     /**
      * We need this plugin so that it adds the "File.publicURL" to our site
      * It will allow us to access static url's for assets like PDF's
@@ -111,9 +118,6 @@ module.exports = {
     },
     // { resolve: `gatsby-plugin-layout` },
     `gatsby-plugin-image`,
-    {
-      resolve: `gatsby-plugin-netlify`,
-    },
     {
       resolve: `gatsby-plugin-scroll-reveal`,
       options: {

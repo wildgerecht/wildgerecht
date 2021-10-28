@@ -12,23 +12,39 @@ import SpecialistsSection from "../components/sections/Specialists"
 import PartnerSection from "../components/sections/Partner"
 import GallerySection from "../components/sections/Gallery"
 import ContactSection from "../components/sections/Contact"
+import JustText from "../components/sections/JustText"
+import GoogleMaps from "../components/sections/GoogleMaps"
 
 const PostTemplate = ({ data: { post, frontPage } }) => {
-  const metaDesc = post.seo.metaDesc || ``
+  const seo = post?.seo
+  const seoTitle =
+    post?.seo?.opengraphTitle.replace("^", "") ||
+    post.title.replace("^", "") ||
+    ``
+  const metaDesc = seo.metaDesc || ``
 
   const mobilemenu = frontPage.mobileMenu.mobilemenu
+  const mobileImage = post?.mobileImage?.beitragsbild
 
   const title = post?.title
   const featuredImage = post?.featuredImage
+
+  const titleWitHBreak = title.replace("^", "<br />")
+
+  const seoImage = post?.ogImage?.node.localFile.childImageSharp.resize
 
   return (
     <Layout uri={post.uri} mobilemenu={mobilemenu}>
       {/* lang={post.language.slug} */}
 
-      <Seo title={post.title || ``} description={metaDesc} />
+      <Seo title={seoTitle} description={metaDesc} image={seoImage} />
       {/* lang={post.language.slug} */}
 
-      <FullScreenHeader title={title} featuredImage={featuredImage} />
+      <FullScreenHeader
+        title={titleWitHBreak}
+        featuredImage={featuredImage}
+        mobileImage={mobileImage}
+      />
 
       {!!post.pageBuilder.layouts && (
         <>
@@ -42,6 +58,7 @@ const PostTemplate = ({ data: { post, frontPage } }) => {
               {item.fieldGroupName ===
                 "post_Pagebuilder_Layouts_TextMitBild" && (
                 <TextBild
+                  video={item.video}
                   image={item.image}
                   slider={item.slider}
                   slidersettings={item.sliderSettings}
@@ -53,6 +70,26 @@ const PostTemplate = ({ data: { post, frontPage } }) => {
                   activateaccordion={item.textcontent.activateaccordion}
                   akkordion={item.textcontent.akkordion}
                   sectionid={item.settings.sectionid}
+                  download={item.download}
+                />
+              )}
+
+              {item.fieldGroupName === "post_Pagebuilder_Layouts_Justtext" && (
+                <JustText
+                  sectionid={item.sectionid}
+                  text={item.justtextcontent}
+                  settings={item.settings}
+                  download={item.downloadButton}
+                />
+              )}
+
+              {item.fieldGroupName ===
+                "post_Pagebuilder_Layouts_Googlemaps" && (
+                <GoogleMaps
+                  sectionid={item.sectionid}
+                  iframe={item.iframe}
+                  text={item.justtextcontent}
+                  settings={item.settings}
                 />
               )}
 
@@ -60,6 +97,7 @@ const PostTemplate = ({ data: { post, frontPage } }) => {
                 <PartnerSection
                   partnergroup={item.partnergroup}
                   image={item.image}
+                  textAboveLogos={item.textAboveLogos}
                   logos={item.logos}
                   sectionid={item.sectionid}
                 />
@@ -152,18 +190,14 @@ export const pageQuery = graphql`
             altText
             localFile {
               childImageSharp {
-                fixed(width: 40, height: 40) {
-                  ...GatsbyImageSharpFixed
-                }
+                gatsbyImageData(width: 40)
               }
             }
           }
           activeimage {
             localFile {
               childImageSharp {
-                fixed(width: 40, height: 40) {
-                  ...GatsbyImageSharpFixed
-                }
+                gatsbyImageData(width: 40)
               }
             }
           }
@@ -179,6 +213,17 @@ export const pageQuery = graphql`
       nodeType
       date(formatString: "MMMM DD, YYYY")
 
+      mobileImage {
+        beitragsbild {
+          altText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(width: 600)
+            }
+          }
+        }
+      }
+
       featuredImage {
         node {
           altText
@@ -193,6 +238,27 @@ export const pageQuery = graphql`
           }
         }
       }
+
+      ogImage: featuredImage {
+        node {
+          localFile {
+            childImageSharp {
+              resize(width: 1200, height: 627) {
+                src
+                tracedSVG
+                width
+                height
+                aspectRatio
+                originalName
+              }
+            }
+          }
+        }
+      }
+
+      # language {
+      #   slug
+      # }
 
       seo {
         title
@@ -227,36 +293,17 @@ export const pageQuery = graphql`
       pageBuilder {
         __typename
         layouts {
-          ... on WpPost_Pagebuilder_Layouts_Fullscreenheader {
-            fieldGroupName
-            slide {
-              image {
-                altText
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-
-                # altText
-                # localFile {
-                #   childImageSharp {
-                #     gatsbyImageData(
-                #       width: 1920
-                #       placeholder: BLURRED
-                #       formats: [AUTO, WEBP, AVIF]
-                #     )
-                #   }
-                # }
-              }
-              title
-            }
-          }
-
           ... on WpPost_Pagebuilder_Layouts_TextMitBild {
             fieldGroupName
+            download {
+              title
+              altText
+              localFile {
+                publicURL
+                prettySize
+              }
+            }
+            video
             textcontent {
               title
               text
@@ -276,7 +323,6 @@ export const pageQuery = graphql`
                 url
               }
             }
-            video
             settings {
               sectionid
               textRightSide
@@ -297,9 +343,11 @@ export const pageQuery = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200) {
-                      ...GatsbyImageSharpFluid
-                    }
+                    gatsbyImageData(
+                      width: 1200
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
                   }
                 }
               }
@@ -308,22 +356,14 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1200) {
-                    ...GatsbyImageSharpFluid
-                  }
+                  gatsbyImageData(
+                    width: 1200
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
                 }
               }
             }
-            # logo {
-            #   altText
-            #   localFile {
-            #     childImageSharp {
-            #       fluid(maxWidth: 600) {
-            #         ...GatsbyImageSharpFluid
-            #       }
-            #     }
-            #   }
-            # }
           }
 
           ... on WpPost_Pagebuilder_Layouts_Gallery {
@@ -336,9 +376,14 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1200) {
-                    ...GatsbyImageSharpFluid
+                  resize(width: 2200) {
+                    src
                   }
+                  gatsbyImageData(
+                    width: 600
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
                 }
               }
             }
@@ -357,9 +402,11 @@ export const pageQuery = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200) {
-                      ...GatsbyImageSharpFluid
-                    }
+                    gatsbyImageData(
+                      width: 1200
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
                   }
                 }
               }
@@ -382,21 +429,24 @@ export const pageQuery = graphql`
                     publicURL
                     extension
                     childImageSharp {
-                      fluid(maxWidth: 1800) {
-                        ...GatsbyImageSharpFluid
-                      }
+                      gatsbyImageData(
+                        width: 1400
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
                     }
                   }
                 }
               }
-
               image {
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200) {
-                      ...GatsbyImageSharpFluid
-                    }
+                    gatsbyImageData(
+                      width: 1200
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
                   }
                 }
               }
@@ -440,19 +490,15 @@ export const pageQuery = graphql`
               textcontent {
                 title
                 text
-                # button {
-                #   url
-                #   title
-                #   target
-                # }
-              }
-              image {
+                image {
                 altText
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1200) {
-                      ...GatsbyImageSharpFluid
-                    }
+                    gatsbyImageData(
+                      width: 1200
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
                   }
                 }
               }
@@ -474,12 +520,48 @@ export const pageQuery = graphql`
                 altText
                 localFile {
                   childImageSharp {
-                    fixed(width: 120, height: 120) {
-                      ...GatsbyImageSharpFixed
-                    }
+                    gatsbyImageData(
+                      width: 120
+                      height: 120
+                      placeholder: BLURRED
+                      formats: [AUTO, WEBP, AVIF]
+                    )
                   }
                 }
               }
+            }
+          }
+
+          ... on WpPost_Pagebuilder_Layouts_Googlemaps {
+            fieldGroupName
+            iframe
+            justtextcontent
+            settings {
+              spacingTop
+              spacingBottom
+              sectionid
+              fieldGroupName
+            }
+          }
+
+          ... on WpPost_Pagebuilder_Layouts_Justtext {
+            fieldGroupName
+            justtextcontent
+            downloadButton {
+              title
+              altText
+              localFile {
+                publicURL
+                prettySize
+              }
+            }
+            settings {
+              textthreequarters
+              spacingTop
+              spacingBottom
+              sectionid
+              fieldGroupName
+              backgroundcolor
             }
           }
 
@@ -489,21 +571,26 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                  }
+                  gatsbyImageData(
+                    width: 1800
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
                 }
               }
             }
+            textAboveLogos
             logos {
               partner {
                 image {
                   altText
                   localFile {
                     childImageSharp {
-                      fluid(maxWidth: 400) {
-                        ...GatsbyImageSharpFluid
-                      }
+                      gatsbyImageData(
+                        width: 300
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
                     }
                   }
                 }
@@ -543,9 +630,11 @@ export const pageQuery = graphql`
               altText
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid
-                  }
+                  gatsbyImageData(
+                    width: 1920
+                    placeholder: BLURRED
+                    formats: [AUTO, WEBP, AVIF]
+                  )
                 }
               }
             }
