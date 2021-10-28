@@ -490,7 +490,8 @@ export const pageQuery = graphql`
               textcontent {
                 title
                 text
-                image {
+              }
+              image {
                 altText
                 localFile {
                   childImageSharp {
