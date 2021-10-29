@@ -46,52 +46,6 @@ const Triple = styled.div`
   }
 `
 
-const GoogleMapsWrapper = styled.div`
-  flex: 0 1 auto;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  height: 600px;
-  .mappreview {
-    height: 100%;
-    img {
-      object-fit: cover;
-    }
-  }
-  picture {
-    opacity: 0.4;
-  }
-  p {
-    font-size: 1rem;
-    font-weight: bold;
-    a {
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-  }
-  .ladenbutton {
-    border: none;
-    box-shadow: none;
-    &:focus,
-    &:hover {
-      cursor: pointer;
-    }
-  }
-  .maptext {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    color: #fff;
-    text-align: center;
-    padding: 220px 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    line-height: 1.6;
-  }
-`
-
 const Contact = ({ text, iconsWithText, sectionid }) => {
   return (
     <Wrapper id={sectionid}>

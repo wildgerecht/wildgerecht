@@ -44,6 +44,20 @@ const Wrapper = styled.div`
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+
+  .downloadbutton {
+    position: relative;
+    .gatsby-image-wrapper {
+      position: absolute;
+      left: 0.5rem;
+      top: 0.2rem;
+      object-fit: contain;
+    }
+    .buttontext {
+      padding-left: 1.7rem;
+      margin: 0;
+    }
+  }
 `
 
 const JustText = ({ sectionid, text, settings, download }) => {

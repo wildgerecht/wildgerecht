@@ -69,6 +69,15 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                 />
               )}
 
+              {item.fieldGroupName === "page_Pagebuilder_Layouts_Justtext" && (
+                <JustText
+                  sectionid={item.sectionid}
+                  text={item.justtextcontent}
+                  settings={item.settings}
+                  download={item.downloadButton}
+                />
+              )}
+
               {item.fieldGroupName ===
                 "page_Pagebuilder_Layouts_Googlemaps" && (
                 <GoogleMaps
@@ -76,15 +85,6 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
                   iframe={item.iframe}
                   text={item.justtextcontent}
                   settings={item.settings}
-                />
-              )}
-
-              {item.fieldGroupName === "page_Pagebuilder_Layouts_Justtext" && (
-                <JustText
-                  sectionid={item.sectionid}
-                  text={item.justtextcontent}
-                  settings={item.settings}
-                  download={item.downloadButton}
                 />
               )}
 
@@ -339,7 +339,7 @@ export const pageQuery = graphql`
                 localFile {
                   childImageSharp {
                     gatsbyImageData(
-                      width: 1200
+                      width: 1000
                       placeholder: BLURRED
                       formats: [AUTO, WEBP, AVIF]
                     )
@@ -352,7 +352,7 @@ export const pageQuery = graphql`
               localFile {
                 childImageSharp {
                   gatsbyImageData(
-                    width: 1200
+                    width: 1000
                     placeholder: BLURRED
                     formats: [AUTO, WEBP, AVIF]
                   )

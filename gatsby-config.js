@@ -35,7 +35,6 @@ module.exports = {
    * If you need any more you can search here: https://www.gatsbyjs.com/plugins/
    */
   plugins: [
-    // { resolve: `gatsby-plugin-image` },
     {
       /**
        * First up is the WordPress source plugin that connects Gatsby
@@ -141,7 +140,7 @@ module.exports = {
         enableListener: true,
 
         /* Preconnect URL-s. This example is for Google Fonts */
-        preconnect: ["https://fonts.gstatic.com"],
+        // preconnect: ["https://fonts.gstatic.com"],
 
         /* Self-hosted fonts config. Add font files and font CSS files to "static" folder */
         custom: [
@@ -149,23 +148,20 @@ module.exports = {
             name: ["BigNoodleTitling"],
             file: "/fonts/big_noodle_titlling.css",
           },
+          {
+            name: ["Zilla+Slab"],
+            file: "/fonts/zilla_slab.css",
+          },
         ],
 
         /* Web fonts. File link should point to font CSS file. */
-        web: [
-          {
-            /* Exact name of the font as defied in @font-face CSS rule */
-            name: "Zilla+Slab",
-            /* URL to the font CSS file with @font-face definition */
-            file:
-              "https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500",
-          },
-          // {
-          //   name: "Bebas Neue",
-          //   file:
-          //     "https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap",
-          // },
-        ],
+        // web: [
+        //   {
+        //     name: "Zilla+Slab",
+        //     file:
+        //       "https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500",
+        //   },
+        // ],
       },
     },
   ],
