@@ -207,11 +207,7 @@ const Partner = ({ partnergroup, image, logos, textAboveLogos, sectionid }) => {
             </div>
           </div>
 
-          {!!textAboveLogos && (
-            <h2 style={{ width: "100%", textAlign: "center" }}>
-              Marketing Kompetenz in den Bereichen
-            </h2>
-          )}
+          {!!textAboveLogos && <h2>{parse(textAboveLogos)}</h2>}
 
           {!!partnerlogos && (
             <Flickity
