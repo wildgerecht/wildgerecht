@@ -29,7 +29,7 @@ const NewsWrapper = styled.div`
 
 const News = styled.ul`
   margin: 0;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
   display: flex;
   flex-flow: row wrap;
   list-style: none;

@@ -30,12 +30,6 @@ const GoogleMapsWrapper = styled.div`
   .gatsby-image-wrapper {
     height: 100%;
     width: 100%;
-    object-fit: contain;
-    img {
-      object-fit: contain;
-      height: 100%;
-      width: 100%;
-    }
   }
   .ladenbutton {
     border: none;
@@ -122,10 +116,10 @@ const GoogleMaps = ({ sectionid, text, settings, iframe }) => {
       <GoogleMapsWrapper id="mapsframe">
         <StaticImage
           className="mappreview"
-          src="../../images/mappreview.png"
+          src="../../images/mappreview.jpg"
           alt="Google Maps Vorschaubild des Wildgerecht Standorts"
           height={750}
-          objectFit="fill"
+          objectFit="cover"
           loading="lazy"
         />
         <div id="maptext" className="maptext">

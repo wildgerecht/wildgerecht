@@ -47,7 +47,7 @@ const Wrapper = styled.div`
         /* display: block; */
       }
       .img {
-        height: 50vh;
+        height: 65vh;
       }
       .specialistcontent {
         padding: 1rem;

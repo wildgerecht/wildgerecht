@@ -35,12 +35,16 @@ const Wrapper = styled.div`
   .inner {
     overflow: hidden;
     max-width: ${mq.maxWidth5xl};
-    margin: 6rem auto 2rem;
+    margin: 2rem auto 2rem;
 
     .wrap {
+      h3 {
+        margin: 0.5rem 0 1rem;
+      }
       .content {
         padding: 1rem;
         margin-bottom: 2rem;
+
         h2 {
           margin-top: 1rem;
         }

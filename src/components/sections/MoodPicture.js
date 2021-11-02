@@ -9,12 +9,12 @@ import { useInView } from "react-intersection-observer"
 const Wrapper = styled.div`
   background: var(--color-black);
   scroll-margin-block-start: 100px;
-  /* padding: 2rem 0; */
-  .inner {
-    /* padding: 0 1rem; */
-    text-align: center;
-    max-width: 60rem;
-    margin: 0 auto;
+  .textcontent {
+    .inner {
+      text-align: center;
+      max-width: 60rem;
+      margin: auto;
+    }
   }
 
   .blur-in {
@@ -36,12 +36,8 @@ const Wrapper = styled.div`
     }
   }
 
-  .content {
-    /* padding: 0 1rem; */
-  }
-
   h2 {
-    margin-top: 2rem;
+    margin-top: 0;
     font-size: var(--fontSize-4);
     word-break: keep-all;
   }
@@ -96,7 +92,18 @@ const Wrapper = styled.div`
 
   .gradient-top {
     background: var(--color-black);
-    background: linear-gradient(to bottom, #0a0a0a, rgba(0, 0, 0, 0));
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.7)
+    );
+  }
+
+  ${mq.tablet} {
+    .gradient-top {
+      background: var(--color-black);
+      background: linear-gradient(to bottom, #0a0a0a, rgba(0, 0, 0, 0));
+    }
   }
 
   /* .gradient-top {

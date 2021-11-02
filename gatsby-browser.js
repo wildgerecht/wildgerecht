@@ -19,3 +19,5 @@ import "./src/components/typography.css"
 
 //   return false
 // }
+
+export const onServiceWorkerUpdateReady = () => window.location.reload()
