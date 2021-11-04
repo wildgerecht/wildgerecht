@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   }
 
   h2 {
-    margin-top: 0;
+    margin: 1rem auto;
     font-size: var(--fontSize-4);
     word-break: keep-all;
   }
@@ -217,7 +217,12 @@ const MoodPicture = ({
   if (gradient === "bottom") {
     gradientClass = "gradient-bottom"
   }
+  if (featuredImage.image === undefined) {
+    gradientClass = ""
+  }
 
+  console.log("MOODPICTURE :")
+  console.log(featuredImage)
   // DEFINE CONTENT LOCATION
 
   let location = "space-around"
