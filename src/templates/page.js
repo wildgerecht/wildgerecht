@@ -213,7 +213,11 @@ export const pageQuery = graphql`
           altText
           localFile {
             childImageSharp {
-              gatsbyImageData(width: 600)
+              gatsbyImageData(
+                width: 600
+                placeholder: NONE
+                formats: [AUTO, WEBP, AVIF]
+              )
             }
           }
         }
@@ -226,7 +230,7 @@ export const pageQuery = graphql`
             childImageSharp {
               gatsbyImageData(
                 width: 1920
-                placeholder: BLURRED
+                placeholder: NONE
                 formats: [AUTO, WEBP, AVIF]
               )
             }
@@ -339,7 +343,7 @@ export const pageQuery = graphql`
                 localFile {
                   childImageSharp {
                     gatsbyImageData(
-                      width: 1000
+                      width: 750
                       placeholder: BLURRED
                       formats: [AUTO, WEBP, AVIF]
                     )
@@ -352,7 +356,7 @@ export const pageQuery = graphql`
               localFile {
                 childImageSharp {
                   gatsbyImageData(
-                    width: 1000
+                    width: 750
                     placeholder: BLURRED
                     formats: [AUTO, WEBP, AVIF]
                   )

@@ -253,14 +253,16 @@ const FullScreenHeader = ({ title, featuredImage, mobileImage }) => {
             <GatsbyImage
               className="img smartphone"
               image={smartphoneImage.image}
-              alt={smartphoneImage.alt}
+              alt={smartphoneImage.alt || ""}
+              loading="eager"
             />
           )}
           {!!headerImage && (
             <GatsbyImage
               className={smartPhoneImageActivated + " img"}
               image={headerImage.image}
-              alt={headerImage.alt}
+              alt={headerImage.alt || ""}
+              loading="eager"
             />
           )}
         </div>

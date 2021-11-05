@@ -287,8 +287,15 @@ const FooterSection = () => (
         <a href="mailto:info@wildgerecht.de" className="button">
           E-Mail
         </a>
-        <a href="mailto:info@wildgerecht.de" className="button linkedinbutton">
-          <FaLinkedinIn className="socialicon" alt="wildgerecht auf LinkedIn" />{" "}
+        <a
+          href="https://www.linkedin.com/in/timothy-kolb-9a199a1b9/"
+          className="button linkedinbutton"
+          aria-label="wildgerecht auf LinkedIn"
+          title="wildgerecht auf LinkedIn"
+          target="_blank"
+          rel="noopener nofollow noreferrer"
+        >
+          <FaLinkedinIn className="socialicon" />{" "}
         </a>
         <a href="tel:+4992719079880" className="button">
           Telefon

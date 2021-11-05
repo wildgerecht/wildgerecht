@@ -3,7 +3,6 @@ module.exports = {
     PRESERVE_FILE_DOWNLOAD_CACHE: true,
     PARALLEL_SOURCING: true,
     FAST_DEV: true,
-    DEV_SSR: true,
   },
   siteMetadata: {
     title: `wildgerecht`,
@@ -53,7 +52,19 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-
+    {
+      resolve: `gatsby-plugin-htaccess`,
+      options: {
+        https: true,
+        www: true,
+        host: "www.wildgerecht.de",
+        ErrorDocument: `
+        ErrorDocument 401 /404.html
+        ErrorDocument 404 /404.html
+        ErrorDocument 500 /404.html
+      `,
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
