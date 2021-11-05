@@ -5,6 +5,7 @@ import { mq } from "../../utils/presets"
 import parse from "html-react-parser"
 import Greenbox from "../../images/greenbox.png"
 import GreenboxRotated from "../../images/greenbox-rotated.png"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const Wrapper = styled.div`
   scroll-margin-block-start: 100px;
@@ -57,10 +58,10 @@ const Wrapper = styled.div`
         max-width: 26rem;
         margin: 0 auto;
 
-        img {
+        .gatsby-image-wrapper {
           margin: 0 auto;
           max-width: 110px;
-          margin: 0.5rem 0.5rem 0.5rem;
+          margin: 0.5rem 0.5rem 1.2rem;
         }
       }
     }
@@ -103,16 +104,15 @@ const TripletColumn = ({ button, boxen, introText, sectionid }) => {
             return (
               <div className="item" key={i}>
                 <div className="content">
-                  {!!item.box.icon.localFile.publicURL && (
-                    <img
-                      src={item.box.icon.localFile.publicURL}
+                  {!!item?.box?.icon?.localFile && (
+                    <GatsbyImage
+                      image={getImage(item.box.icon.localFile)}
                       alt={item.box.icon.altText}
-                      aria-hidden="true"
                     />
                   )}
-                  {!!item.box.title && <h3>{parse(item.box.title)}</h3>}
-                  {!!item.box.text && <p>{parse(item.box.text)}</p>}
-                  {!!item.box.button && <Button button={item.box.button} />}
+                  {!!item?.box?.title && <h3>{parse(item.box.title)}</h3>}
+                  {!!item?.box?.text && <p>{parse(item.box.text)}</p>}
+                  {!!item?.box?.button && <Button button={item.box.button} />}
                 </div>
               </div>
             )

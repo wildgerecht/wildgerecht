@@ -170,6 +170,8 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
                           imgStyle={{ height: "40px", width: "40px" }}
                           image={getImage(item.image.localFile)}
                           alt=""
+                          width="40"
+                          height="40"
                         />
                       </div>
                       <div className="menuicon img-top">
@@ -178,6 +180,8 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
                           imgStyle={{ height: "40px", width: "40px" }}
                           image={getImage(item.activeimage.localFile)}
                           alt=""
+                          width="40"
+                          height="40"
                         />
                       </div>
                     </div>

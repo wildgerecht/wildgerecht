@@ -221,14 +221,14 @@ export const pageQuery = graphql`
             altText
             localFile {
               childImageSharp {
-                gatsbyImageData(width: 40)
+                gatsbyImageData(width: 40, height: 40)
               }
             }
           }
           activeimage {
             localFile {
               childImageSharp {
-                gatsbyImageData(width: 40)
+                gatsbyImageData(width: 40, height: 40)
               }
             }
           }
