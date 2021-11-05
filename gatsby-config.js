@@ -9,7 +9,7 @@ module.exports = {
     title: `wildgerecht`,
     description: `wildgerecht Jagdmarketing`,
     author: `wildgerecht`,
-    siteUrl: `https://wildgerecht.de`,
+    siteUrl: `https://www.wildgerecht.de`,
     social: {
       twitter: "",
     },
@@ -39,8 +39,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: "https://wildgerecht.de",
-        sitemap: "https://wildgerecht.de/sitemap.xml",
+        host: "https://www.wildgerecht.de",
+        sitemap: "https://www.wildgerecht.de/sitemap/sitemap-0.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },

@@ -122,32 +122,10 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
     }
   `)
 
-  // COOKIE CHECK
-  // function isBrowser() {
-  //   return typeof window !== "undefined"
-  // }
-  // function getValue(key, defaultValue) {
-  //   return isBrowser() && window.localStorage.getItem(key)
-  //     ? JSON.parse(window.localStorage.getItem(key))
-  //     : defaultValue
-  // }
-  // function useStickyState(defaultValue, key) {
-  //   const [value, setter] = React.useState(() => {
-  //     return getValue(key, defaultValue)
-  //   })
-
-  //   React.useEffect(() => {
-  //     setValue(key, value)
-  //   }, [key, value])
-
-  //   return [value, setter]
-  // }
-
   const frontPage = isHomePage
 
   return (
     <div data-is-root-path={isHomePage}>
-      <SelfCookieConsent />
       <Header frontPage={frontPage} title={title} uri={uri} />
 
       <Main>{children}</Main>
@@ -193,7 +171,9 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
           ))}
         </ul>
       </FixedBottomMenuWrapper>
+
       <Footer />
+      <SelfCookieConsent />
     </div>
   )
 }

@@ -6,7 +6,7 @@ import styled from "styled-components"
 import CookieConsent from "react-cookie-consent"
 
 const Consent = styled.div`
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   .consent-container {
     z-index: 999;
     text-align: center;

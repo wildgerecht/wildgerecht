@@ -465,10 +465,12 @@ export const pageQuery = graphql`
                   altText
                   localFile {
                     childImageSharp {
-                      gatsbyImageData(width: 120)
+                      gatsbyImageData(
+                        width: 120
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
                     }
-                    publicURL
-                    url
                   }
                 }
                 button {

@@ -469,8 +469,13 @@ export const pageQuery = graphql`
                 icon {
                   altText
                   localFile {
-                    publicURL
-                    url
+                    childImageSharp {
+                      gatsbyImageData(
+                        width: 120
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP, AVIF]
+                      )
+                    }
                   }
                 }
                 button {
