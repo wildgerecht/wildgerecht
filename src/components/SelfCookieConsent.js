@@ -6,6 +6,7 @@ import styled from "styled-components"
 import CookieConsent from "react-cookie-consent"
 
 const Consent = styled.div`
+  margin-bottom: 2rem;
   .consent-container {
     z-index: 999;
     text-align: center;
@@ -14,14 +15,14 @@ const Consent = styled.div`
     position: fixed;
     left: 1rem;
     right: 1rem;
-    bottom: 5rem;
+    bottom: 5rem !important;
     max-width: 700px;
     border-radius: 13px;
     padding-top: 2.5rem;
     ${mq.tablet} {
       left: initial;
       right: 2rem;
-      bottom: 2rem;
+      bottom: 2rem !important;
     }
     img {
       position: absolute;
