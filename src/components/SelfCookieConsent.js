@@ -1,7 +1,7 @@
 import React from "react"
 import LogoWeiss from "../images/wildgerecht-logo-weiss.svg"
 import { Link } from "gatsby"
-import { mq, colors } from "../utils/presets"
+import { mq } from "../utils/presets"
 import styled from "styled-components"
 import CookieConsent from "react-cookie-consent"
 
@@ -38,6 +38,9 @@ const Consent = styled.div`
     p {
       margin-bottom: 0.5rem;
       font-size: 0.9rem;
+      a {
+        color: #fefefe;
+      }
     }
     button {
       margin-right: 0.8rem;
@@ -56,6 +59,9 @@ const SelfCookieConsent = () => {
   return (
     <Consent>
       <CookieConsent
+        onAccept={cookieAcceptAction => {
+          window.location.reload()
+        }}
         disableStyles={true}
         location="bottom"
         enableDeclineButton

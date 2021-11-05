@@ -212,14 +212,13 @@ const Partner = ({ partnergroup, image, logos, textAboveLogos, sectionid }) => {
           {!!partnerlogos && (
             <Flickity
               className={"carousel slider"} // default ''
-              elementType={"ul"} // default 'div'
               options={flickityOptions} // takes flickity options {}
               disableImagesLoaded={false} // default false
               reloadOnUpdate // default false
               static // default false
             >
               {partnerlogos.map((item, i) => (
-                <li className="slideitem" key={item.partner.website + i}>
+                <div className="slideitem" key={item.partner.website + i}>
                   {!!item.partner.website ? (
                     <a
                       href={item.partner.website.url}
@@ -245,7 +244,7 @@ const Partner = ({ partnergroup, image, logos, textAboveLogos, sectionid }) => {
                       )}
                     </>
                   )}
-                </li>
+                </div>
               ))}
             </Flickity>
           )}
