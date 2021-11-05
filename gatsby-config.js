@@ -9,7 +9,7 @@ module.exports = {
     title: `wildgerecht`,
     description: `wildgerecht Jagdmarketing`,
     author: `wildgerecht`,
-    siteUrl: `https://wildgerecht.de/`,
+    siteUrl: `https://wildgerecht.de`,
     social: {
       twitter: "",
     },
@@ -27,11 +27,21 @@ module.exports = {
         url: process.env.WPGRAPHQL_URL || `https://wp.wildgerecht.de/graphql`,
       },
     },
-
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
         siteUrl: `https://www.wildgerecht.de`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://wildgerecht.de",
+        sitemap: "https://wildgerecht.de/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
       },
     },
     {

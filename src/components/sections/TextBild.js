@@ -330,7 +330,7 @@ const TextBild = ({
   const featuredImage = {
     // image: getImage(image?.localFile),
     image: image?.localFile?.childImageSharp,
-    alt: image?.altText || ``,
+    alt: image?.altText || `""`,
   }
 
   // TEXT / IMAGE POSITION
@@ -557,7 +557,7 @@ const TextBild = ({
                             objectPosition="50% 50%"
                             style={{ height: customImageHeight }}
                             image={getImage(item?.image?.localFile)}
-                            alt={item?.image?.localFile?.childImageSharp?.alt}
+                            alt={item?.image?.altText || ""}
                           />
                         </div>
                       ))}

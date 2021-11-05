@@ -207,7 +207,7 @@ const Partner = ({ partnergroup, image, logos, textAboveLogos, sectionid }) => {
             </div>
           </div>
 
-          {!!textAboveLogos && <h2>{parse(textAboveLogos)}</h2>}
+          {!!textAboveLogos && <div>{parse(textAboveLogos)}</div>}
 
           {!!partnerlogos && (
             <Flickity

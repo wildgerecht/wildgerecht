@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { mq } from "../../utils/presets"
+// import { mq } from "../../utils/presets"
 import parse from "html-react-parser"
 import { StaticImage } from "gatsby-plugin-image"
 

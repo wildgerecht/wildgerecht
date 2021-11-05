@@ -254,12 +254,13 @@ const FooterSection = () => (
         </li>
         <li className="nomobile linkedinicon">
           <a
-            href="http://de.linkedin.com/"
+            href="https://www.linkedin.com/in/timothy-kolb-9a199a1b9/"
             target="_blank"
             rel="noopener nofollow noreferrer"
             aria-label="wildgerecht auf LinkedIn"
+            title="wildgerecht auf LinkedIn"
           >
-            <FaLinkedin className="socialicon" alt="wildgerecht auf LinkedIn" />
+            <FaLinkedin className="socialicon" />
           </a>
           {/* <a
             href="https://facebook.com/wildgerecht"

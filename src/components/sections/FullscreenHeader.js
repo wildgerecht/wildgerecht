@@ -249,7 +249,7 @@ const FullScreenHeader = ({ title, featuredImage, mobileImage }) => {
     <Wrapper>
       <ImageWrapper>
         <div className="imgwrap">
-          {!!smartphoneImage && (
+          {!!smartphoneImage.image && (
             <GatsbyImage
               className="img smartphone"
               image={smartphoneImage.image}

@@ -8,16 +8,7 @@ import { mq } from "../utils/presets"
 import UniversalLink from "./UniversalLink"
 import SelfCookieConsent from "./SelfCookieConsent"
 
-// import "../../src/normalize.css"
-// import "./layout.scss"
-// import "./typography.css"
-
-// import "../style.scss"
-// import { TransitionProvider, TransitionViews } from "gatsby-plugin-transitions"
-
-const Main = styled.main`
-  /* scroll-behavior: smooth; */
-`
+const Main = styled.main``
 
 const FixedBottomMenuWrapper = styled.nav`
   display: block;
@@ -131,11 +122,34 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
     }
   `)
 
+  // COOKIE CHECK
+  // function isBrowser() {
+  //   return typeof window !== "undefined"
+  // }
+  // function getValue(key, defaultValue) {
+  //   return isBrowser() && window.localStorage.getItem(key)
+  //     ? JSON.parse(window.localStorage.getItem(key))
+  //     : defaultValue
+  // }
+  // function useStickyState(defaultValue, key) {
+  //   const [value, setter] = React.useState(() => {
+  //     return getValue(key, defaultValue)
+  //   })
+
+  //   React.useEffect(() => {
+  //     setValue(key, value)
+  //   }, [key, value])
+
+  //   return [value, setter]
+  // }
+
   const frontPage = isHomePage
 
   return (
     <div data-is-root-path={isHomePage}>
+      <SelfCookieConsent />
       <Header frontPage={frontPage} title={title} uri={uri} />
+
       <Main>{children}</Main>
       <FixedBottomMenuWrapper id="bottomnav">
         <ul>
@@ -176,7 +190,6 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
         </ul>
       </FixedBottomMenuWrapper>
       <Footer />
-      <SelfCookieConsent />
     </div>
   )
 }

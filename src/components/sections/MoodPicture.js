@@ -221,8 +221,6 @@ const MoodPicture = ({
     gradientClass = ""
   }
 
-  console.log("MOODPICTURE :")
-  console.log(featuredImage)
   // DEFINE CONTENT LOCATION
 
   let location = "space-around"
@@ -267,7 +265,7 @@ const MoodPicture = ({
           "imgwrap " + heightclass + " " + spacingtop + " " + spacingbottom
         }
       >
-        {!!featuredImage && (
+        {!!featuredImage.image && (
           <GatsbyImage
             className="img "
             image={featuredImage.image}
