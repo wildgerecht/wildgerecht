@@ -22,16 +22,14 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
     page.title.replace("^", "") ||
     ``
   const metaDesc = seo.metaDesc || ``
+  const seoImage = page?.ogImage?.node.localFile.childImageSharp.resize
+  const title = page?.title
+  const featuredImage = page?.featuredImage
 
   const mobilemenu = frontPage.mobileMenu.mobilemenu
   const mobileImage = page?.mobileImage?.beitragsbild
 
-  const title = page?.title
-  const featuredImage = page?.featuredImage
-
   const titleWitHBreak = title.replace("^", "<br />")
-
-  const seoImage = page?.ogImage?.node.localFile.childImageSharp.resize
 
   return (
     <Layout uri={page.uri} mobilemenu={mobilemenu}>
