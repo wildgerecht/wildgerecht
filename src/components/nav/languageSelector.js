@@ -17,7 +17,8 @@ function LanguageSelector(lang, uri, translationSlug) {
           to={`/en/${lang.translationSlug}/`}
           title="English"
         >
-          <svg
+          EN
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 60 30"
             width="30"
@@ -45,13 +46,14 @@ function LanguageSelector(lang, uri, translationSlug) {
               <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
               <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6" />
             </g>
-          </svg>
+          </svg> */}
         </Link>
       )
     } else {
       return (
         <Link to={`/${lang.translationSlug}/`} title="German">
-          <svg
+          DE
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
             height="20"
@@ -82,7 +84,7 @@ function LanguageSelector(lang, uri, translationSlug) {
               x="0"
               fill="#FFCE00"
             />
-          </svg>
+          </svg> */}
         </Link>
       )
     }
