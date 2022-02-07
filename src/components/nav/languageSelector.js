@@ -7,8 +7,6 @@ const Switcher = styled.div`
 `
 
 function LanguageSelector(lang, uri, translationSlug) {
-  console.log(lang)
-  // console.log(translationSlug)
   if (!!lang.translationSlug) {
     if (lang.lang === "DE") {
       return (

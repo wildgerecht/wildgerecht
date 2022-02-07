@@ -186,7 +186,7 @@ const Layout = ({
         </ul>
       </FixedBottomMenuWrapper>
 
-      <Footer />
+      <Footer lang={lang} />
       <SelfCookieConsent />
     </div>
   )

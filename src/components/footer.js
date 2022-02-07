@@ -1,4 +1,5 @@
 import React from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import { FaLinkedinIn } from "react-icons/fa"
@@ -6,6 +7,8 @@ import { FaLinkedin } from "react-icons/fa"
 import { mq } from "../utils/presets"
 import Dog from "../images/deutschdrahthaar.svg"
 import LogoWeiss from "../images/wildgerecht-logo-weiss.svg"
+import FooterMenu from "../components/nav/FooterMenu"
+import FooterMenuEn from "../components/nav/FooterMenuEn"
 
 // const Year = new Date().getFullYear()
 
@@ -227,31 +230,24 @@ const Footer = styled.footer`
   }
 `
 
-const FooterSection = () => (
+const FooterSection = ({ lang, uri, translationSlug }) => (
   <Footer>
     <div className="inner">
       <div className="dog">
         <img src={Dog} alt="Deutsch Drahthaar" />
       </div>
       <ul>
-        <li className="nomobile">
-          <Link to="/kompetenz/">Kompetenz</Link>
-        </li>
-        <li className="nomobile">
-          <Link to="/leistungen/">Leistungen</Link>
-        </li>
-        <li className="nomobile">
-          <Link to="/workshops/">Workshops</Link>
-        </li>
-        <li className="nomobile">
-          <Link to="/kontakt/">Kontakt</Link>
-        </li>
-        <li>
-          <Link to="/datenschutz/">Datenschutz</Link>
-        </li>
-        <li>
-          <Link to="/impressum/">Impressum</Link>
-        </li>
+        {lang !== "EN" && (
+          <FooterMenu lang={lang} uri={uri} translationSlug={translationSlug} />
+        )}
+        {lang === "EN" && (
+          <FooterMenuEn
+            lang={lang}
+            uri={uri}
+            translationSlug={translationSlug}
+          />
+        )}
+
         <li className="nomobile linkedinicon">
           <a
             href="https://www.linkedin.com/in/timothy-kolb-9a199a1b9/"
