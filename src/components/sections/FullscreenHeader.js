@@ -229,7 +229,7 @@ const ImageWrapper = styled.div`
   }
 `
 
-const FullScreenHeader = ({ title, featuredImage, mobileImage }) => {
+const FullScreenHeader = ({ title, featuredImage, mobileImage, lang }) => {
   const headerImage = {
     image: getImage(featuredImage?.node?.localFile),
     alt: featuredImage?.altText || "",
@@ -274,7 +274,8 @@ const FullScreenHeader = ({ title, featuredImage, mobileImage }) => {
                 className="button"
                 onClick={() => scrollTo("#maincontent")}
               >
-                Mehr erfahren ↓
+                {lang === "DE" && "Mehr erfahren ↓"}
+                {lang !== "DE" && "Learn more ↓"}
               </button>
             </div>
           </div>

@@ -106,7 +106,15 @@ const FixedBottomMenuWrapper = styled.nav`
   }
 `
 
-const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
+const Layout = ({
+  location,
+  isHomePage,
+  children,
+  uri,
+  mobilemenu,
+  lang,
+  translationSlug,
+}) => {
   const {
     wp: {
       generalSettings: { title },
@@ -126,7 +134,13 @@ const Layout = ({ location, isHomePage, children, uri, mobilemenu }) => {
 
   return (
     <div data-is-root-path={isHomePage}>
-      <Header frontPage={frontPage} title={title} uri={uri} />
+      <Header
+        frontPage={frontPage}
+        title={title}
+        uri={uri}
+        lang={lang}
+        translationSlug={translationSlug}
+      />
 
       <Main>{children}</Main>
       <FixedBottomMenuWrapper id="bottomnav">

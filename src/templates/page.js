@@ -32,16 +32,24 @@ const PageTemplate = ({ data: { page, frontPage } }) => {
   const titleWitHBreak = title.replace("^", "<br />")
 
   return (
-    <Layout uri={page.uri} mobilemenu={mobilemenu}>
-      {/* lang={page.language.slug} */}
-
-      <Seo title={seoTitle} description={metaDesc} image={seoImage} />
-      {/* lang={page.language.slug} */}
+    <Layout
+      uri={page.uri}
+      mobilemenu={mobilemenu}
+      lang={page.language.code}
+      translationSlug={page?.translations[0]?.slug}
+    >
+      <Seo
+        title={seoTitle}
+        description={metaDesc}
+        image={seoImage}
+        lang={page.language.code}
+      />
 
       <FullScreenHeader
         title={titleWitHBreak}
         featuredImage={featuredImage}
         mobileImage={mobileImage}
+        lang={page.language.code}
       />
 
       {!!page.pageBuilder.layouts && (
@@ -204,6 +212,12 @@ export const pageQuery = graphql`
       content
       title
       nodeType
+      language {
+        code
+      }
+      translations {
+        slug
+      }
       date(formatString: "MMMM DD, YYYY")
 
       mobileImage {

@@ -7,7 +7,7 @@ import MenuList from "./menuStyles"
 const HeaderMenu = ({ lang, uri, translationSlug }) => {
   const { wpMenu } = useStaticQuery(graphql`
     {
-      wpMenu(slug: { eq: "hauptmenu" }) {
+      wpMenu(slug: { eq: "hauptmenu-englisch" }) {
         name
         menuItems {
           nodes {

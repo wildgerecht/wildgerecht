@@ -2,6 +2,7 @@ import React from "react"
 import UniversalLink from "./UniversalLink"
 import styled from "styled-components"
 import HeaderMenu from "./nav/HeaderMenu"
+import HeaderMenuEn from "./nav/HeaderMenuEn"
 // import Logo from "../images/wildgerecht-logo-gruppe.svg"
 import Logo from "../images/wildgerecht-logo-weiss.svg"
 import { mq } from "../utils/presets"
@@ -61,7 +62,14 @@ const Navwrapper = styled.nav`
   }
 `
 
-const Header = ({ isHomePage, title, uri, frontPage }) => {
+const Header = ({
+  isHomePage,
+  title,
+  uri,
+  frontPage,
+  lang,
+  translationSlug,
+}) => {
   return (
     <HeaderWrapper className="global-header">
       <Headroom disableInlineStyles>
@@ -81,8 +89,20 @@ const Header = ({ isHomePage, title, uri, frontPage }) => {
                 <img src={Logo} alt="Wildgerecht Logo" className="logo" />
               </UniversalLink>
             )}
-
-            <HeaderMenu uri={uri} />
+            {lang !== "EN" && (
+              <HeaderMenu
+                uri={uri}
+                lang={lang}
+                translationSlug={translationSlug}
+              />
+            )}
+            {lang === "EN" && (
+              <HeaderMenuEn
+                uri={uri}
+                lang={lang}
+                translationSlug={translationSlug}
+              />
+            )}
           </Navwrapper>
         </div>
       </Headroom>

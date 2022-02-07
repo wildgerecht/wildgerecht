@@ -51,6 +51,7 @@ const createIndividualPages = async ({ pages, gatsbyUtilities }) =>
         component: path.resolve(`./src/templates/page.js`),
         context: {
           id: page.id,
+          lang: page.language.code,
         },
       })
       // }
@@ -77,6 +78,9 @@ async function getPages({ graphql, reporter }) {
           page: node {
             id
             uri
+            language {
+              code
+            }
           }
           next {
             id
@@ -88,7 +92,7 @@ async function getPages({ graphql, reporter }) {
 
   if (graphqlResult.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog pages`,
+      `There was an error loading your pages`,
       graphqlResult.errors
     )
     return
